@@ -1,0 +1,55 @@
+<template>
+    <div>
+        <div class="callout bg-aqua-gradient" v-for="buttonTrigger in buttonTriggers" :key="buttonTrigger.id">
+            <h4>{{buttonTrigger.button_type.button_type}}</h4>
+            <p>{{buttonTrigger.button_type.message}}</p>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                buttonTriggers: []
+            }
+        },
+
+        created() {
+            this.getEchoNotifications()
+            this.getNotifications()
+        },
+
+        methods: {
+            getNotifications() {
+                axios.get('notifications')
+                    .then((res) => {
+                        this.buttonTriggers = res.data
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+
+//                setTimeout(this.getNotifications(),2000)
+            },
+
+            getEchoNotifications() {
+//                alert('asdasdas');
+                Echo.channel('button-trigger-channel')
+                    .listen('ButtonTriggerEvent', (e) => {
+                        console.log(e.data);
+                        this.buttonTriggers.push(e.data)
+                    });
+
+            },
+
+
+        }
+
+
+    }
+</script>
+
+<style>
+
+</style>
