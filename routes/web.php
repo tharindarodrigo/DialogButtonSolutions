@@ -29,7 +29,7 @@ Route::group(['middleware'=> 'auth'], function(){
 });
 
 
-Route::post('button-click/{serial}', 'ButtonClickController@store');
+Route::any('button-click/{serial}', 'ButtonClickController@store');
 
 Route::get('notifications', function () {
     return $buttons = \App\Button::with(['buttonType', 'company', 'branch'])->get();
