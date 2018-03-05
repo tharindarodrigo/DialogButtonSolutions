@@ -1,17 +1,21 @@
 <template>
+    <transition name="bounce">
     <div>
-        <div class="callout bg-aqua-gradient" v-for="buttonTrigger in buttonTriggers" :key="buttonTrigger.id">
+        <div v-for="buttonTrigger in buttonTriggers" :key="buttonTrigger.id" v-bind:class="[calloutClass, 'bg-'+buttonTrigger.button_type.notification_color]">
             <h4>{{buttonTrigger.button_type.button_type}}</h4>
             <p>{{buttonTrigger.button_type.message}}</p>
         </div>
     </div>
+    </transition>
+
 </template>
 
 <script>
     export default {
         data() {
             return {
-                buttonTriggers: []
+                buttonTriggers: [],
+                calloutClass: "callout"
             }
         },
 
@@ -51,5 +55,21 @@
 </script>
 
 <style>
-
+    .bounce-enter-active {
+        animation: bounce-in .5s;
+    }
+    .bounce-leave-active {
+        animation: bounce-in .5s reverse;
+    }
+    @keyframes bounce-in {
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
 </style>

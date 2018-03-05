@@ -52064,7 +52064,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.bounce-enter-active {\n    -webkit-animation: bounce-in .5s;\n            animation: bounce-in .5s;\n}\n.bounce-leave-active {\n    animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\n        -webkit-transform: scale(0);\n                transform: scale(0);\n}\n50% {\n        -webkit-transform: scale(1.5);\n                transform: scale(1.5);\n}\n100% {\n        -webkit-transform: scale(1);\n                transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\n        -webkit-transform: scale(0);\n                transform: scale(0);\n}\n50% {\n        -webkit-transform: scale(1.5);\n                transform: scale(1.5);\n}\n100% {\n        -webkit-transform: scale(1);\n                transform: scale(1);\n}\n}\n", ""]);
 
 // exports
 
@@ -52427,11 +52427,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            buttonTriggers: []
+            buttonTriggers: [],
+            calloutClass: "callout"
         };
     },
     created: function created() {
@@ -52473,20 +52477,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(_vm.buttonTriggers, function(buttonTrigger) {
-      return _c(
-        "div",
-        { key: buttonTrigger.id, staticClass: "callout bg-aqua-gradient" },
-        [
-          _c("h4", [_vm._v(_vm._s(buttonTrigger.button_type.button_type))]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(buttonTrigger.button_type.message))])
-        ]
-      )
-    })
-  )
+  return _c("transition", { attrs: { name: "bounce" } }, [
+    _c(
+      "div",
+      _vm._l(_vm.buttonTriggers, function(buttonTrigger) {
+        return _c(
+          "div",
+          {
+            key: buttonTrigger.id,
+            class: [
+              _vm.calloutClass,
+              "bg-" + buttonTrigger.button_type.notification_color
+            ]
+          },
+          [
+            _c("h4", [_vm._v(_vm._s(buttonTrigger.button_type.button_type))]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(buttonTrigger.button_type.message))])
+          ]
+        )
+      })
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
