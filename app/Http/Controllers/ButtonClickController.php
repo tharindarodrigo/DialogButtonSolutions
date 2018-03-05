@@ -41,7 +41,7 @@ class ButtonClickController extends Controller
      */
     public function store($serial)
     {
-        $button = Button::whereSerial($serial)->first();
+        $button = Button::where('serial_number', $serial)->first();
         $buttonClick = new ButtonClick();
         $buttonClick->button = $button;
         if ($buttonClick->save()) {
