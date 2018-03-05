@@ -52429,6 +52429,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52456,14 +52485,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //                setTimeout(this.getNotifications(),2000)
         },
         getEchoNotifications: function getEchoNotifications() {
-            var _this2 = this;
-
             //                alert('asdasdas');
             Echo.channel('button-trigger-channel').listen('ButtonTriggerEvent', function (e) {
                 console.log(e.data);
-                _this2.buttonTriggers.push(e.data);
+                //this.buttonTriggers.push(e.data)
             });
-        }
+        },
+        getTable: function getTable() {}
     }
 
 });
@@ -52472,39 +52500,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("transition", { attrs: { name: "bounce" } }, [
-    _c(
-      "div",
-      _vm._l(_vm.buttonTriggers, function(buttonTrigger) {
-        return _c(
-          "div",
-          {
-            key: buttonTrigger.id,
-            class: [
-              _vm.calloutClass,
-              "bg-" + buttonTrigger.button_type.notification_color
-            ]
-          },
-          [
-            _c("p", [
-              _c("b", [
-                _vm._v(_vm._s(buttonTrigger.button_type.button_type) + " :")
-              ]),
-              _vm._v(" " + _vm._s(buttonTrigger.button_type.message))
-            ])
-          ]
-        )
-      })
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
+module.exports={render:function(){},staticRenderFns:[]}
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -52571,31 +52567,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52614,56 +52585,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div")
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "table-responsive" }, [
-        _c("table", { staticClass: "table" }, [
-          _c("thead", [
-            _c("tr", [
-              _c("th", [_vm._v("#")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Company")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Branch")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Type")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Identifier")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Message")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Date Time")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td"),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td")
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

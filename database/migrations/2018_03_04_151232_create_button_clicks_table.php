@@ -17,6 +17,12 @@ class CreateButtonClicksTable extends Migration
             $table->increments('id');
             $table->integer('button_id')->unsigned()->index();
             $table->foreign('button_id')->references('id')->on('buttons');
+            $table->integer('button_type_id')->unsigned()->index();
+            $table->foreign('button_type_id')->references('id')->on('button_types');
+            $table->integer('company_id')->unsigned()->index();
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->integer('branch_id')->unsigned()->index();
+            $table->foreign('branch_id')->references('id')->on('branches');
             $table->timestamps();
         });
     }

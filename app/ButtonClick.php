@@ -10,4 +10,19 @@ class ButtonClick extends Model
     {
         return $this->belongsTo(Button::class);
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
+    public function buttonType()
+    {
+        return $this->belongsTo(ButtonType::class);
+    }
 }

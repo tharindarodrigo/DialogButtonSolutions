@@ -1,11 +1,40 @@
 <template>
-    <transition name="bounce">
+<div>
+
     <div>
         <div v-for="buttonTrigger in buttonTriggers" :key="buttonTrigger.id" v-bind:class="[calloutClass, 'bg-'+buttonTrigger.button_type.notification_color]">
             <p><b>{{buttonTrigger.button_type.button_type}} :</b> {{buttonTrigger.button_type.message}}</p>
         </div>
     </div>
-    </transition>
+    <div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Company</th>
+                    <th>Branch</th>
+                    <th>Type</th>
+                    <th>Identifier</th>
+                    <th>Message</th>
+                    <th>Date Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  v-for="buttonRecord in buttonTriggers" :key="buttonRecord.id">
+                    <td>{{buttonRecord.id}}</td>
+                    <td>{{buttonRecord.}}</td>
+                    <td>{{buttonRecord.}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 </template>
 
@@ -41,11 +70,14 @@
                 Echo.channel('button-trigger-channel')
                     .listen('ButtonTriggerEvent', (e) => {
                         console.log(e.data);
-                        this.buttonTriggers.push(e.data)
+                        //this.buttonTriggers.push(e.data)
                     });
 
             },
 
+            getTable(){
+
+            }
 
         }
 
