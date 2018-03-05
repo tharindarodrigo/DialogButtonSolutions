@@ -17,7 +17,7 @@
 
         created() {
             this.getEchoNotifications()
-            this.getNotifications()
+//            this.getNotifications()
         },
 
         methods: {
