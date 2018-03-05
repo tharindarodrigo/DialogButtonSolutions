@@ -45,13 +45,9 @@ class ButtonClickController extends Controller
         $buttonClick = new ButtonClick();
         $buttonClick->button_id = $button->id;
         if ($buttonClick->save()) {
-//            $button->with(['buttonType', 'company', 'branch'])->first();
             event(new ButtonTriggerEvent($button));
-
-            return response(null, 200);
         }
 
-        return response(null, 404);
 
     }
 
