@@ -41,16 +41,19 @@ class ButtonClickController extends Controller
      */
     public function store($serial)
     {
-        $button = Button::with(['buttonType', 'company', 'branch'])->where('serial_number', $serial)->first();
+        $button = Button::where('serial_number', $serial)->first();
         $buttonClick = new ButtonClick();
         $buttonClick->button_id = $button->id;
         $buttonClick->button_type_id = $button->buttonType->id;
         $buttonClick->company_id = $button->company->id;
         $buttonClick->branch_id = $button->branch->id;
 
-        event(new ButtonTriggerEvent(collect($buttonClick)));
+//        event(new ButtonTriggerEvent(collect($buttonClick)));
 
         if ($buttonClick->save()) {
+
+            $x = ButtonClick::with(['buttonType', 'company', 'branch', 'button'])->find($buttonClick->id);
+
 //            $buttonClick = ButtonClick::with('button')->whereHas('button', function($q){
 //                $q->with('buttonType')->get();
 //            })->first();
@@ -62,7 +65,7 @@ class ButtonClickController extends Controller
 //            $x = $buttonClick->with('button')->whereHas('button', function ($query){
 //                $query->with(['buttonType', 'company', 'branch'])->get();
 //            })->find($buttonClick->id);
-//            event(new ButtonTriggerEvent($buttonClick));
+            event(new ButtonTriggerEvent($x));
         }
     }
 

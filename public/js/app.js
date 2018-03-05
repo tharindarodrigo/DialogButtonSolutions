@@ -52485,10 +52485,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //                setTimeout(this.getNotifications(),2000)
         },
         getEchoNotifications: function getEchoNotifications() {
+            var _this2 = this;
+
             //                alert('asdasdas');
             Echo.channel('button-trigger-channel').listen('ButtonTriggerEvent', function (e) {
                 console.log(e.data);
-                //this.buttonTriggers.push(e.data)
+                _this2.buttonTriggers.push(e.data);
             });
         },
         getTable: function getTable() {}
@@ -52500,7 +52502,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function(){},staticRenderFns:[]}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      _vm._l(_vm.buttonTriggers, function(buttonTrigger) {
+        return _c(
+          "div",
+          {
+            key: buttonTrigger.id,
+            class: [
+              _vm.calloutClass,
+              "bg-" + buttonTrigger.button_type.notification_color
+            ]
+          },
+          [
+            _c("p", [
+              _c("b", [
+                _vm._v(_vm._s(buttonTrigger.button_type.button_type) + " :")
+              ]),
+              _vm._v(" " + _vm._s(buttonTrigger.button_type.message))
+            ])
+          ]
+        )
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
