@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Button;
 use App\ButtonClick;
 use App\Company;
+use App\Events\ButtonTriggerEvent;
 use Illuminate\Http\Request;
 
 class ButtonClickController extends Controller
@@ -38,10 +39,18 @@ class ButtonClickController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($token, $serial)
+    public function store($serial)
     {
         $button = Button::whereSerial($serial)->first();
         $buttonClick = new ButtonClick();
+        $buttonClick->button = $button;
+        if ($buttonClick->save()) {
+            event(new ButtonTriggerEvent($buttonClick));
+
+            return response(null, 200);
+        }
+
+        return response(null, 404);
 
     }
 

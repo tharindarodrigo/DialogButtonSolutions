@@ -20,4 +20,9 @@ class Button extends Model
     {
         return $this->belongsTo(ButtonType::class);
     }
+
+    public function buttonClicks()
+    {
+        return $this->hasMany(ButtonClick::class);
+    }
 }
