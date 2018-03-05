@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class ButtonRequest extends FormRequest
 {
@@ -23,13 +24,40 @@ class ButtonRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'company_id'=>'required',
-            'branch_id'=>'required',
-            'button_type_id'=>'required',
-            'serial_number'=>'required|unique:buttons',
-            'identifier'=>'required',
 
-        ];
+        switch ($this->method()) {
+            case 'POST': {
+                return [
+                    'company_id' => 'required',
+                    'branch_id' => 'required',
+                    'button_type_id' => 'required',
+                    'serial_number' => 'required|unique:buttons',
+                    'identifier' => 'required',
+
+                ];
+            }
+
+            case 'PUT': {
+                return [
+                    'company_id' => 'required',
+                    'branch_id' => 'required',
+                    'button_type_id' => 'required',
+                    'serial_number' => 'required|unique:buttons,id,'.$this->segments(2),
+                    'identifier' => 'required',
+                ];
+            }
+            case 'PATCH':{
+                return [
+                    'company_id' => 'required',
+                    'branch_id' => 'required',
+                    'button_type_id' => 'required',
+                    'serial_number' => 'required|unique:buttons,id,'.$this->segment(2),
+                    'identifier' => 'required',
+                ];            }
+            default:
+                break;
+        }
+
+
     }
 }

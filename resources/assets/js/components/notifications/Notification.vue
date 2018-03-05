@@ -2,8 +2,7 @@
     <transition name="bounce">
     <div>
         <div v-for="buttonTrigger in buttonTriggers" :key="buttonTrigger.id" v-bind:class="[calloutClass, 'bg-'+buttonTrigger.button_type.notification_color]">
-            <h4>{{buttonTrigger.button_type.button_type}}</h4>
-            <p>{{buttonTrigger.button_type.message}}</p>
+            <p><b>{{buttonTrigger.button_type.button_type}} :</b> {{buttonTrigger.button_type.message}}</p>
         </div>
     </div>
     </transition>

@@ -13,7 +13,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Notifications</h3>
                 </div>
-                {{--<Notifications></Notifications>--}}
+                <Notifications></Notifications>
             </div>
         </div>
         <div class="col-md-4">
