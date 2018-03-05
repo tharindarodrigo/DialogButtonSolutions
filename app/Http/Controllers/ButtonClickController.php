@@ -41,11 +41,11 @@ class ButtonClickController extends Controller
      */
     public function store($serial)
     {
-        $button = Button::where('serial_number', $serial)->first();
+        $button = Button::with(['buttonType', 'company', 'branch'])->where('serial_number', $serial)->first();
         $buttonClick = new ButtonClick();
         $buttonClick->button_id = $button->id;
         if ($buttonClick->save()) {
-            $button->with(['buttonType', 'company', 'branch'])->first();
+//            $button->with(['buttonType', 'company', 'branch'])->first();
             event(new ButtonTriggerEvent($button));
 
             return response(null, 200);
