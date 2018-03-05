@@ -40,7 +40,9 @@ Route::get('/company/{id}/branches', function ($id) {
     return \App\Branch::where('company_id', $id)->get();
 });
 
-
+Route::get('but', function (){
+   return \App\ButtonClick::all();
+});
 
 Route::get('fire-button-trigger', function () {
 
