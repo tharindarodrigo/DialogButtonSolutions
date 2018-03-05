@@ -17,7 +17,7 @@ class CreateBranchesTable extends Migration
             $table->increments('id');
             $table->string('branch');
             $table->integer('company_id')->unsigned()->index();
-            $table->foreign('company_id')->references('id')->on('company');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->string('phone');
             $table->text('address');
             $table->timestamps();
