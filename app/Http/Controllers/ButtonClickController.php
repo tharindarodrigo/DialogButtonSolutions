@@ -44,9 +44,9 @@ class ButtonClickController extends Controller
         $button = Button::where('serial_number', $serial)->first();
         $buttonClick = new ButtonClick();
         $buttonClick->button_id = $button->id;
-        $buttonClick->button_type_id = $button->buttonType->id;
-        $buttonClick->company_id = $button->company->id;
-        $buttonClick->branch_id = $button->branch->id;
+        $buttonClick->button_type_id = $button->button_type_id;
+        $buttonClick->company_id = $button->company_id;
+        $buttonClick->branch_id = $button->branch_id;
 
 //        event(new ButtonTriggerEvent(collect($buttonClick)));
 
