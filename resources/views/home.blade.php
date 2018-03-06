@@ -8,17 +8,7 @@
 
 @section('content')
     <div class="row" id="app">
-        <div class="col-md-8">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Notifications</h3>
-                </div>
-                <Notifications></Notifications>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <Notification></Notification>
-        </div>
+        <Notification></Notification>
     </div>
 @stop
 @push('css')

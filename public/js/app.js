@@ -52458,6 +52458,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52491,6 +52496,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             Echo.channel('button-trigger-channel').listen('ButtonTriggerEvent', function (e) {
                 console.log(e.data);
                 _this2.buttonTriggers.push(e.data);
+                _this2.buttonTriggers.sort(function (a, b) {
+                    return b.id - a.id;
+                });
             });
         },
         getTable: function getTable() {}
@@ -52507,8 +52515,44 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "col-md-8" }, [
+      _c("div", { staticClass: "box" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.buttonTriggers, function(buttonRecord) {
+                return _c("tr", { key: buttonRecord.id }, [
+                  _c("td", [_vm._v(_vm._s(buttonRecord.id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(buttonRecord.company.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(buttonRecord.branch.branch))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(buttonRecord.button_type.button_type))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(buttonRecord.button.identifier))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(buttonRecord.button.message))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(buttonRecord.created_at))])
+                ])
+              })
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c(
       "div",
+      { staticClass: "col-md-4" },
       _vm._l(_vm.buttonTriggers, function(buttonTrigger) {
         return _c(
           "div",
@@ -52532,7 +52576,38 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Notifications")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Company")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Branch")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Identifier")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Message")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date Time")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
