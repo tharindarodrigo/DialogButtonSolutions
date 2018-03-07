@@ -38,7 +38,7 @@ class ButtonClickController extends Controller
         }
         if (!empty($request->get('serial_number'))) {
             $buttonClicks->whereHas('button', function ($q) use ($request) {
-                $q->where('serial_number', 'like', $request->serial_number)->get();
+                $q->where('serial_number', '=', $request->serial_number);
             });
         }
 
