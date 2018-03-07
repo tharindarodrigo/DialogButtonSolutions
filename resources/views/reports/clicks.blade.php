@@ -112,7 +112,7 @@
                                     <td>{!! $buttonClick->company->name !!}</td>
                                     <td>{!! $buttonClick->branch->branch !!}</td>
                                     <td>{!! $buttonClick->buttonType->button_type !!}</td>
-                                    <td>{!! $buttonClick->creted_at !!}</td>
+                                    <td>{!! $buttonClick->created_at !!}</td>
                                     @if(!empty($groupBy))
                                         <td>{!! $buttonClick->count !!}</td>
                                     @endif
