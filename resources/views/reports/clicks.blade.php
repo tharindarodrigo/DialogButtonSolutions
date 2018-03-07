@@ -97,7 +97,7 @@
                                 <th>Company</th>
                                 <th>Branch</th>
                                 <th>Type</th>
-                                <th>Count</th>
+                                <th>Time</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -106,8 +106,8 @@
                                 <td>{!! $loop->index + 1 !!}</td>
                                 <td>{!! $buttonClick->company->name !!}</td>
                                 <td>{!! $buttonClick->branch->branch !!}</td>
-                                <td>{!! $buttonClick->branch->branch !!}</td>
-                                <td></td>
+                                <td>{!! $buttonClick->buttonType->button_type !!}</td>
+                                <td>{!! $buttonClick->creted_at !!}</td>
                                 <td></td>
                             </tr>
                             @endforeach
