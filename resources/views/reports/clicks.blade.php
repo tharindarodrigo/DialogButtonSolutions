@@ -94,22 +94,29 @@
                             <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Serial</th>
                                 <th>Company</th>
                                 <th>Branch</th>
                                 <th>Type</th>
                                 <th>Time</th>
+                                @if(!empty($groupBy))
+                                    <th>count</th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($buttonClicks as $buttonClick)
-                            <tr>
-                                <td>{!! $loop->index + 1 !!}</td>
-                                <td>{!! $buttonClick->company->name !!}</td>
-                                <td>{!! $buttonClick->branch->branch !!}</td>
-                                <td>{!! $buttonClick->buttonType->button_type !!}</td>
-                                <td>{!! $buttonClick->creted_at !!}</td>
-                                <td></td>
-                            </tr>
+                                <tr>
+                                    <td>{!! $loop->index + 1 !!}</td>
+                                    <td>{!! $buttonClick->button->serial_number !!}</td>
+                                    <td>{!! $buttonClick->company->name !!}</td>
+                                    <td>{!! $buttonClick->branch->branch !!}</td>
+                                    <td>{!! $buttonClick->buttonType->button_type !!}</td>
+                                    <td>{!! $buttonClick->creted_at !!}</td>
+                                    @if(!empty($groupBy))
+                                        <td>{!! $buttonClick->count !!}</td>
+                                    @endif
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
