@@ -17,7 +17,7 @@ getBranches = function (id) {
 
 
 getOptionTag = function (data) {
-    var options = '';
+    var options = '<option value="">All</option>';
 
     $.each(data, function (index, row) {
         options += '<option value="' + row.id + '">' + row.branch + '</option>'

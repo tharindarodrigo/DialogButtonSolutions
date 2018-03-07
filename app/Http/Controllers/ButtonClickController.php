@@ -18,9 +18,13 @@ class ButtonClickController extends Controller
      */
     public function index(Request $request)
     {
-        $companies = Company::pluck('name', 'id');
+        $companyEmpty = [null=>'All'];
+        $companiesQuery = Company::pluck('name', 'id')->toArray();
+        $companies = $companyEmpty + $companiesQuery;
+
 
         $buttonClicks = ButtonClick::with(['company', 'button','buttonType', 'branch']);
+
         if (!empty($request->get('company_id'))) {
             $buttonClicks->where('company_id', $request->company_id);
 
@@ -45,7 +49,8 @@ class ButtonClickController extends Controller
 
         return view('reports.clicks')->with([
             'companies' => $companies,
-            'buttonClicks' => $buttonClicks->get()
+            'buttonClicks' => $buttonClicks->get(),
+            'request'=>$request
         ]);
     }
 

@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Company</label>
                                     <div class="col-sm-8">
-                                        {!! Form::select('company_id', $companies, null, ['class'=> 'form-control']) !!}
+                                        {!! Form::select('company_id', $companies, null, ['class'=> 'form-control','id'=>'company']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +36,8 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Branches</label>
                                     <div class="col-sm-8">
-                                        {!! Form::select('branches', [], null, ['class'=> 'form-control']) !!}
+                                        <select name="branch_id" id="branches" class="form-control">
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">From</label>
                                     <div class="col-sm-8">
-                                        {!! Form::input('date', 'from', null, ['class'=> 'form-control']) !!}
+                                        {!! Form::input('datetime-local', 'from', null, ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +56,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">To</label>
                                     <div class="col-sm-8">
-                                        {!! Form::input('date', 'to', null, ['class'=> 'form-control']) !!}
+                                        {!! Form::input('datetime-local', 'to', null, ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -141,11 +142,42 @@
 
 @push('js')
 
-    <script type="text/javascript" src="{!! asset('js/branch-loader.js') !!}"></script>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
-            $('#companies').DataTable();
-        })
+
+            var x = $('#company').val();
+            getBranches(x);
+
+            $('#company').change(function () {
+                getBranches($(this).val());
+            })
+
+        });
+
+        getBranches = function (id) {
+            $.get('http://' + window.location.host + '/company/' + id + '/branches', function (data) {
+                getOptionTag(data);
+            })
+        };
+
+
+        getOptionTag = function (data) {
+            var options = '<option value="">All</option>';
+
+            $.each(data, function (index, row) {
+                options += '<option value="' + row.id + '">' + row.branch + '</option>'
+            });
+
+            $('#branches').html(options);
+            @if(!empty($request))
+            $("#branches").val({!! $request->get('branch_id') !!});
+            @endif
+        }
     </script>
+    {{--<script>--}}
+    {{--$(document).ready(function () {--}}
+    {{--$('#companies').DataTable();--}}
+    {{--})--}}
+    {{--</script>--}}
 
 @endpush

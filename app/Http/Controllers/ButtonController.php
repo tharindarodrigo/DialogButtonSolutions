@@ -28,7 +28,9 @@ class ButtonController extends Controller
      */
     public function create()
     {
-        $companies = Company::pluck('name', 'id');
+        $companyEmpty = collect([''=>'All']);
+        $companiesQuery = Company::pluck('name', 'id');
+        $companies = $companyEmpty->combine($companiesQuery);
         $buttonTypes = ButtonType::pluck('button_type', 'id');
         return view('buttons.create', compact('companies', 'buttonTypes'));
     }
