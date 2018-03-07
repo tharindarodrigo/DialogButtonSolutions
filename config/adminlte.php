@@ -136,7 +136,7 @@ return [
         ],
 
 
-        'ACCOUNT SETTINGS',
+//        'ACCOUNT SETTINGS',
 
         'REPORTS',
         [
