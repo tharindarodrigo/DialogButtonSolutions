@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -19,11 +18,9 @@
                     @include('branches._partials.form')
                     {!! Form::close() !!}
                 </div>
-
             </div>
         </div>
     </div>
-
 @stop
 
 @push('css')

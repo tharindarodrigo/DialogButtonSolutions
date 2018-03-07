@@ -114,7 +114,6 @@ return [
             'url' => 'home',
             'icon' => 'tachometer-alt',
         ],
-
         [
             'text' => 'Companies',
             'url' => 'companies',
@@ -139,7 +138,7 @@ return [
 
         'ACCOUNT SETTINGS',
 
-        'Reports',
+        'REPORTS',
         [
             'text' => 'Clicks',
             'url' => 'reports/clicks',

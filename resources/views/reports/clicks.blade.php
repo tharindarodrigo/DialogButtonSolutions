@@ -20,14 +20,14 @@
 
                 </div>
                 <div class="box-body">
-                    <form action="" class="form-horizontal">
+                    <form action="{!! url('reports/clicks') !!}" class="form-horizontal" method="GET">
                         <div class="row">
 
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Company</label>
                                     <div class="col-sm-8">
-                                        {!! Form::select('companies', $companies, null, ['class'=> 'form-control']) !!}
+                                        {!! Form::select('company_id', $companies, null, ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -46,21 +46,19 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">From</label>
                                     <div class="col-sm-8">
-                                        <input type="date" class="form-control">
+                                        {!! Form::input('date', 'from', null, ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">To</label>
                                     <div class="col-sm-8">
-                                        <input type="date" class="form-control">
+                                        {!! Form::input('date', 'to', null, ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row">
@@ -68,7 +66,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Serial</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control">
+                                        {!! Form::text('serial_number', null, ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -103,13 +101,16 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach ($buttonClicks as $buttonClick)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{!! $loop->index + 1 !!}</td>
+                                <td>{!! $buttonClick->company->name !!}</td>
+                                <td>{!! $buttonClick->branch->branch !!}</td>
+                                <td>{!! $buttonClick->branch->branch !!}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -7,6 +7,7 @@ use App\ButtonClick;
 use App\Company;
 use App\Events\ButtonTriggerEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ButtonClickController extends Controller
 {
@@ -15,11 +16,36 @@ class ButtonClickController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $companies = Company::pluck('name', 'id');
+
+        $buttonClicks = ButtonClick::with(['company', 'button','buttonType', 'branch']);
+        if (!empty($request->get('company_id'))) {
+            $buttonClicks->where('company_id', $request->company_id);
+
+
+            if (!empty($request->get('branch_id'))) {
+                $buttonClicks->where('branch_id', $request->branch_id);
+            }
+        }
+
+        if (!empty($request->get('from'))) {
+            $buttonClicks->where('created_at', '>', $request->from);
+        }
+        if (!empty($request->get('to'))) {
+            $buttonClicks->where('created_at', '<', $request->to);
+        }
+        if (!empty($request->get('serial_number'))) {
+            $buttonClicks->whereHas('button', function ($q) use ($request) {
+                $q->where('serial_number', 'like', $request->serial_number)->get();
+            });
+        }
+
+
         return view('reports.clicks')->with([
-            'companies'=>$companies
+            'companies' => $companies,
+            'buttonClicks' => $buttonClicks->get()
         ]);
     }
 
@@ -36,7 +62,7 @@ class ButtonClickController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store($serial)
@@ -53,18 +79,6 @@ class ButtonClickController extends Controller
         if ($buttonClick->save()) {
 
             $x = ButtonClick::with(['buttonType', 'company', 'branch', 'button'])->find($buttonClick->id);
-
-//            $buttonClick = ButtonClick::with('button')->whereHas('button', function($q){
-//                $q->with('buttonType')->get();
-//            })->first();
-//                ->whereHas('button', function ($query){
-//                $query->with(['buttonType', 'company', 'branch'])->get();
-//            })->find($buttonClick->id);
-//
-//            $button->buttonClickedAt = $buttonClick->create_at;
-//            $x = $buttonClick->with('button')->whereHas('button', function ($query){
-//                $query->with(['buttonType', 'company', 'branch'])->get();
-//            })->find($buttonClick->id);
             event(new ButtonTriggerEvent($x));
         }
     }
@@ -72,7 +86,7 @@ class ButtonClickController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ButtonClick  $buttonClick
+     * @param  \App\ButtonClick $buttonClick
      * @return \Illuminate\Http\Response
      */
     public function show(ButtonClick $buttonClick)
@@ -83,7 +97,7 @@ class ButtonClickController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ButtonClick  $buttonClick
+     * @param  \App\ButtonClick $buttonClick
      * @return \Illuminate\Http\Response
      */
     public function edit(ButtonClick $buttonClick)
@@ -94,8 +108,8 @@ class ButtonClickController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ButtonClick  $buttonClick
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\ButtonClick $buttonClick
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ButtonClick $buttonClick)
@@ -106,7 +120,7 @@ class ButtonClickController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ButtonClick  $buttonClick
+     * @param  \App\ButtonClick $buttonClick
      * @return \Illuminate\Http\Response
      */
     public function destroy(ButtonClick $buttonClick)
