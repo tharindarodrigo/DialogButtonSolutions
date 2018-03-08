@@ -41,7 +41,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Serial</label>
+                                    <div class="col-sm-8">
+                                        {!! Form::text('serial_number', null, ['class'=> 'form-control']) !!}
+                                    </div>
+                                </div>
+                            </div>
 
+
+                        </div>
+
+                        <div class="row">
 
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -60,17 +72,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="" class="col-sm-4 control-label">Serial</label>
-                                    <div class="col-sm-8">
-                                        {!! Form::text('serial_number', null, ['class'=> 'form-control']) !!}
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Counts By</label>
@@ -79,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-offset-3 col-md-3">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="col-sm-offset-4 col-sm-8">
                                         <button class="btn btn-block btn-primary"><span class="fa fa-search"></span>

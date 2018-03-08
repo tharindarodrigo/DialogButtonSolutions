@@ -7,6 +7,7 @@ use App\ButtonClick;
 use App\Company;
 use App\Events\ButtonTriggerEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class ButtonClickController extends Controller
@@ -54,7 +55,8 @@ class ButtonClickController extends Controller
         }
         if (!empty($request->get('count_by'))) {
             $buttonClicks->groupBy($request->count_by)
-            ->count();
+                ->select($request->count_by, DB::raw('count(*) as clicks'));
+            return $buttonClicks->get();
         }
 
 
