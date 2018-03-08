@@ -71,7 +71,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-offset-6 col-md-3">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Counts By</label>
+                                    <div class="col-sm-8">
+                                        {!! Form::select('count_by', $groups, null, ['class'=> 'form-control','id'=>'company']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-3 col-md-3">
                                 <div class="form-group">
                                     <div class="col-sm-offset-4 col-sm-8">
                                         <button class="btn btn-block btn-primary"><span class="fa fa-search"></span>
@@ -169,6 +177,7 @@
             });
 
             $('#branches').html(options);
+
             @if(!empty($request))
             $("#branches").val({!! $request->get('branch_id') !!});
             @endif

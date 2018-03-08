@@ -18,12 +18,19 @@ class ButtonClickController extends Controller
      */
     public function index(Request $request)
     {
-        $companyEmpty = [null=>'All'];
+        $companyEmpty = [null => 'All'];
         $companiesQuery = Company::pluck('name', 'id')->toArray();
         $companies = $companyEmpty + $companiesQuery;
 
+        $groups = [
+            ''=>'Select Field',
+            'company_id'=>'Company',
+            'branch_id'=>'Branch',
+            'button_id'=> 'Button',
+        ];
 
-        $buttonClicks = ButtonClick::with(['company', 'button','buttonType', 'branch']);
+
+        $buttonClicks = ButtonClick::with(['company', 'button', 'buttonType', 'branch']);
 
         if (!empty($request->get('company_id'))) {
             $buttonClicks->where('company_id', $request->company_id);
@@ -45,12 +52,17 @@ class ButtonClickController extends Controller
                 $q->where('serial_number', '=', $request->serial_number);
             });
         }
+        if (!empty($request->get('count'))) {
+            $buttonClicks->groupBy($request->count)
+            ->count();
+        }
 
 
         return view('reports.clicks')->with([
             'companies' => $companies,
             'buttonClicks' => $buttonClicks->get(),
-            'request'=>$request
+            'request' => $request,
+            'groups'=> $groups
         ]);
     }
 
