@@ -100,7 +100,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-boredered">
+                        <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th>#</th>
