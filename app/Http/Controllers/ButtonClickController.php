@@ -52,8 +52,8 @@ class ButtonClickController extends Controller
                 $q->where('serial_number', '=', $request->serial_number);
             });
         }
-        if (!empty($request->get('count'))) {
-            $buttonClicks->groupBy($request->count)
+        if (!empty($request->get('count_by'))) {
+            $buttonClicks->groupBy($request->count_by)
             ->count();
         }
 
