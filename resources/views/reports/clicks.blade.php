@@ -104,13 +104,25 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Serial</th>
-                                <th>Company</th>
-                                <th>Branch</th>
-                                <th>Type</th>
-                                <th>Time</th>
-                                @if(!empty($groupBy))
-                                    <th>count</th>
+                                @if(!empty($buttonClicks->first()->button))
+                                    <th>Serial</th>
+                                @endif
+                                @if(!empty($buttonClicks->first()->company))
+                                    <th>Company</th>
+                                @endif
+                                @if(!empty($buttonClicks->first()->branch))
+
+                                    <th>Branch</th>
+                                @endif
+                                @if(!empty($buttonClicks->first()->buttonType))
+                                    <th>Type</th>
+                                @endif
+                                @if(!empty($buttonClicks->first()->created_at))
+
+                                    <th>Time</th>
+                                @endif
+                                @if(!empty($request->count_by))
+                                    <th>Clicks</th>
                                 @endif
                             </tr>
                             </thead>
@@ -118,13 +130,23 @@
                             @foreach ($buttonClicks as $buttonClick)
                                 <tr>
                                     <td>{!! $loop->index + 1 !!}</td>
-                                    <td>{!! $buttonClick->button->serial_number !!}</td>
-                                    <td>{!! $buttonClick->company->name !!}</td>
-                                    <td>{!! $buttonClick->branch->branch !!}</td>
-                                    <td>{!! $buttonClick->buttonType->button_type !!}</td>
-                                    <td>{!! $buttonClick->created_at !!}</td>
-                                    @if(!empty($groupBy))
-                                        <td>{!! $buttonClick->count !!}</td>
+                                    @if(!empty($buttonClick->button))
+                                        <td>{!! $buttonClick->button->serial_number !!}</td>
+                                    @endif
+                                    @if(!empty($buttonClick->company))
+                                        <td>{!! $buttonClick->company->name !!}</td>
+                                    @endif
+                                    @if(!empty($buttonClick->branch))
+                                        <td>{!! $buttonClick->branch->branch !!}</td>
+                                    @endif
+                                    @if(!empty($buttonClick->buttonType))
+                                        <td>{!! $buttonClick->buttonType->button_type !!}</td>
+                                    @endif
+                                    @if(!empty($buttonClick->created_at))
+                                        <td>{!! $buttonClick->created_at !!}</td>
+                                    @endif
+                                    @if(!empty($request->count_by))
+                                        <td>{!! $buttonClick->clicks !!}</td>
                                     @endif
                                 </tr>
                             @endforeach

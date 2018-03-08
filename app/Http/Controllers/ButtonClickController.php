@@ -27,6 +27,7 @@ class ButtonClickController extends Controller
             ''=>'Select Field',
             'company_id'=>'Company',
             'branch_id'=>'Branch',
+            'button_type_id'=> 'Button Type',
             'button_id'=> 'Button',
         ];
 
@@ -54,11 +55,11 @@ class ButtonClickController extends Controller
             });
         }
         if (!empty($request->get('count_by'))) {
-            $buttonClicks->groupBy($request->count_by)
+            $buttonClicks
+                ->groupBy($request->count_by)
                 ->select($request->count_by, DB::raw('count(*) as clicks'));
-            return $buttonClicks->get();
+//            return $count->get();
         }
-
 
         return view('reports.clicks')->with([
             'companies' => $companies,
