@@ -111,14 +111,12 @@
                                     <th>Company</th>
                                 @endif
                                 @if(!empty($buttonClicks->first()->branch))
-
                                     <th>Branch</th>
                                 @endif
                                 @if(!empty($buttonClicks->first()->buttonType))
                                     <th>Type</th>
                                 @endif
                                 @if(!empty($buttonClicks->first()->created_at))
-
                                     <th>Time</th>
                                 @endif
                                 @if(!empty($request->count_by))
