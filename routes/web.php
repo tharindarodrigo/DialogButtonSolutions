@@ -26,8 +26,12 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::group(['prefix'=>'reports'], function(){
         Route::get('clicks', 'ButtonClickController@index');
     });
+
+
+
 });
 
+Route::view('grid','grid.index');
 
 Route::any('button-click/{serial}', 'ButtonClickController@store');
 

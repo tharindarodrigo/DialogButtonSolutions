@@ -22,7 +22,7 @@ window.Vue = require('vue');
 // Vue.component('Companies', require('./components/companies/Companies.vue'));
 Vue.component('Notification', require('./components/notifications/Notification.vue'));
 Vue.component('Notifications', require('./components/notifications/Notifications.vue'));
-// Vue.component('Createcompany', require('./components/companies/CreateCompany.vue'));
+Vue.component('buttongrid', require('./components/grid/grid.vue'));
 
 const app = new Vue({
     el: '#app'

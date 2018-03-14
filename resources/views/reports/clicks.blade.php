@@ -90,10 +90,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </form>
                 </div>
-
             </div>
         </div>
         <div class="row">
@@ -204,10 +202,5 @@
             @endif
         }
     </script>
-    {{--<script>--}}
-    {{--$(document).ready(function () {--}}
-    {{--$('#companies').DataTable();--}}
-    {{--})--}}
-    {{--</script>--}}
 
 @endpush
