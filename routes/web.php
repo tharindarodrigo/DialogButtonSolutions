@@ -27,6 +27,10 @@ Route::group(['middleware'=> 'auth'], function(){
         Route::get('clicks', 'ButtonClickController@index');
     });
 
+    Route::get('button-list', function(){
+        return App\Button::all();
+    });
+
 
 
 });
@@ -38,6 +42,7 @@ Route::any('button-click/{serial}', 'ButtonClickController@store');
 Route::get('notifications', function () {
     return $buttons = \App\Button::with(['buttonType', 'company', 'branch'])->get();
 });
+
 
 
 Route::get('/company/{id}/branches', function ($id) {
