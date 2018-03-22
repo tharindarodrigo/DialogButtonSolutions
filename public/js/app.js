@@ -52849,7 +52849,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             Echo.channel('button-trigger-channel').listen('ButtonTriggerEvent', function (e) {
                 console.log(e.data);
-                _this.buttons.push(e.data.button.serial_number);
+                if (!buttonInArray(e.data.button.serial_number)) {
+                    _this.buttons.push(e.data.button.serial_number);
+                }
                 //                        this.btnGlw = this.buttonInArray(e.data.button.serial_number)
                 //                        this.buttonInArray(e.data.button.serial_number)
                 //                        this.buttonTriggers.push(e.data)
@@ -52860,7 +52862,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         buttonInArray: function buttonInArray(id) {
-            return this.buttons.indexOf(id) >= 0;
+            if (this.buttons.indexOf(id) >= 0) {
+                return true;
+            }
+            return false;
+        },
+        removeGlow: function removeGlow(serial) {
+            this.buttons.splice(this.buttons.indexOf(serial));
         },
         getButtons: function getButtons() {
             var _this2 = this;
@@ -52901,7 +52909,7 @@ var render = function() {
                   attrs: { id: button.serial_number },
                   on: {
                     click: function($event) {
-                      _vm.buttons.splice(button.serial_number)
+                      _vm.removeGlow(button.serial_number)
                     }
                   }
                 },

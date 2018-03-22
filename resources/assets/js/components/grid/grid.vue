@@ -5,7 +5,7 @@
                 <div class="col-md-1" v-for="(button,j) in chunk" :key="button.id">
                     <button class="btn btn-default btn-block" :id="button.serial_number"
                             :class="{buttonGlow: buttonInArray(button.serial_number)}"
-                            @click="buttons.splice(button.serial_number)"
+                            @click="removeGlow(button.serial_number)"
                     >
                         {{ i + '' + j }}
                     </button>
@@ -43,7 +43,9 @@
                 Echo.channel('button-trigger-channel')
                     .listen('ButtonTriggerEvent', (e) => {
                         console.log(e.data)
-                        this.buttons.push(e.data.button.serial_number)
+                        if (!buttonInArray(e.data.button.serial_number)) {
+                            this.buttons.push(e.data.button.serial_number)
+                        }
 //                        this.btnGlw = this.buttonInArray(e.data.button.serial_number)
 //                        this.buttonInArray(e.data.button.serial_number)
 //                        this.buttonTriggers.push(e.data)
@@ -54,8 +56,15 @@
             },
 
             buttonInArray(id) {
-                return this.buttons.indexOf(id) >= 0
+                if(this.buttons.indexOf(id) >= 0) {
+                    return true
+                }
+                return  false
 
+            },
+
+            removeGlow(serial){
+                this.buttons.splice(this.buttons.indexOf(serial))
             },
 
             getButtons() {
