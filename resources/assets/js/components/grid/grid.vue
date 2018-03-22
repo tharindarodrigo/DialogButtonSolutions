@@ -3,7 +3,8 @@
         <div v-for="(chunk,i) in chunkedItems">
             <div class="row">
                 <div class="col-md-1" v-for="(button,j) in chunk" :key="button.id">
-                    <button class="btn btn-default btn-block" :id="button.serial_number">
+                    <button class="btn btn-default btn-block" :id="button.serial_number"
+                            :class="{buttonGlow: buttonInArray(button.serial_number)}">
                         {{ i + '' + j }}
                     </button>
                 </div>
@@ -19,30 +20,42 @@
             return {
                 buttonList: [],
                 x: 0,
+                buttons: [],
+                btnGlw: false
             }
         },
 
         mounted() {
             this.getButtons()
+            this.glowButton()
         },
 
         computed: {
             chunkedItems: function () {
-                return _.chunk(this.buttonList, 3)
+                return _.chunk(this.buttonList, 10)
             }
         },
 
         methods: {
-            glowButton: function (x, event) {
-                this.buttons.push(event.target.id)
-                this.buttonInArray(event.target.id)
+            glowButton: function () {
+                Echo.channel('button-trigger-channel')
+                    .listen('ButtonTriggerEvent', (e) => {
+                        console.log(e.data)
+                        this.buttons.push(e.data.button.serial_number)
+//                        this.btnGlw = this.buttonInArray(e.data.button.serial_number)
+//                        this.buttonInArray(e.data.button.serial_number)
+//                        this.buttonTriggers.push(e.data)
+//                        this.buttonTriggers.sort(function (a,b) {
+//                            return b.id-a.id
+//                        })
+                    });
             },
 
             buttonInArray(id) {
-                if (this.buttons.indexOf(id) >= 0) {
+                return this.buttons.indexOf(id) >= 0
 
-                }
             },
+
             getButtons() {
                 axios.get('button-list')
                     .then((res) => {
@@ -52,7 +65,6 @@
                         console.log(error)
                     })
 
-//                console.log(this.chunkedItems)
             }
         }
     }

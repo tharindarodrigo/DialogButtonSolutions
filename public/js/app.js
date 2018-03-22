@@ -52818,44 +52818,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             buttonList: [],
-            x: 0
+            x: 0,
+            buttons: [],
+            btnGlw: false
         };
     },
     mounted: function mounted() {
         this.getButtons();
+        this.glowButton();
     },
 
 
     computed: {
         chunkedItems: function chunkedItems() {
-            return _.chunk(this.buttonList, 3);
+            return _.chunk(this.buttonList, 10);
         }
     },
 
     methods: {
-        glowButton: function glowButton(x, event) {
-            this.buttons.push(event.target.id);
-            this.buttonInArray(event.target.id);
+        glowButton: function glowButton() {
+            var _this = this;
+
+            Echo.channel('button-trigger-channel').listen('ButtonTriggerEvent', function (e) {
+                console.log(e.data);
+                _this.buttons.push(e.data.button.serial_number);
+                //                        this.btnGlw = this.buttonInArray(e.data.button.serial_number)
+                //                        this.buttonInArray(e.data.button.serial_number)
+                //                        this.buttonTriggers.push(e.data)
+                //                        this.buttonTriggers.sort(function (a,b) {
+                //                            return b.id-a.id
+                //                        })
+            });
         },
 
         buttonInArray: function buttonInArray(id) {
-            if (this.buttons.indexOf(id) >= 0) {}
+            return this.buttons.indexOf(id) >= 0;
         },
         getButtons: function getButtons() {
-            var _this = this;
+            var _this2 = this;
 
             axios.get('button-list').then(function (res) {
-                _this.buttonList = res.data;
+                _this2.buttonList = res.data;
             }).catch(function (error) {
                 console.log(error);
             });
-
-            //                console.log(this.chunkedItems)
         }
     }
 });
@@ -52881,6 +52893,9 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-default btn-block",
+                  class: {
+                    buttonGlow: _vm.buttonInArray(button.serial_number)
+                  },
                   attrs: { id: button.serial_number }
                 },
                 [
