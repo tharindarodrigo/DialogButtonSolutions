@@ -52849,9 +52849,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             Echo.channel('button-trigger-channel').listen('ButtonTriggerEvent', function (e) {
                 console.log(e.data);
-                if (!buttonInArray(e.data.button.serial_number)) {
-                    _this.buttons.push(e.data.button.serial_number);
-                }
+                //                        if (!buttonInArray(e.data.button.serial_number)) {
+                _this.buttons.push(e.data.button.serial_number);
+                //                        }
                 //                        this.btnGlw = this.buttonInArray(e.data.button.serial_number)
                 //                        this.buttonInArray(e.data.button.serial_number)
                 //                        this.buttonTriggers.push(e.data)
@@ -52862,10 +52862,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         buttonInArray: function buttonInArray(id) {
-            if (this.buttons.indexOf(id) >= 0) {
-                return true;
-            }
-            return false;
+            return this.buttons.indexOf(id) >= 0;
         },
         removeGlow: function removeGlow(serial) {
             this.buttons.splice(this.buttons.indexOf(serial));

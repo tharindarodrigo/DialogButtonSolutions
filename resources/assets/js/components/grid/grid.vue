@@ -56,11 +56,7 @@
             },
 
             buttonInArray(id) {
-                if(this.buttons.indexOf(id) >= 0) {
-                    return true
-                }
-                return  false
-
+                return this.buttons.indexOf(id) >= 0
             },
 
             removeGlow(serial){
