@@ -52815,26 +52815,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            btnClass: { button: false },
             buttonList: [],
             x: 0
         };
     },
+    mounted: function mounted() {
+        this.getButtons();
+    },
+
 
     computed: {
         chunkedItems: function chunkedItems() {
             return _.chunk(this.buttonList, 4);
         }
     },
-    mounted: function mounted() {
-        this.getButtons();
-    },
-
 
     methods: {
         glowButton: function glowButton(x, event) {
@@ -52854,7 +52852,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
 
-            //                setTimeout(this.getNotifications(),2000)
+            //                console.log(this.chunkedItems)
         }
     }
 });
@@ -52863,7 +52861,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function(){},staticRenderFns:[]}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    _vm._l(_vm.chunkedItems, function(chunk, i) {
+      return _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(chunk, function(button, j) {
+          return _c("div", { key: button.id, staticClass: "col-md-1" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default btn-block",
+                attrs: { id: button.serial_number }
+              },
+              [
+                _vm._v(
+                  "\n                " + _vm._s(i + "" + j) + "\n            "
+                )
+              ]
+            )
+          ])
+        })
+      )
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {

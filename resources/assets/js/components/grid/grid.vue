@@ -1,13 +1,12 @@
 <template>
-    <div class="row" v-for="chunk in chunkedItems">
-        <div class="col-md-1" v-for="button in chunk">
-            <button class="btn btn-default btn-dark btn-block"
-                    :class="" :id="button.serial_number"
-                    @click="">
-                {{++index}}
-            </button>
+    <div>
+        <div class="row" v-for="(chunk,i) in chunkedItems">
+            <div class="col-md-1" v-for="(button,j) in chunk" :key="button.id">
+                <button class="btn btn-default btn-block" :id="button.serial_number">
+                    {{ i+''+j }}
+                </button>
+            </div>
         </div>
-        <!--<br :if="(index%9==0 && x>0)"/>-->
     </div>
 </template>
 
@@ -15,18 +14,19 @@
     export default {
         data() {
             return {
-                btnClass: {button: false},
                 buttonList: [],
-                x: 0
+                x: 0,
             }
         },
-        computed: {
-            chunkedItems () {
-                return _.chunk(this.buttonList,4)
-            }
-        },
+
         mounted() {
             this.getButtons()
+        },
+
+        computed: {
+            chunkedItems: function () {
+                return _.chunk(this.buttonList,4)
+            }
         },
 
         methods: {
@@ -49,7 +49,7 @@
                         console.log(error)
                     })
 
-//                setTimeout(this.getNotifications(),2000)
+//                console.log(this.chunkedItems)
             }
         }
     }
