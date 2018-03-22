@@ -43,7 +43,7 @@
                 Echo.channel('button-trigger-channel')
                     .listen('ButtonTriggerEvent', (e) => {
                         console.log(e.data)
-                        if (this.buttons.indexOf(id) < 0) {
+                        if (this.buttons.indexOf(e.data.button.serial_number) < 0) {
                             this.buttons.push(e.data.button.serial_number)
                         }
 //                        this.btnGlw = this.buttonInArray(e.data.button.serial_number)
