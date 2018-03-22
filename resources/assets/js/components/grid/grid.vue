@@ -4,7 +4,9 @@
             <div class="row">
                 <div class="col-md-1" v-for="(button,j) in chunk" :key="button.id">
                     <button class="btn btn-default btn-block" :id="button.serial_number"
-                            :class="{buttonGlow: buttonInArray(button.serial_number)}">
+                            :class="{buttonGlow: buttonInArray(button.serial_number)}"
+                            @click="buttons.splice(button.serial_number)"
+                    >
                         {{ i + '' + j }}
                     </button>
                 </div>
