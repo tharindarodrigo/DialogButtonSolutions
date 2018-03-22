@@ -52815,6 +52815,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52830,7 +52833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         chunkedItems: function chunkedItems() {
-            return _.chunk(this.buttonList, 4);
+            return _.chunk(this.buttonList, 3);
         }
     },
 
@@ -52868,26 +52871,32 @@ var render = function() {
   return _c(
     "div",
     _vm._l(_vm.chunkedItems, function(chunk, i) {
-      return _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(chunk, function(button, j) {
-          return _c("div", { key: button.id, staticClass: "col-md-1" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-default btn-block",
-                attrs: { id: button.serial_number }
-              },
-              [
-                _vm._v(
-                  "\n                " + _vm._s(i + "" + j) + "\n            "
-                )
-              ]
-            )
-          ])
-        })
-      )
+      return _c("div", [
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(chunk, function(button, j) {
+            return _c("div", { key: button.id, staticClass: "col-md-1" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default btn-block",
+                  attrs: { id: button.serial_number }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(i + "" + j) +
+                      "\n                "
+                  )
+                ]
+              )
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _c("br")
+      ])
     })
   )
 }

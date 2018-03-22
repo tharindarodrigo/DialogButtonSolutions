@@ -1,11 +1,14 @@
 <template>
     <div>
-        <div class="row" v-for="(chunk,i) in chunkedItems">
-            <div class="col-md-1" v-for="(button,j) in chunk" :key="button.id">
-                <button class="btn btn-default btn-block" :id="button.serial_number">
-                    {{ i+''+j }}
-                </button>
+        <div v-for="(chunk,i) in chunkedItems">
+            <div class="row">
+                <div class="col-md-1" v-for="(button,j) in chunk" :key="button.id">
+                    <button class="btn btn-default btn-block" :id="button.serial_number">
+                        {{ i + '' + j }}
+                    </button>
+                </div>
             </div>
+            <br/>
         </div>
     </div>
 </template>
@@ -25,7 +28,7 @@
 
         computed: {
             chunkedItems: function () {
-                return _.chunk(this.buttonList,4)
+                return _.chunk(this.buttonList, 3)
             }
         },
 
