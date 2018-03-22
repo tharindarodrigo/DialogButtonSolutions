@@ -52849,7 +52849,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             Echo.channel('button-trigger-channel').listen('ButtonTriggerEvent', function (e) {
                 console.log(e.data);
-                if (_this.buttons.indexOf(id) < 0) {
+                if (_this.buttons.indexOf(e.data.button.serial_number) < 0) {
                     _this.buttons.push(e.data.button.serial_number);
                 }
                 //                        this.btnGlw = this.buttonInArray(e.data.button.serial_number)
