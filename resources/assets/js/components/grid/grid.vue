@@ -23,7 +23,7 @@
                 buttonList: [],
                 x: 0,
                 buttons: [],
-                btnGlw: false
+                clickedButton: null
             }
         },
 
@@ -55,7 +55,8 @@
             },
 
             removeGlow(e){
-                this.buttons.splice(this.buttons.indexOf(e.target.id))
+                this.clickedButton = e.target.id
+                this.buttons.splice(this.buttons.indexOf(this.clickedButton))
             },
 
             getButtons() {

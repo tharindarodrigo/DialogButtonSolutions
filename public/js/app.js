@@ -52828,7 +52828,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             buttonList: [],
             x: 0,
             buttons: [],
-            btnGlw: false
+            clickedButton: null
         };
     },
     mounted: function mounted() {
@@ -52859,7 +52859,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.buttons.indexOf(id) >= 0;
         },
         removeGlow: function removeGlow(e) {
-            this.buttons.splice(this.buttons.indexOf(e.target.id));
+            this.clickedButton = e.target.id;
+            this.buttons.splice(this.buttons.indexOf(this.clickedButton));
         },
         getButtons: function getButtons() {
             var _this2 = this;
