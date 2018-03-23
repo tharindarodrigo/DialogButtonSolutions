@@ -111,8 +111,20 @@ return [
         'MAIN NAVIGATION',
         [
             'text' => 'Dashboard',
-            'url' => 'home',
             'icon' => 'tachometer-alt',
+            'submenu' =>
+                [
+                    [
+                        'text' => 'Stack View',
+                        'url' => 'home',
+                        'icon' => 'th-list',
+                    ],
+                    [
+                        'text' => 'Grid View',
+                        'url' => 'grid',
+                        'icon' => 'th',
+                    ]
+                ]
         ],
         [
             'text' => 'Companies',
@@ -142,7 +154,7 @@ return [
         [
             'text' => 'Clicks',
             'url' => 'reports/clicks',
-            'icon'=> 'file-alt'
+            'icon' => 'file-alt'
         ]
 
     ],

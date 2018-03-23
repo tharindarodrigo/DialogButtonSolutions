@@ -52852,12 +52852,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (_this.buttons.indexOf(e.data.button.serial_number) < 0) {
                     _this.buttons.push(e.data.button.serial_number);
                 }
-                //                        this.btnGlw = this.buttonInArray(e.data.button.serial_number)
-                //                        this.buttonInArray(e.data.button.serial_number)
-                //                        this.buttonTriggers.push(e.data)
-                //                        this.buttonTriggers.sort(function (a,b) {
-                //                            return b.id-a.id
-                //                        })
             });
         },
 
@@ -52913,7 +52907,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(i + "" + j) +
+                      _vm._s(i + "" + ++j) +
                       "\n                "
                   )
                 ]

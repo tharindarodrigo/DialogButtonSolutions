@@ -7,7 +7,7 @@
                             :class="{buttonGlow: buttonInArray(button.serial_number)}"
                             @click="removeGlow(button.serial_number)"
                     >
-                        {{ i + '' + j }}
+                        {{ i + '' + (++j) }}
                     </button>
                 </div>
             </div>
@@ -46,12 +46,7 @@
                         if (this.buttons.indexOf(e.data.button.serial_number) < 0) {
                             this.buttons.push(e.data.button.serial_number)
                         }
-//                        this.btnGlw = this.buttonInArray(e.data.button.serial_number)
-//                        this.buttonInArray(e.data.button.serial_number)
-//                        this.buttonTriggers.push(e.data)
-//                        this.buttonTriggers.sort(function (a,b) {
-//                            return b.id-a.id
-//                        })
+
                     });
             },
 
