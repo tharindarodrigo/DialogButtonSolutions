@@ -5,7 +5,7 @@
                 <div class="col-md-1" v-for="(button,j) in chunk" :key="button.id">
                     <button class="btn btn-default btn-block" :id="button.serial_number"
                             :class="{buttonGlow: buttonInArray(button.serial_number)}"
-                            @click="removeGlow(button.serial_number)"
+                            @click="removeGlow"
                     >
                         {{ i + '' + (++j) }}
                     </button>
@@ -54,8 +54,8 @@
                 return this.buttons.indexOf(id) >= 0
             },
 
-            removeGlow(serial){
-                this.buttons.splice(this.buttons.indexOf(serial))
+            removeGlow(e){
+                this.buttons.splice(this.buttons.indexOf(e.target.id))
             },
 
             getButtons() {

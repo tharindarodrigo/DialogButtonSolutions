@@ -126,6 +126,14 @@ return [
                     ]
                 ]
         ],
+        'REPORTS',
+        [
+            'text' => 'Clicks',
+            'url' => 'reports/clicks',
+            'icon' => 'file-alt'
+        ],
+
+        'CONFIGURATIONS',
         [
             'text' => 'Companies',
             'url' => 'companies',
@@ -146,16 +154,13 @@ return [
             'url' => 'buttons',
             'icon' => 'mobile',
         ],
-
-
-//        'ACCOUNT SETTINGS',
-
-        'REPORTS',
+        'ADMINISTRATION',
         [
-            'text' => 'Clicks',
-            'url' => 'reports/clicks',
-            'icon' => 'file-alt'
+            'text'=> 'User Accounts',
+            'icon'=> 'users',
+            'url'=>'users'
         ]
+
 
     ],
 

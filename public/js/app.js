@@ -52858,8 +52858,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         buttonInArray: function buttonInArray(id) {
             return this.buttons.indexOf(id) >= 0;
         },
-        removeGlow: function removeGlow(serial) {
-            this.buttons.splice(this.buttons.indexOf(serial));
+        removeGlow: function removeGlow(e) {
+            this.buttons.splice(this.buttons.indexOf(e.target.id));
         },
         getButtons: function getButtons() {
             var _this2 = this;
@@ -52898,11 +52898,7 @@ var render = function() {
                     buttonGlow: _vm.buttonInArray(button.serial_number)
                   },
                   attrs: { id: button.serial_number },
-                  on: {
-                    click: function($event) {
-                      _vm.removeGlow(button.serial_number)
-                    }
-                  }
+                  on: { click: _vm.removeGlow }
                 },
                 [
                   _vm._v(
