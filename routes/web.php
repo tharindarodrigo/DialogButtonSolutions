@@ -32,9 +32,7 @@ Route::group(['middleware'=> 'auth'], function(){
     });
 
 
-    Route::get('users', function(){
-        return App\User::all();
-    });
+    Route::resource('users', 'UserController');
 
 });
 
