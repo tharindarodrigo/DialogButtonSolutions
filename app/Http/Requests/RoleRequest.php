@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ButtonTypeRequest extends FormRequest
+class RoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class ButtonTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'button_type:required|min:2|unique:button_types',
-            'notification_color:required',
-            'message:required|max:100',
+            'name'=> 'required|alpha'
         ];
     }
 }

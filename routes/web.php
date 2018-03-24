@@ -21,6 +21,7 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::resource('branches', 'BranchController');
     Route::resource('button-types', 'ButtonTypeController');
     Route::resource('buttons', 'ButtonController');
+    Route::resource('roles', 'RoleController');
 
 
     Route::group(['prefix'=>'reports'], function(){

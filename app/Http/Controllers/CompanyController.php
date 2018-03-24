@@ -42,7 +42,7 @@ class CompanyController extends Controller
 
         if ($company->save()) {
             session()->flash('message.level', 'success');
-            session()->flash('message.content', 'Successfully Create Company');
+            session()->flash('message.content', 'Successfully created Company');
             return redirect()->back();
         }
 

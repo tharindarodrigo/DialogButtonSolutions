@@ -159,6 +159,11 @@ return [
             'text'=> 'User Accounts',
             'icon'=> 'users',
             'url'=>'users'
+        ],
+        [
+            'text'=> 'Roles',
+            'icon'=> 'roles',
+            'url'=>'roles'
         ]
 
 
