@@ -30,7 +30,7 @@
                         {!! Form::select('role', $roles, $roleId, ['class'=> 'form-control'] ) !!}
                     </div>
                     <button class="btn btn-primary"> Update</button>
-                    <a href="{!! route('account.index') !!}" class="btn btn-warning">Cancel</a>
+                    <a href="{!! route('users.index') !!}" class="btn btn-warning">Cancel</a>
                     {!! Form::close() !!}
                 </div>
 
