@@ -14,7 +14,7 @@
                             <th>Branch</th>
                             <th>Type</th>
                             <th>Identifier</th>
-                            <th>Message</th>
+                            <th>S. No.</th>
                             <th>Date Time</th>
                         </tr>
                         </thead>
