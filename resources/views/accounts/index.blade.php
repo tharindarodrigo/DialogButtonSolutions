@@ -16,7 +16,7 @@
                     {{--class="fa fa-plus"></i> Create Button Type</a>--}}
                 </div>
                 <div class="box-body">
-                    <div class="table-responisve">
+                    <div class="table-responsive">
                         <table id="buttonTypes" class="table table-hover table-bordered">
                             <thead>
                             <tr>

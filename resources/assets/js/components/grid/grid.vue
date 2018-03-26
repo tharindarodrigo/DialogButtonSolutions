@@ -2,7 +2,7 @@
     <div>
         <div v-for="(chunk,i) in chunkedItems">
             <div class="row">
-                <div class="col-md-1" v-for="(button,j) in chunk" :key="button.id">
+                <div class="col-md-1 col-sm-1" v-for="(button,j) in chunk" :key="button.id">
                     <button class="btn btn-default btn-block" :id="button.serial_number"
                             :class="{buttonGlow: buttonInArray(button.serial_number)}"
                             @click="removeGlow"

@@ -52539,7 +52539,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(buttonRecord.button.identifier))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(buttonRecord.button.message))]),
+                  _c("td", [_vm._v(_vm._s(buttonRecord.button.serial_number))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(buttonRecord.created_at))])
                 ])
@@ -52890,26 +52890,30 @@ var render = function() {
           "div",
           { staticClass: "row" },
           _vm._l(chunk, function(button, j) {
-            return _c("div", { key: button.id, staticClass: "col-md-1" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default btn-block",
-                  class: {
-                    buttonGlow: _vm.buttonInArray(button.serial_number)
+            return _c(
+              "div",
+              { key: button.id, staticClass: "col-md-1 col-sm-1" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default btn-block",
+                    class: {
+                      buttonGlow: _vm.buttonInArray(button.serial_number)
+                    },
+                    attrs: { id: button.serial_number },
+                    on: { click: _vm.removeGlow }
                   },
-                  attrs: { id: button.serial_number },
-                  on: { click: _vm.removeGlow }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(i + "" + ++j) +
-                      "\n                "
-                  )
-                ]
-              )
-            ])
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(i + "" + ++j) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ]
+            )
           })
         ),
         _vm._v(" "),
