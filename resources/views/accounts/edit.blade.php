@@ -16,6 +16,7 @@
                     {{--class="fa fa-plus"></i> Create Button Type</a>--}}
                 </div>
                 <div class="box-body">
+                    {!! Form::open(['route'=>'users.update', $user->id]) !!}
                     <div class="form-group">
                         <label for="">Email</label>
                         <p>{!! $user->email !!}</p>
@@ -28,8 +29,9 @@
                         <label for="">Role</label>
                         {!! Form::select('role', $roles, $roleId, ['class'=> 'form-control'] ) !!}
                     </div>
-
-
+                    <button class="btn btn-primary"> Update</button>
+                    <a href="{!! route('account.index') !!}" class="btn btn-warning">Cancel</a>
+                    {!! Form::close() !!}
                 </div>
 
             </div>

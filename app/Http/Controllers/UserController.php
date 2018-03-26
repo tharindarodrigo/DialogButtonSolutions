@@ -74,7 +74,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $role = Role::find($request->role);
+        $user->assignRole($role->name);
+
+        session()->flash('message.level', 'success');
+        session()->flash('message.content', 'Successfully Updated Role');
+
+        return redirect()->back();
     }
 
     /**
@@ -85,6 +92,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if ($user->delete()) {
+            session()->flash('message.level', 'success');
+            session()->flash('message.content', 'Successfully Deleted User');
+
+        }
     }
 }
