@@ -60,7 +60,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roleId = $user->roles()->first()['id'];
+        $roleId = $user->roles()->first() ?   $user->roles()->first()['id'] : null;
         $roles = Role::pluck('name', 'id');
         return view('accounts.edit', compact('user', 'roleId', 'roles'));
     }
