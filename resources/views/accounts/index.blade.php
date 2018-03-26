@@ -42,8 +42,8 @@
                                         <button class="btn btn-danger btn-flat btn-sm" type="submit"><i
                                                     class="fa fa-trash"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-flat btn-warning"><i class="fa fa-key"></i>
-                                        </button>
+                                        {{--<button class="btn btn-sm btn-flat btn-warning"><i class="fa fa-key"></i>--}}
+                                        {{--</button>--}}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
