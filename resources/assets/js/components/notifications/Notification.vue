@@ -25,7 +25,7 @@
                             <td>{{buttonRecord.branch.branch}}</td>
                             <td>{{buttonRecord.button_type.button_type}}</td>
                             <td>{{buttonRecord.button.identifier}}</td>
-                            <td>{{buttonRecord.button.message}}</td>
+                            <td>{{buttonRecord.button.serial_number}}</td>
                             <td>{{buttonRecord.created_at}}</td>
                         </tr>
                         </tbody>
