@@ -16,6 +16,19 @@
                     {{--class="fa fa-plus"></i> Create Button Type</a>--}}
                 </div>
                 <div class="box-body">
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <p>{!! $user->email !!}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Name</label>
+                        <p>{!! $user->name !!}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Role</label>
+                        {!! Form::select('role', $roles, $role_id, ['class'=> 'form-control'] ) !!}
+                    </div>
+
 
                 </div>
 
