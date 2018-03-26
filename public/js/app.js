@@ -52892,7 +52892,7 @@ var render = function() {
           _vm._l(chunk, function(button, j) {
             return _c(
               "div",
-              { key: button.id, staticClass: "col-md-1 col-sm-1" },
+              { key: button.id, staticClass: "col-md-1 col-xs-1" },
               [
                 _c(
                   "button",

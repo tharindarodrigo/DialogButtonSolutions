@@ -32,7 +32,6 @@ Route::group(['middleware'=> 'auth'], function(){
         return App\Button::all();
     });
 
-
     Route::resource('users', 'UserController');
 
 });
