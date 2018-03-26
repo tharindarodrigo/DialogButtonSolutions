@@ -52601,7 +52601,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Identifier")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Message")]),
+        _c("th", [_vm._v("S. No.")]),
         _vm._v(" "),
         _c("th", [_vm._v("Date Time")])
       ])
