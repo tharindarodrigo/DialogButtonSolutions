@@ -16,7 +16,7 @@
                     {{--class="fa fa-plus"></i> Create Button Type</a>--}}
                 </div>
                 <div class="box-body">
-                    {!! Form::open(['route'=>'users.update', $user->id]) !!}
+                    {!! Form::open(['route'=>['users.update', $user->id], 'method' => 'put']) !!}
                     <div class="form-group">
                         <label for="">Email</label>
                         <p>{!! $user->email !!}</p>
