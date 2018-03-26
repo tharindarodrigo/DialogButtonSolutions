@@ -98,5 +98,6 @@ class UserController extends Controller
             session()->flash('message.content', 'Successfully Deleted User');
 
         }
+        return redirect()->back();
     }
 }
