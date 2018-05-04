@@ -13,34 +13,23 @@ class ButtonTypeSeeder extends Seeder
     {
         DB::table('button_types')->insert([
             [
-                'button_type' => 'Wash Room',
-                'notification_color' => 'warning',
-                'message' => 'Wash Room Button was pressed'
-            ],
-
-            [
-                'button_type' => 'Tea Button',
-                'notification_color' => 'info',
-                'message' => 'Tea needed'
-            ],
-
-            [
-                'button_type' => 'Clean',
-                'notification_color' => 'warning',
-                'message' => 'Janitor needed'
-            ],
-
-            [
-                'button_type' => 'Feedback Good',
+                'button_type' => 'Happy',
                 'notification_color' => 'success',
-                'message' => 'Good Food'
+                'message' => 'Happy Feedback'
             ],
 
             [
-                'button_type' => 'Feedback Bad',
-                'notification_color' => 'danger',
-                'message' => 'Bad Food'
+                'button_type' => 'Neutral',
+                'notification_color' => 'warning',
+                'message' => 'Neutral'
             ],
+
+            [
+                'button_type' => 'Unhappy',
+                'notification_color' => 'danger',
+                'message' => 'Unhappy Feedback'
+            ],
+
         ]);
     }
 }
