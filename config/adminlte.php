@@ -143,10 +143,10 @@ return [
             'text' => 'Companies',
             'url' => 'companies',
             'icon' => 'building',
-            'role' => [
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'admin',
+//                'super_admin'
+//            ]
         ],
         [
             'text' => 'Branches',
