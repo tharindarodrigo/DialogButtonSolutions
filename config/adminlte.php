@@ -125,11 +125,11 @@ return [
                         'icon' => 'th',
                     ]
                 ],
-            'role' => [
-                'user',
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'user',
+//                'admin',
+//                'super_admin'
+//            ]
         ],
         'REPORTS',
         [
@@ -152,47 +152,47 @@ return [
             'text' => 'Branches',
             'url' => 'branches',
             'icon' => 'sitemap',
-            'role' => [
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'admin',
+//                'super_admin'
+//            ]
         ],
         [
             'text' => 'Button Types',
             'url' => 'button-types',
             'icon' => 'toggle-on',
-            'role' => [
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'admin',
+//                'super_admin'
+//            ]
         ],
         [
             'text' => 'Buttons',
             'url' => 'buttons',
             'icon' => 'mobile',
-            'role' => [
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'admin',
+//                'super_admin'
+//            ]
         ],
         'ADMINISTRATION',
         [
             'text' => 'User Accounts',
             'icon' => 'users',
             'url' => 'users',
-            'role' => [
-                'super_admin'
-            ]
+//            'role' => [
+//                'super_admin'
+//            ]
 
         ],
         [
             'text' => 'Roles',
             'icon' => 'user-plus',
             'url' => 'roles',
-            'role' => [
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'admin',
+//                'super_admin'
+//            ]
         ]
     ],
 
