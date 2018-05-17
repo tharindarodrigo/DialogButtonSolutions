@@ -180,19 +180,19 @@ return [
             'text' => 'User Accounts',
             'icon' => 'users',
             'url' => 'users',
-//            'role' => [
-//                'super_admin'
-//            ]
+            'role' => [
+                'super_admin'
+            ]
 
         ],
         [
             'text' => 'Roles',
             'icon' => 'user-plus',
             'url' => 'roles',
-//            'role' => [
+            'role' => [
 //                'admin',
-//                'super_admin'
-//            ]
+                'super_admin'
+            ]
         ]
     ],
 
