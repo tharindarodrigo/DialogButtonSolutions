@@ -33,22 +33,23 @@ Route::group(['middleware'=> 'auth'], function(){
     });
 
     Route::resource('users', 'UserController');
-
+    Route::resource('users.permissions', 'UserPermissionController');
+    Route::view('grid','grid.index');
+    Route::get('/company/{id}/branches', function ($id) {
+        return \App\Branch::where('company_id', $id)->get();
+    });
 });
 
-Route::view('grid','grid.index');
-
-Route::any('button-click/{serial}', 'ButtonClickController@store');
 
 Route::get('notifications', function () {
     return $buttons = \App\Button::with(['buttonType', 'company', 'branch'])->get();
 });
 
+Route::any('button-click/{serial}', 'ButtonClickController@store');
 
 
-Route::get('/company/{id}/branches', function ($id) {
-    return \App\Branch::where('company_id', $id)->get();
-});
+
+
 
 Route::get('but', function (){
    return \App\ButtonClick::all();

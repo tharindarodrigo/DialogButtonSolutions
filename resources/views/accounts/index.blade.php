@@ -23,6 +23,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Company</th>
                                 <th>Role</th>
                                 <th>Controls</th>
                             </tr>
@@ -33,11 +34,15 @@
                                     <td>{!! $loop->index + 1 !!}</td>
                                     <td>{!! $user->name !!}</td>
                                     <td>{!! $user->email !!}</td>
-                                    <td>{!! $user->roles->first()['name'] !!}</td>
+                                    <td>{!! $user->company->name ?? null !!}</td>
+                                    <td>{!! $user->roles->pluck('name')[0] !!}</td>
                                     <td>
                                         {!! Form::open(['route'=> ['users.destroy', $user->id], 'method'=>'delete']) !!}
                                         <a href="{!! route('users.edit', $user->id) !!}"
                                            class="btn btn-primary btn-flat btn-sm"><i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="{!! route('users.permissions.index', $user->id) !!}"
+                                           class="btn btn-warning btn-flat btn-sm"><i class="fa fa-lock"></i>
                                         </a>
                                         <button class="btn btn-danger btn-flat btn-sm" type="submit"><i
                                                     class="fa fa-trash"></i>

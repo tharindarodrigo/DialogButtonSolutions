@@ -6,7 +6,9 @@ use App\Button;
 use App\ButtonClick;
 use App\Company;
 use App\Events\ButtonTriggerEvent;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -20,7 +22,12 @@ class ButtonClickController extends Controller
     public function index(Request $request)
     {
         $companyEmpty = [null => 'All'];
-        $companiesQuery = Company::pluck('name', 'id')->toArray();
+
+        if(Auth::user()->hasRole('super_admin')){
+            $companiesQuery = Company::pluck('name', 'id')->toArray();
+        } else {
+            $companiesQuery = Company::where('id', Auth::user()->company_id)->pluck('name', 'id')->toArray();
+        }
         $companies = $companyEmpty + $companiesQuery;
 
         $groups = [
@@ -31,12 +38,14 @@ class ButtonClickController extends Controller
             'button_id'=> 'Button',
         ];
 
-
         $buttonClicks = ButtonClick::with(['company', 'button', 'buttonType', 'branch']);
 
-        if (!empty($request->get('company_id'))) {
-            $buttonClicks->where('company_id', $request->company_id);
+        if(Auth::user()->hasRole('admin')){
+            $buttonClicks->where('company_id', User::find(Auth::id())->company_id);
+        }
 
+        else if (Auth::user()->hasRole('super_admin') && !empty($request->get('company_id'))) {
+            $buttonClicks->where('company_id', $request->company_id);
 
             if (!empty($request->get('branch_id'))) {
                 $buttonClicks->where('branch_id', $request->branch_id);

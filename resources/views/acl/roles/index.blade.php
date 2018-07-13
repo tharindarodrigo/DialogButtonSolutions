@@ -22,6 +22,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Role</th>
+                                <th>Controls</th>
                             </tr>
                             </thead>
                             <tbody>

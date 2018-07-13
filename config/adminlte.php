@@ -152,10 +152,10 @@ return [
             'text' => 'Branches',
             'url' => 'branches',
             'icon' => 'sitemap',
-//            'role' => [
-//                'admin',
-//                'super_admin'
-//            ]
+            'role' => [
+                'admin',
+                'super_admin'
+            ]
         ],
         [
             'text' => 'Button Types',
@@ -170,10 +170,10 @@ return [
             'text' => 'Buttons',
             'url' => 'buttons',
             'icon' => 'mobile',
-//            'role' => [
-//                'admin',
-//                'super_admin'
-//            ]
+            'role' => [
+                'admin',
+                'super_admin'
+            ]
         ],
         'ADMINISTRATION',
         [

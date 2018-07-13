@@ -28,7 +28,7 @@ class ButtonController extends Controller
      */
     public function create()
     {
-        $companyEmpty = collect([''=>'All']);
+        $companyEmpty = collect(['' => 'All']);
         $companiesQuery = Company::pluck('name', 'id');
 //        $companies = $companyEmpty->combine($companiesQuery);
         $buttonTypes = ButtonType::pluck('button_type', 'id');
@@ -40,19 +40,30 @@ class ButtonController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(ButtonRequest $request)
     {
-        $button = new Button();
-        $button->company_id = $request->company_id;
-        $button->branch_id = $request->branch_id;
-        $button->button_type_id = $request->button_type_id;
-        $button->identifier = $request->identifier;
-        $button->serial_number = $request->serial_number;
 
-        if ($button->save()) {
+        $buttonSerials = explode(',', $request->serial_number);
+
+//        $button = new Button();
+        $buttons = [];
+        foreach ($buttonSerials as $buttonSerial) {
+
+            $buttons [] =
+                [
+                    'company_id' => $request->company_id,
+                    'branch_id' => $request->branch_id,
+                    'button_type_id' => $request->button_type_id,
+                    'identifier' => $request->identifier,
+                    'serial_number' => $buttonSerial,
+                ];
+
+        }
+
+        if (Button::insert($buttons)) {
             session()->flash('message.level', 'success');
             session()->flash('message.content', 'Successfully Created Button');
         }
@@ -63,7 +74,7 @@ class ButtonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Button  $button
+     * @param  \App\Button $button
      * @return \Illuminate\Http\Response
      */
     public function show(Button $button)
@@ -74,7 +85,7 @@ class ButtonController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Button  $button
+     * @param  \App\Button $button
      * @return \Illuminate\Http\Response
      */
     public function edit(Button $button)
@@ -87,8 +98,8 @@ class ButtonController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Button  $button
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Button $button
      * @return \Illuminate\Http\Response
      */
     public function update(ButtonRequest $request, Button $button)
@@ -110,7 +121,7 @@ class ButtonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Button  $button
+     * @param  \App\Button $button
      * @return \Illuminate\Http\Response
      */
     public function destroy(Button $button)
