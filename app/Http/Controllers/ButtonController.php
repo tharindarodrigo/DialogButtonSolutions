@@ -46,7 +46,8 @@ class ButtonController extends Controller
     public function store(ButtonRequest $request)
     {
 
-        $buttonSerials = explode(',', $request->serial_number);
+        $buttonSerials = str_replace(' ', '', $request->serial_number);
+        $buttonSerials = explode(',', $buttonSerials);
 
 //        $button = new Button();
         $buttons = [];
@@ -57,7 +58,7 @@ class ButtonController extends Controller
                     'company_id' => $request->company_id,
                     'branch_id' => $request->branch_id,
                     'button_type_id' => $request->button_type_id,
-                    'identifier' => $request->identifier,
+                    'identifier' => str_replace('{serial}', $buttonSerial, $request->identifier),
                     'serial_number' => $buttonSerial,
                 ];
 
