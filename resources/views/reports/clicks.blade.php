@@ -157,6 +157,12 @@
                             </tbody>
                         </table>
                     </div>
+                    <br>
+                    @if(!empty($buttonClicks->links()))
+                        <div class="col-md-4">
+                            {{ $buttonClicks->links() }}
+                        </div>
+                    @endif
                 </div>
             </div>
 
