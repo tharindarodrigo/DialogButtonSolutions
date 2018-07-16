@@ -11,6 +11,6 @@ class CompanySeeder extends Seeder
      */
     public function run()
     {
-        \App\Company::create(['company_name' => 'Dialog']);
+        \App\Company::create(['name' => 'Dialog']);
     }
 }
