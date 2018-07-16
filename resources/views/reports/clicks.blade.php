@@ -158,11 +158,11 @@
                         </table>
                     </div>
                     <br>
-                    @if(!empty($buttonClicks->links()))
+                    {{--@if(!empty($buttonClicks->links()))--}}
                         <div class="col-md-4">
                             {{ $buttonClicks->links() }}
                         </div>
-                    @endif
+                    {{--@endif--}}
                 </div>
             </div>
 
