@@ -49,6 +49,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">Paginate</label>
+                                    <div class="col-sm-8">
+                                        {!! Form::text('paginate', null, ['class'=> 'form-control', 'No. of records']) !!}
+                                    </div>
+                                </div>
+                            </div>
 
 
                         </div>
