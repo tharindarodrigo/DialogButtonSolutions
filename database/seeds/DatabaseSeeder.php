@@ -11,16 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UserSeeder::class);
 
         $this->call(CompanySeeder::class);
+
         factory(\App\Company::class, 10)
             ->create()
             ->each(function ($company) {
                 factory(\App\Branch::class, rand(2, 5))->create(['company_id' => $company->id]);
             });
         factory(\App\Branch::class, 10)->create();
-
         $this->call(ButtonTypeSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(RoleSeeder::class);
