@@ -21,7 +21,7 @@ class ButtonClickController extends Controller
      */
     public function index(Request $request)
     {
-        $companyEmpty = [null => 'All'];
+        $companyEmpty = [0 => 'All'];
 
         if(Auth::user()->hasRole('super_admin')){
             $companiesQuery = Company::pluck('name', 'id')->toArray();
