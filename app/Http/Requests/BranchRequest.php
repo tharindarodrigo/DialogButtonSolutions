@@ -24,7 +24,7 @@ class BranchRequest extends FormRequest
     public function rules()
     {
         return [
-            'branch'=>'required|unique:branches,branch,compay_id',$this->request->compnay_id,
+            'branch'=>'required|unique:branches,branch,compay_id',$this->compnay_id,
             'company_id'=>'required',
             'address'=>'required',
         ];
