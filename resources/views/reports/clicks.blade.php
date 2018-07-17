@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Serial</label>
                                     <div class="col-sm-8">
-                                        {!! Form::text('serial_number', null, ['class'=> 'form-control']) !!}
+                                        {!! Form::text('serial_number', old('serial_number'), ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Paginate</label>
                                     <div class="col-sm-8">
-                                        {!! Form::text('paginate', null, ['class'=> 'form-control', 'No. of records']) !!}
+                                        {!! Form::text('paginate', old('paginate'), ['class'=> 'form-control', 'No. of records']) !!}
                                     </div>
                                 </div>
                             </div>

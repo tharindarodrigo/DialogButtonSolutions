@@ -7,7 +7,7 @@
                             :class="{buttonGlow: buttonInArray(button.serial_number)}"
                             @click="removeGlow"
                     >
-                        {{ i + '' + (++j) }}
+                        {{ button.serial_number }}
                     </button>
                 </div>
             </div>

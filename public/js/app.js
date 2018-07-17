@@ -52907,7 +52907,7 @@ var render = function() {
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(i + "" + ++j) +
+                        _vm._s(button.serial_number) +
                         "\n                "
                     )
                   ]
