@@ -35,7 +35,7 @@
                                     <td>{!! $user->name !!}</td>
                                     <td>{!! $user->email !!}</td>
                                     <td>{!! $user->company->name ?? null !!}</td>
-                                    <td>{!! $user->roles->pluck('name')[0] !!}</td>
+                                    <td>{!! $user->roles->pluck('name')[0] ?? null !!}</td>
                                     <td>
                                         {!! Form::open(['route'=> ['users.destroy', $user->id], 'method'=>'delete']) !!}
                                         <a href="{!! route('users.edit', $user->id) !!}"
