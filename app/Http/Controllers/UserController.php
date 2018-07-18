@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -61,8 +62,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roleId = $user->roles()->first() ?   $user->roles()->first()['id'] : null;
+        $companies = Company::pluck('name', 'id');
         $roles = Role::pluck('name', 'id');
-        return view('accounts.edit', compact('user', 'roleId', 'roles'));
+        return view('accounts.edit', compact('user', 'roleId', 'roles', 'companies'));
     }
 
     /**
