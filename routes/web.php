@@ -49,8 +49,6 @@ Route::any('button-click/{serial}', 'ButtonClickController@store');
 
 
 
-
-
 Route::get('but', function (){
    return \App\ButtonClick::all();
 });
