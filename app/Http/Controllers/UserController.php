@@ -77,6 +77,10 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        $user->company_id = $request->company_id;
+
+        $user->save();
+
         $role = Role::find($request->role);
         $user->assignRole($role->name);
 

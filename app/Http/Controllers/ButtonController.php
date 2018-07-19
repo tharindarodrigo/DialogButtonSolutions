@@ -6,6 +6,8 @@ use App\Button;
 use App\ButtonType;
 use App\Company;
 use App\Http\Requests\ButtonRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class ButtonController extends Controller
@@ -120,17 +122,22 @@ class ButtonController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Button $button
-     * @return \Illuminate\Http\Response
+     * @param Button $button
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Button $button)
     {
-
-        if ($button->delete()) {
+        try {
+            $button->delete();
             session()->flash('message.level', 'success');
             session()->flash('message.content', 'Successfully Deleted Button');
+        } catch (QueryException $exception) {
+            session()->flash('message.level', 'danger');
+            session()->flash('message.content', 'There was a problem deleting the Record ' . $exception);
+        } catch (ModelNotFoundException $exception) {
+            session()->flash('message.level', 'danger');
+            session()->flash('message.content', 'There was a problem deleting the Record ' . $exception);
         }
 
         return redirect()->back();
