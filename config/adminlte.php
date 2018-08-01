@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Dialog</b> Button',
+    'logo' => '<b>'.env('APP_NAME').'</b> Button',
 
     'logo_mini' => '<b>D</b>Btn',
 
