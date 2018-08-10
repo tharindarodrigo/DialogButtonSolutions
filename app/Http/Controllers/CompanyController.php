@@ -17,11 +17,11 @@ class CompanyController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('super_admin')){
-        $companies = Company::all();
+            $companies = Company::all();
         } else {
             $companies = Company::whereHas('users', function ($q){
                 $q->where('id', Auth::id());
-            });
+            })->get();
         }
 
         return view('companies.index', compact('companies'));
