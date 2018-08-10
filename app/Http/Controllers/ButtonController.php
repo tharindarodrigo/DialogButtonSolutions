@@ -9,6 +9,7 @@ use App\Http\Requests\ButtonRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ButtonController extends Controller
 {
@@ -34,8 +35,11 @@ class ButtonController extends Controller
         $companiesQuery = Company::pluck('name', 'id');
 //        $companies = $companyEmpty->combine($companiesQuery);
         $buttonTypes = ButtonType::pluck('button_type', 'id');
-        $companies = Company::wherehas('users', function($q){
-            $q->where('id', Auth::id());
+
+        $companies = Company::wherehas('users', function ($q) {
+            if (!Auth::user()->hasRole('super_admin')) {
+                $q->where('id', Auth::id());
+            }
         })->pluck('name', 'id');
 
         return view('buttons.create', compact('companies', 'buttonTypes'));
