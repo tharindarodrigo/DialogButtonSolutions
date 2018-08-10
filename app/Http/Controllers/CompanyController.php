@@ -44,7 +44,9 @@ class CompanyController extends Controller
             return view('companies.create');
 
         } else {
-            return abort(401);
+            session()->flash('message.level', 'danger');
+            session()->flash('message.content', 'Sorry! you don\'t have permission to create a company');
+                return redirect()->route('companies.index');
         }
     }
 
@@ -86,7 +88,15 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('companies.edit', compact('company'));
+        if(Auth::user()->hasRole('super_admin')){
+            return view('companies.edit', compact('company'));
+
+
+        } else {
+            session()->flash('message.level', 'danger');
+            session()->flash('message.content', 'Sorry! you don\'t have permission to create a company');
+            return redirect()->route('companies.index');
+        }
     }
 
     /**
