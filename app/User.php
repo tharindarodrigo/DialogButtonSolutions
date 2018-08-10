@@ -18,6 +18,10 @@ class User extends Authenticatable
         'name', 'email', 'password', 'company_id'
     ];
 
+    public static $superAdmins = [
+        'tharinda.rodrigo@dialog.lk'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

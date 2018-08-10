@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Http\Requests\CompanyRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -15,7 +16,14 @@ class CompanyController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('super_admin')){
         $companies = Company::all();
+        } else {
+            $companies = Company::whereHas('user', function ($q){
+                $q->where('user_id', Auth::id());
+            });
+        }
+
         return view('companies.index', compact('companies'));
     }
 
