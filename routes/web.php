@@ -95,6 +95,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('user', function (){
-    return \App\User::all();
+    return \App\User::with('roles')->get();
 });
-
