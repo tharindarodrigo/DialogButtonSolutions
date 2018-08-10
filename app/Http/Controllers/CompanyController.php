@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class CompanyController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('role:admin', ['only'=>['index']]);
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('role:admin', ['only'=>['index']]);
+//    }
 
     /**
      * Display a listing of the resource.
@@ -40,7 +40,12 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('companies.create');
+        if(Auth::user()->hasRole('super_admin')){
+            return view('companies.create');
+
+        } else {
+            return abort(401);
+        }
     }
 
     /**
