@@ -31,8 +31,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Role</label>
-                        {!! Form::select('role', $companies, $user->company_id, ['class'=> 'form-control'] ) !!}
+                        <label for="">Company</label>
+                        {!! Form::select('company_id', $companies, $user->company_id, ['class'=> 'form-control'] ) !!}
                     </div>
                     <button class="btn btn-primary"> Update</button>
                     <a href="{!! route('users.index') !!}" class="btn btn-warning">Cancel</a>

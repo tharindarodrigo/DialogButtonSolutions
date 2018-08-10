@@ -15,6 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/counters', function () {
+    return view('counters');
+});
+
+Route::get('/parking-info', function (){
+    return response()->json([
+        'HO' => rand(0,20),
+        'Foster Lane' => rand(0,20),
+        'Mega' => rand(0,20),
+        'Parkland' => rand(0,20),
+        'DBN' => rand(0,20),
+        'Akbar' => rand(0,20),
+    ]);
+});
 
 Route::group(['middleware'=> 'auth'], function(){
     Route::resource('companies', 'CompanyController');
@@ -39,6 +53,11 @@ Route::group(['middleware'=> 'auth'], function(){
         return \App\Branch::where('company_id', $id)->get();
     });
 });
+
+
+
+Route::resource('counter-categories', 'CounterCategoryController');
+Route::resource('counters', 'CounterController');
 
 
 Route::get('notifications', function () {
@@ -74,4 +93,8 @@ Route::get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('user', function (){
+    return \App\User::all();
+});
 

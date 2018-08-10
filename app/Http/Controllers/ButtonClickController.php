@@ -6,11 +6,13 @@ use App\Button;
 use App\ButtonClick;
 use App\Company;
 use App\Events\ButtonTriggerEvent;
+use App\Exports\ButtonClicksExport;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ButtonClickController extends Controller
 {
@@ -156,5 +158,10 @@ class ButtonClickController extends Controller
     public function destroy(ButtonClick $buttonClick)
     {
         //
+    }
+
+    public function export()
+    {
+        return Excel::download(new ButtonClicksExport, 'clicks.xlsx');
     }
 }
