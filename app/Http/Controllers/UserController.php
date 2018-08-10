@@ -33,7 +33,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,7 +44,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,13 +55,13 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $user = User::find($id);
-        $roleId = $user->roles()->first() ?   $user->roles()->first()['id'] : null;
+        $roleId = $user->roles()->first() ? $user->roles()->first()['id'] : null;
         $companies = Company::pluck('name', 'id');
         $roles = Role::pluck('name', 'id');
         return view('accounts.edit', compact('user', 'roleId', 'roles', 'companies'));
@@ -70,8 +70,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -81,8 +81,14 @@ class UserController extends Controller
 
         $user->save();
 
-        $role = Role::find($request->role);
-        $user->assignRole($role->name);
+        if($request->has('role')){
+            foreach ($user->roles as $currentRole) {
+                $user->removeRole($currentRole);
+            }
+
+            $role = Role::find($request->role);
+            $user->assignRole($role->name);
+        }
 
         session()->flash('message.level', 'success');
         session()->flash('message.content', 'Successfully Updated Role');
@@ -93,7 +99,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
