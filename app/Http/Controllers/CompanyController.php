@@ -20,7 +20,7 @@ class CompanyController extends Controller
         $companies = Company::all();
         } else {
             $companies = Company::whereHas('user', function ($q){
-                $q->where('user_id', Auth::id());
+                $q->where('id', Auth::id());
             });
         }
 
