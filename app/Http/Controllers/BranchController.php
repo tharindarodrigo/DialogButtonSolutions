@@ -25,7 +25,7 @@ class BranchController extends Controller
                 $q->whereHas('users', function ($q2) {
                     $q2->where('id', Auth::id());
                 });
-            });
+            })->get();
         }
 
         return view('branches.index', compact('branches'));
