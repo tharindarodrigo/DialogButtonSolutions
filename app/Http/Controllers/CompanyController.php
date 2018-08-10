@@ -12,7 +12,7 @@ class CompanyController extends Controller
 
     public function __construct()
     {
-        $this->middleware('role:super_user', ['only'=>['index']]);
+        $this->middleware('role:admin', ['only'=>['index']]);
     }
 
     /**
