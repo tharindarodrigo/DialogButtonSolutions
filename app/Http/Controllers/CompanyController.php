@@ -94,7 +94,7 @@ class CompanyController extends Controller
 
         } else {
             session()->flash('message.level', 'danger');
-            session()->flash('message.content', 'Sorry! you don\'t have permission to create a company');
+            session()->flash('message.content', 'Sorry! you don\'t have permission to create a company. Please contact Super Admin');
             return redirect()->route('companies.index');
         }
     }
