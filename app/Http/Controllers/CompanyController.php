@@ -19,7 +19,7 @@ class CompanyController extends Controller
         if(Auth::user()->hasRole('super_admin')){
         $companies = Company::all();
         } else {
-            $companies = Company::whereHas('user', function ($q){
+            $companies = Company::whereHas('users', function ($q){
                 $q->where('id', Auth::id());
             });
         }
