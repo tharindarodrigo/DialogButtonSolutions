@@ -34,7 +34,9 @@ class ButtonController extends Controller
         $companiesQuery = Company::pluck('name', 'id');
 //        $companies = $companyEmpty->combine($companiesQuery);
         $buttonTypes = ButtonType::pluck('button_type', 'id');
-        $companies = Company::pluck('name', 'id');
+        $companies = Company::wherehas('users', function($q){
+            $q->where('id', Auth::id());
+        })->pluck('name', 'id');
 
         return view('buttons.create', compact('companies', 'buttonTypes'));
     }
