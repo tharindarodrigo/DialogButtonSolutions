@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('role:super_user', ['only'=>['index']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

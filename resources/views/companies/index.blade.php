@@ -12,8 +12,10 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Companies List</h3>
+                    @role('super_admin')
                     <a href="{!! route('companies.create') !!}" class="btn btn-primary bg-blue-gradient pull-right"> <i
                                 class="fa fa-plus"></i> Create Company</a>
+                    @endrole
                 </div>
                 <div class="box-body">
                     <div class="table-responisve">
