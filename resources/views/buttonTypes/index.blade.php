@@ -23,7 +23,9 @@
                             <th>#</th>
                             <th>Button Type</th>
                             <th>Message + Notify Color</th>
+                            @role('super_admin')
                             <th>Controls</th>
+                            @endrole
                         </tr>
                         </thead>
                         <tbody>
@@ -34,6 +36,7 @@
                                 <td class="bg-{!! $buttonType->notification_color !!}">
                                     {!! $buttonType->message !!}
                                 </td>
+                                @role('super_admin')
                                 <td>
                                     {!! Form::open(['route'=> ['button-types.destroy', $buttonType->id], 'method'=>'delete']) !!}
                                     <a href="{!! route('button-types.edit', $buttonType->id) !!}"
@@ -43,6 +46,7 @@
                                     </button>
                                     {!! Form::close() !!}
                                 </td>
+                                @endrole
                             </tr>
                         @endforeach
                         </tbody>

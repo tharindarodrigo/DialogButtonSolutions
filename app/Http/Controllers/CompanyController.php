@@ -42,7 +42,6 @@ class CompanyController extends Controller
     {
         if(Auth::user()->hasRole('super_admin')){
             return view('companies.create');
-
         } else {
             session()->flash('message.level', 'danger');
             session()->flash('message.content', 'Sorry! you don\'t have permission to create a company');
