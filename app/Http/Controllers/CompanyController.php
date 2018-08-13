@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Http\Requests\CompanyRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -134,10 +135,14 @@ class CompanyController extends Controller
             session()->flash('message.level', 'success');
             session()->flash('message.content', 'Successfully Deleted');
 
-        } catch (QueryException $ex) {
+        } catch (QueryException $exception) {
 
             session()->flash('message.level', 'danger');
-            session()->flash('message.content', $ex);
+            session()->flash('message.content', $exception);
+        } catch (ModelNotFoundException $exception){
+
+            session()->flash('message.level', 'danger');
+            session()->flash('message.content', $exception);
         }
 
         return redirect()->route('companies.index');
