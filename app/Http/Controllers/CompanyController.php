@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Http\Requests\CompanyRequest;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,10 +23,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hasRole('super_admin')){
+        if (Auth::user()->hasRole('super_admin')) {
             $companies = Company::all();
         } else {
-            $companies = Company::whereHas('users', function ($q){
+            $companies = Company::whereHas('users', function ($q) {
                 $q->where('id', Auth::id());
             })->get();
         }
@@ -40,12 +41,12 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->hasRole('super_admin')){
+        if (Auth::user()->hasRole('super_admin')) {
             return view('companies.create');
         } else {
             session()->flash('message.level', 'danger');
             session()->flash('message.content', 'Sorry! you don\'t have permission to create a company');
-                return redirect()->route('companies.index');
+            return redirect()->route('companies.index');
         }
     }
 
@@ -71,7 +72,7 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Company $company
      * @return \Illuminate\Http\Response
      */
     public function show(Company $company)
@@ -82,12 +83,12 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Company $company
      * @return \Illuminate\Http\Response
      */
     public function edit(Company $company)
     {
-        if(Auth::user()->hasRole('super_admin')){
+        if (Auth::user()->hasRole('super_admin')) {
             return view('companies.edit', compact('company'));
 
 
@@ -101,8 +102,8 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  CompanyRequest  $request
-     * @param  \App\Company  $company
+     * @param  CompanyRequest $request
+     * @param  \App\Company $company
      * @return \Illuminate\Http\Response
      */
     public function update(CompanyRequest $request, Company $company)
@@ -121,14 +122,22 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Company  $company
-     * @return \Illuminate\Http\Response
+     * @param Company $company
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Company $company)
     {
-        if ($company->delete()) {
+        try {
+
+            $company->delete();
             session()->flash('message.level', 'success');
             session()->flash('message.content', 'Successfully Deleted');
+
+        } catch (QueryException $ex) {
+
+            session()->flash('message.level', 'danger');
+            session()->flash('message.content', $ex);
         }
 
         return redirect()->route('companies.index');

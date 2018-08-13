@@ -6,6 +6,7 @@ use App\Button;
 use App\ButtonType;
 use App\Company;
 use App\Http\Requests\ButtonRequest;
+use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -147,5 +148,17 @@ class ButtonController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function getList()
+    {
+        $user = User::find(Auth::id());
+
+        if ($user->hasRole('super_admin')) {
+            return Button::all();
+        } else {
+            return Button::where('company_id', $user->company_id)->get();
+        }
+
     }
 }

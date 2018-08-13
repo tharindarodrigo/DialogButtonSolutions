@@ -42,9 +42,7 @@ Route::group(['middleware'=> 'auth'], function(){
         Route::get('clicks', 'ButtonClickController@index');
     });
 
-    Route::get('button-list', function(){
-        return App\Button::all();
-    });
+    Route::get('button-list', 'ButtonController@getList');
 
     Route::resource('users', 'UserController');
     Route::resource('users.permissions', 'UserPermissionController');
@@ -53,7 +51,6 @@ Route::group(['middleware'=> 'auth'], function(){
         return \App\Branch::where('company_id', $id)->get();
     });
 });
-
 
 
 Route::resource('counter-categories', 'CounterCategoryController');
