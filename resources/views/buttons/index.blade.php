@@ -33,7 +33,7 @@
                             @if(count($buttons)>0)
                                 @foreach($buttons as $button)
                                     <tr>
-                                        <td>{!! $button->id !!}</td>
+                                        <td>{!! $loop->index +1 !!}</td>
                                         <td>{!! $button->serial_number !!}</td>
                                         <td>{!! $button->company->name !!}</td>
                                         <td>{!! $button->branch->branch !!}</td>
