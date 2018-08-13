@@ -138,8 +138,10 @@ class CompanyController extends Controller
 
         } catch (QueryException $exception) {
 
+
             session()->flash('message.level', 'danger');
             session()->flash('message.content', $exception);
+
         } catch (ModelNotFoundException $exception){
 
             session()->flash('message.level', 'danger');

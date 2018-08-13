@@ -21,7 +21,18 @@ class ButtonController extends Controller
      */
     public function index()
     {
-        $buttons = Button::with(['company', 'buttonType', 'branch'])->get();
+        $user = User::find(Auth::id());
+
+        if ($user->hasRole('super_admin')) {
+
+            $buttons = Button::with(['company', 'buttonType', 'branch'])->get();
+        } else {
+            $buttons = Button::with(['company', 'buttonType', 'branch'])
+                ->where('company_id', $user->company_id)
+                ->get();
+
+        }
+
         return view('buttons.index', compact('buttons'));
     }
 
