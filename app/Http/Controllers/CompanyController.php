@@ -127,10 +127,11 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Company $company)
+    public function destroy($id)
     {
         try {
 
+            $company = Company::find($id);
             $company->delete();
             session()->flash('message.level', 'success');
             session()->flash('message.content', 'Successfully Deleted');
@@ -143,7 +144,7 @@ class CompanyController extends Controller
 
             session()->flash('message.level', 'danger');
             session()->flash('message.content', $exception);
-        }
+        } catch ()
 
         return redirect()->route('companies.index');
 
