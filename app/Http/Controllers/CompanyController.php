@@ -144,7 +144,7 @@ class CompanyController extends Controller
 
             session()->flash('message.level', 'danger');
             session()->flash('message.content', $exception);
-        } catch ()
+        }
 
         return redirect()->route('companies.index');
 
