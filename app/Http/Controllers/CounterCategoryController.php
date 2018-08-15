@@ -15,7 +15,7 @@ class CounterCategoryController extends Controller
      */
     public function index()
     {
-        return $counterCategories = CounterCategory::with('company')->get();
+        $counterCategories = CounterCategory::with('company')->get();
         return view('counterCategories.index', compact('counterCategories'));
     }
 
