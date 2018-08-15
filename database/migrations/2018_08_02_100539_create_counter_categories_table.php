@@ -18,6 +18,8 @@ class CreateCounterCategoriesTable extends Migration
             $table->string('counter_category')->unique();
             $table->integer('company_id')->unsigned()->nullable();
             $table->timestamps();
+
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 

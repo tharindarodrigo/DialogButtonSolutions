@@ -175,6 +175,25 @@ return [
                 'super_admin'
             ]
         ],
+        'COUNTERS',
+        [
+            'text' => 'Counters',
+            'url' => 'counters',
+            'icon' => 'mobile',
+            'role' => [
+                'admin',
+                'super_admin'
+            ]
+        ],
+        [
+            'text' => 'Counter Categories',
+            'url' => 'counter-categories',
+            'icon' => 'mobile',
+            'role' => [
+                'admin',
+                'super_admin'
+            ]
+        ],
         'ADMINISTRATION',
         [
             'text' => 'User Accounts',
