@@ -38,7 +38,14 @@ class BranchController extends Controller
      */
     public function create()
     {
-        $companies = Company::pluck('name', 'id');
+        if ($user = Auth::user()->hasRole('super_admin')) {
+            $companies = Company::pluck('name', 'id');
+        } else {
+
+            $companies = Company::whereHas('users',function ($q){
+                $q->where('id', Auth::id());
+            })->pluck('name', 'id');
+        }
         return view('branches.create', compact('companies'));
     }
 
@@ -84,7 +91,14 @@ class BranchController extends Controller
      */
     public function edit(Branch $branch)
     {
-        $companies = Company::pluck('name', 'id');
+        if ($user = Auth::user()->hasRole('super_admin')) {
+            $companies = Company::pluck('name', 'id');
+        } else {
+
+            $companies = Company::whereHas('users',function ($q){
+                $q->where('id', Auth::id());
+            })->pluck('name', 'id');
+        }
         return view('branches.edit', compact('branch', 'companies'));
     }
 
@@ -113,8 +127,9 @@ class BranchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Branch $branch
-     * @return \Illuminate\Http\Response
+     * @param Branch $branch
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Branch $branch)
     {
