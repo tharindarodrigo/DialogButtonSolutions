@@ -12,7 +12,7 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Counter Category List</h3>
-                    <a href="{!! route('companies.create') !!}" class="btn btn-primary bg-blue-gradient pull-right"> <i
+                    <a href="{!! route('counter-categories.create') !!}" class="btn btn-primary bg-blue-gradient pull-right"> <i
                                 class="fa fa-plus"></i> Create Company</a>
                 </div>
                 <div class="box-body">

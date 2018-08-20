@@ -37,9 +37,11 @@
                                         <a href="{!! route('companies.edit', $company->id) !!}"
                                            class="btn btn-primary btn-flat btn-sm"><i class="fa fa-edit"></i>
                                         </a>
+                                        @role('super_admin')
                                         <button class="btn btn-danger btn-flat btn-sm" type="submit"><i
                                                     class="fa fa-trash"></i>
                                         </button>
+                                        @endrole
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
