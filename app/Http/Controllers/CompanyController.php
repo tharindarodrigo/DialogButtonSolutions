@@ -26,45 +26,15 @@ class CompanyController extends Controller
     {
 
 
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://178.128.19.124/api/user-info",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "Accept: application/json",
-                "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU1OGRhMWJhODk5NjkwNmE5ZTUxMWRiNzZlYWNmNjcyNWU4OGU1ZTgzM2NmMWZjYTZmZjI3MThlNTg2MTNhOGIwNjJmMTk5MWYyYjllZmZlIn0.eyJhdWQiOiIxIiwianRpIjoiZTU4ZGExYmE4OTk2OTA2YTllNTExZGI3NmVhY2Y2NzI1ZTg4ZTVlODMzY2YxZmNhNmZmMjcxOGU1ODYxM2E4YjA2MmYxOTkxZjJiOWVmZmUiLCJpYXQiOjE1MzQ4MTg3NDIsIm5iZiI6MTUzNDgxODc0MiwiZXhwIjoxNTY2MzU0NzQyLCJzdWIiOiI0MDMiLCJzY29wZXMiOltdfQ.wfuvID7XZ3ShX6ShPmqMnQH9VDgslAiGY43LodEVqZxyK8B4yYAIfvo2i0C8tIy2BXIK-1CByqItvOpIqDy6Z59yL13NuZB_PjQ5oJ0cn04LoeSy1tM8mgajLrs29OVDNfyjVy9ZOqGdGKrVZ_HsSvGlmjp_2o6cj0TNJx8qpoTGhv5PZpnB61TKYTTEBoJoApABgP-ZBT-0dnMYn63CdnngySJT-7ZjjhC4J8edOCk4kmi2DA7SSgGn5JYUMEqjvIsOTDDuWMJraMtIshZvXQRMCn3KrZNoMxv7SDeaQftUPwXlrU5bemWyHp2mGp3XpVydfinJed-s7JVXqPWXCQymTEGUd6AdyRBpL6qmzfTbFda7GKtGaTebS2jyYcrGL4IM6hEmMq_pDgZ7GadycJhhb4rotzVSVMQN2X4A4XOHWUibi3FkeCJJ1v_oOOYuKx59bBsi-LuqeyI8XsnpWDiZqW8sKzV5bSoKqAKpbix5Swiyu_uGBoJJACHFXTZ1sPQ3eALqPKwGsQ2nIMiQpJKTo0gM0OVKWnidLfY66cDHQWaPszVdlE9YV9385aO9u4YQ3ygr_SrIhRHb83bNtpzLZeBBURHDS5XU3mlJ8SE20rwWvgMqMBmaogIruFei8KIGOQ5D_f0Ly-LqmN2oVtRyEM--8L-01G_sfEdyqiA",
-                "Cache-Control: no-cache",
-                "Content-Type: application/json",
-                "Postman-Token: bf3ff30e-eb1d-45df-907c-50e359c4b029"
-            ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
+        if (Auth::user()->hasRole('super_admin')) {
+            $companies = Company::all();
         } else {
-            echo $response;
+            $companies = Company::whereHas('users', function ($q) {
+                $q->where('id', Auth::id());
+            })->get();
         }
 
-//        if (Auth::user()->hasRole('super_admin')) {
-//            $companies = Company::all();
-//        } else {
-//            $companies = Company::whereHas('users', function ($q) {
-//                $q->where('id', Auth::id());
-//            })->get();
-//        }
-//
-//        return view('companies.index', compact('companies'));
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -174,7 +144,7 @@ class CompanyController extends Controller
             session()->flash('message.level', 'danger');
             session()->flash('message.content', $exception);
 
-        } catch (ModelNotFoundException $exception) {
+        } catch (ModelNotFoundException $exception){
 
             session()->flash('message.level', 'danger');
             session()->flash('message.content', $exception);
