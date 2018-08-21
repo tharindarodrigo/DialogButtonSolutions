@@ -71,5 +71,24 @@
             $('#companies').DataTable();
         })
     </script>
+    <script>
+        var settings = {
+            "async": true,
+            // "crossDomain": true,
+            "url": "http://178.128.19.124/api/user-info",
+            "method": "GET",
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU1OGRhMWJhODk5NjkwNmE5ZTUxMWRiNzZlYWNmNjcyNWU4OGU1ZTgzM2NmMWZjYTZmZjI3MThlNTg2MTNhOGIwNjJmMTk5MWYyYjllZmZlIn0.eyJhdWQiOiIxIiwianRpIjoiZTU4ZGExYmE4OTk2OTA2YTllNTExZGI3NmVhY2Y2NzI1ZTg4ZTVlODMzY2YxZmNhNmZmMjcxOGU1ODYxM2E4YjA2MmYxOTkxZjJiOWVmZmUiLCJpYXQiOjE1MzQ4MTg3NDIsIm5iZiI6MTUzNDgxODc0MiwiZXhwIjoxNTY2MzU0NzQyLCJzdWIiOiI0MDMiLCJzY29wZXMiOltdfQ.wfuvID7XZ3ShX6ShPmqMnQH9VDgslAiGY43LodEVqZxyK8B4yYAIfvo2i0C8tIy2BXIK-1CByqItvOpIqDy6Z59yL13NuZB_PjQ5oJ0cn04LoeSy1tM8mgajLrs29OVDNfyjVy9ZOqGdGKrVZ_HsSvGlmjp_2o6cj0TNJx8qpoTGhv5PZpnB61TKYTTEBoJoApABgP-ZBT-0dnMYn63CdnngySJT-7ZjjhC4J8edOCk4kmi2DA7SSgGn5JYUMEqjvIsOTDDuWMJraMtIshZvXQRMCn3KrZNoMxv7SDeaQftUPwXlrU5bemWyHp2mGp3XpVydfinJed-s7JVXqPWXCQymTEGUd6AdyRBpL6qmzfTbFda7GKtGaTebS2jyYcrGL4IM6hEmMq_pDgZ7GadycJhhb4rotzVSVMQN2X4A4XOHWUibi3FkeCJJ1v_oOOYuKx59bBsi-LuqeyI8XsnpWDiZqW8sKzV5bSoKqAKpbix5Swiyu_uGBoJJACHFXTZ1sPQ3eALqPKwGsQ2nIMiQpJKTo0gM0OVKWnidLfY66cDHQWaPszVdlE9YV9385aO9u4YQ3ygr_SrIhRHb83bNtpzLZeBBURHDS5XU3mlJ8SE20rwWvgMqMBmaogIruFei8KIGOQ5D_f0Ly-LqmN2oVtRyEM--8L-01G_sfEdyqiA",
+                "Cache-Control": "no-cache",
+                "Postman-Token": "b89ea4ce-924c-416f-94a6-32fc3f35f4be"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    </script>
 
 @endpush
