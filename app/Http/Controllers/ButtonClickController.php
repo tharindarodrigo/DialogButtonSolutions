@@ -25,7 +25,7 @@ class ButtonClickController extends Controller
     {
         $companyEmpty = [0 => 'All'];
 
-        if(Auth::user()->hasRole('super_admin')){
+        if (Auth::user()->hasRole('super_admin')) {
             $companiesQuery = Company::pluck('name', 'id')->toArray();
         } else {
             $companiesQuery = Company::where('id', Auth::user()->company_id)->pluck('name', 'id')->toArray();
@@ -33,20 +33,18 @@ class ButtonClickController extends Controller
         $companies = $companyEmpty + $companiesQuery;
 
         $groups = [
-            ''=>'Select Field',
-            'company_id'=>'Company',
-            'branch_id'=>'Branch',
-            'button_type_id'=> 'Button Type',
-            'button_id'=> 'Button',
+            '' => 'Select Field',
+            'company_id' => 'Company',
+            'branch_id' => 'Branch',
+            'button_type_id' => 'Button Type',
+            'button_id' => 'Button',
         ];
 
         $buttonClicks = ButtonClick::with(['company', 'button', 'buttonType', 'branch']);
 
-        if(Auth::user()->hasRole('admin')){
+        if (Auth::user()->hasRole('admin')) {
             $buttonClicks->where('company_id', User::find(Auth::id())->company_id);
-        }
-
-        else if (Auth::user()->hasRole('super_admin') && !empty($request->get('company_id'))) {
+        } else if (Auth::user()->hasRole('super_admin') && !empty($request->get('company_id'))) {
             $buttonClicks->where('company_id', $request->company_id);
 
             if (!empty($request->get('branch_id'))) {
@@ -77,7 +75,7 @@ class ButtonClickController extends Controller
             'companies' => $companies,
             'buttonClicks' => !empty($request->get('paginate')) ? $buttonClicks->paginate($request->get('paginate')) : $buttonClicks->paginate(100),
             'request' => $request,
-            'groups'=> $groups
+            'groups' => $groups
         ]);
     }
 
@@ -157,7 +155,18 @@ class ButtonClickController extends Controller
      */
     public function destroy(ButtonClick $buttonClick)
     {
-        //
+        $user = User::find(Auth::id());
+        if ($buttonClick->company->id === $user->company_id || $user->hasRole('super_admin')) {
+            $buttonClick->delete();
+
+            session()->flash('global.class', 'success');
+            session()->flash('global.message', 'Successfully deleted record');
+        } else {
+            session()->flash('global.class','warning');
+            session()->flash('global.message','You cannot delete this record');
+        }
+
+        return redirect()->back();
     }
 
     public function export()

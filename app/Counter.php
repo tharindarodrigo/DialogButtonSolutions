@@ -10,4 +10,9 @@ class Counter extends Model
     {
         return $this->belongsTo(CounterCategory::class);
     }
+
+    public function buttonCounters()
+    {
+        return $this->belongsToMany(Button::class)->withPivot(['increment_value']);
+    }
 }

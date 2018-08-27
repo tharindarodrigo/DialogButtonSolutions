@@ -177,6 +177,15 @@ return [
         ],
         'COUNTERS',
         [
+            'text' => 'Counter Buttons',
+            'url' => 'counter-buttons',
+            'icon' => 'mobile',
+            'role' => [
+                'admin',
+                'super_admin'
+            ]
+        ],
+        [
             'text' => 'Counters',
             'url' => 'counters',
             'icon' => 'mobile',
