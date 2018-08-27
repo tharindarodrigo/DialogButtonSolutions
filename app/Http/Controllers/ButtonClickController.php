@@ -161,11 +161,11 @@ class ButtonClickController extends Controller
         if ($buttonClick->company->id === $user->company_id || $user->hasRole('super_admin')) {
             $buttonClick->delete();
 
-            session()->flash('global.class', 'success');
-            session()->flash('global.message', 'Successfully deleted record');
+            session()->flash('global.level', 'success');
+            session()->flash('global.content', 'Successfully deleted record');
         } else {
-            session()->flash('global.class','warning');
-            session()->flash('global.message','You cannot delete this record');
+            session()->flash('global.level','warning');
+            session()->flash('global.content','You cannot delete this record');
         }
 
         return redirect()->back();
