@@ -107,7 +107,7 @@ Route::get('query', function(){
 
 Route::get('query2', function(){
     return \App\ButtonClick::where('company_id', 3)
-        ->where('button_type_id', '=', '3')
+        ->where('button_type_id', 3)
         ->update(['button_type_id'=> 4]);
 
 //    $x->delete();
