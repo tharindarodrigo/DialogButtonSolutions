@@ -153,8 +153,10 @@ class ButtonClickController extends Controller
      * @param  \App\ButtonClick $buttonClick
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ButtonClick $buttonClick)
+    public function destroy($id)
     {
+        $buttonClick = ButtonClick::findOrFail($id);
+
         $user = User::find(Auth::id());
         if ($buttonClick->company->id === $user->company_id || $user->hasRole('super_admin')) {
             $buttonClick->delete();
