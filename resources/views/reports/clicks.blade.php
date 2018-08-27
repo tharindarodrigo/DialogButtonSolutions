@@ -110,7 +110,7 @@
                             <thead>
                             <tr>
                                 <th>
-                                    {!! Form::checkbox('check_all', '', null,['class'=>'check-box']) !!}
+                                    {!! Form::check('check_all', '', null,['class'=>'checkbox']) !!}
                                 </th>
                                 <th>#</th>
                                 @if(!empty($buttonClicks->first()->button))
@@ -138,7 +138,7 @@
                             @foreach ($buttonClicks as $buttonClick)
                                 <tr>
                                     <td>
-                                        {!! Form::checkbox('check_all', '', null,['class'=>'form-control']) !!}
+                                        {!! Form::check('check_all', '', null,['class'=>'checkbox']) !!}
                                     </td>
                                     <td>{!! $loop->index + 1 !!}</td>
                                     @if(!empty($buttonClick->button))
