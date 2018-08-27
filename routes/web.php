@@ -40,6 +40,7 @@ Route::group(['middleware'=> 'auth'], function(){
 
     Route::group(['prefix'=>'reports'], function(){
         Route::get('clicks', 'ButtonClickController@index');
+        Route::delete('clicks/{id}', 'ButtonClickController@destroy')->name('clicks.delete');
     });
 
     Route::get('button-list', 'ButtonController@getList');
@@ -50,6 +51,8 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::get('/company/{id}/branches', function ($id) {
         return \App\Branch::where('company_id', $id)->get();
     });
+
+
 });
 
 
