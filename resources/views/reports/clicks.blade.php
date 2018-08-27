@@ -241,4 +241,5 @@
             {{--checkBoxes.prop('checked', x);--}}
         {{--})--}}
     {{--</script>--}}
+
 @endpush

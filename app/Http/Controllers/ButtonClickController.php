@@ -47,9 +47,10 @@ class ButtonClickController extends Controller
         } else if (Auth::user()->hasRole('super_admin') && !empty($request->get('company_id'))) {
             $buttonClicks->where('company_id', $request->company_id);
 
-            if (!empty($request->get('branch_id'))) {
-                $buttonClicks->where('branch_id', $request->branch_id);
-            }
+        }
+
+        if (!empty($request->get('branch_id'))) {
+            $buttonClicks->where('branch_id', $request->branch_id);
         }
 
         if (!empty($request->get('from'))) {
