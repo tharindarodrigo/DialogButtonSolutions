@@ -128,6 +128,7 @@
                                 @if(!empty($request->count_by))
                                     <th>Clicks</th>
                                 @endif
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
