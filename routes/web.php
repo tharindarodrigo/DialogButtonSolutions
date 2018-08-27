@@ -103,6 +103,6 @@ Route::get('query', function(){
 });
 
 Route::get('query2', function(){
-    $x = \App\ButtonClick::where('created_at', '<', '2018-08-24 16:55:00')->where('company_id', 3)->get();
-    $x->delete();
+    $x = \App\ButtonClick::where('created_at', '<', '2018-08-24 16:55:00')->where('company_id', 3)->delete();
+//    $x->delete();
 });
