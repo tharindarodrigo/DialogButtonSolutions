@@ -110,7 +110,7 @@
                             <thead>
                             <tr>
                                 <th>
-                                    {!! Form::checkbox('check_all', '', null,['class'=>'checkbox']) !!}
+                                    {!! Form::checkbox('check_all', '', null,['class'=>'checkbox check-all']) !!}
                                 </th>
                                 <th>#</th>
                                 @if(!empty($buttonClicks->first()->button))
@@ -138,7 +138,7 @@
                             @foreach ($buttonClicks as $buttonClick)
                                 <tr>
                                     <td>
-                                        {!! Form::checkbox('check_all', '', null,['class'=>'checkbox']) !!}
+                                        {!! Form::checkbox("multiple_delete[{$buttonClick->id}]", "", null,['class'=>'checkbox multiple-select']) !!}
                                     </td>
                                     <td>{!! $loop->index + 1 !!}</td>
                                     @if(!empty($buttonClick->button))
@@ -178,7 +178,6 @@
                     {{--@endif--}}
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -230,4 +229,11 @@
         }
     </script>
 
+    <script>
+        $('.check-all').click(function () {
+            var x = $(this).val();
+            var checkBoxes = $('.multiple-select');
+            checkBoxes.prop('checked', x);
+        })
+    </script>
 @endpush
