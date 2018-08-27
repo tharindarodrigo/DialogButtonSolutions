@@ -99,10 +99,16 @@ Route::get('user', function (){
 });
 
 Route::get('query', function(){
-    return \App\ButtonClick::with('company')->where('created_at', '<', '2018-08-24 16:55:00')->where('company_id', 3)->get();
+    return \App\ButtonClick::with(['buttonType', 'company'])
+        ->where('button_type_id', '=', '3')
+        ->where('company_id', 3)
+        ->get();
 });
 
 Route::get('query2', function(){
-    $x = \App\ButtonClick::where('created_at', '<', '2018-08-24 16:55:00')->where('company_id', 3)->delete();
+    return \App\ButtonClick::where('company_id', 3)
+        ->where('button_type_id', '=', '3')
+        ->update(['button_type_id'=> 4]);
+
 //    $x->delete();
 });

@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Company</label>
                                     <div class="col-sm-8">
-                                        {!! Form::select('company_id', $companies, null, ['class'=> 'form-control','id'=>'company']) !!}
+                                        {!! Form::select('company_id', $companies, old('company_id'), ['class'=> 'form-control','id'=>'company']) !!}
                                     </div>
                                 </div>
                             </div>
