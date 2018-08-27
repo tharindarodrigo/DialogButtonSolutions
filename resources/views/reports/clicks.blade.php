@@ -154,7 +154,7 @@
                                         <td>{!! $buttonClick->clicks !!}</td>
                                     @endif
                                     <td>
-                                        {{Form::open(['route'=> ['button-click.destroy', $buttonClick->id], 'method'=>'delete'])}}
+                                        {{Form::open(['route'=> ['button-click.delete', $buttonClick->id], 'method'=>'delete'])}}
                                         <button class="btn btn-danger btn-flat btn-sm" type="submit"><i
                                                     class="fa fa-trash"></i></button>
                                         {{ Form::close() }}
