@@ -109,9 +109,9 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>
-                                    {!! Form::checkbox('check_all', '', null,['class'=>'checkbox check-all']) !!}
-                                </th>
+                                {{--<th>--}}
+                                    {{--{!! Form::checkbox('check_all', '', null,['class'=>'checkbox check-all']) !!}--}}
+                                {{--</th>--}}
                                 <th>#</th>
                                 @if(!empty($buttonClicks->first()->button))
                                     <th>Serial</th>
@@ -131,15 +131,17 @@
                                 @if(!empty($request->count_by))
                                     <th>Clicks</th>
                                 @endif
-                                <th>Delete</th>
+                                @if(!empty($buttonClicks->first()->button))
+                                    <th>Delete</th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($buttonClicks as $buttonClick)
                                 <tr>
-                                    <td>
-                                        {!! Form::checkbox("multiple_delete[{$buttonClick->id}]", "", null,['class'=>'checkbox multiple-select']) !!}
-                                    </td>
+                                    {{--<td>--}}
+                                        {{--{!! Form::checkbox("multiple_delete[{$buttonClick->id}]", "", null,['class'=>'checkbox multiple-select']) !!}--}}
+                                    {{--</td>--}}
                                     <td>{!! $loop->index + 1 !!}</td>
                                     @if(!empty($buttonClick->button))
                                         <td>{!! $buttonClick->button->serial_number !!}</td>
@@ -159,12 +161,14 @@
                                     @if(!empty($request->count_by))
                                         <td>{!! $buttonClick->clicks !!}</td>
                                     @endif
-                                    <td>
-                                        {{Form::open(['route'=> ['clicks.delete', $buttonClick->id], 'method'=>'delete'])}}
-                                        <button class="btn btn-danger btn-flat btn-sm" type="submit"><i
-                                                    class="fa fa-trash"></i></button>
-                                        {{ Form::close() }}
-                                    </td>
+                                    @if(!empty($buttonClicks->first()->button))
+                                        <td>
+                                            {{Form::open(['route'=> ['clicks.delete', $buttonClick->id], 'method'=>'delete'])}}
+                                            <button class="btn btn-danger btn-flat btn-sm" type="submit"><i
+                                                        class="fa fa-trash"></i></button>
+                                            {{ Form::close() }}
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
@@ -229,12 +233,12 @@
         }
     </script>
 
-    <script>
-        $('.check-all').click(function () {
-            var x = $(this).val();
-            console.log(x);
-            var checkBoxes = $('.multiple-select');
-            checkBoxes.prop('checked', x);
-        })
-    </script>
+    {{--<script>--}}
+        {{--$('.check-all').click(function () {--}}
+            {{--var x = $(this).val();--}}
+            {{--console.log(x);--}}
+            {{--var checkBoxes = $('.multiple-select');--}}
+            {{--checkBoxes.prop('checked', x);--}}
+        {{--})--}}
+    {{--</script>--}}
 @endpush
