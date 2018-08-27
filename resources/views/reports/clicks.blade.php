@@ -109,6 +109,9 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
+                                <th>
+                                    {!! Form::checkbox('check_all', '', null,['class'=>'check-box']) !!}
+                                </th>
                                 <th>#</th>
                                 @if(!empty($buttonClicks->first()->button))
                                     <th>Serial</th>
@@ -134,6 +137,9 @@
                             <tbody>
                             @foreach ($buttonClicks as $buttonClick)
                                 <tr>
+                                    <td>
+                                        {!! Form::checkbox('check_all', '', null,['class'=>'form-control']) !!}
+                                    </td>
                                     <td>{!! $loop->index + 1 !!}</td>
                                     @if(!empty($buttonClick->button))
                                         <td>{!! $buttonClick->button->serial_number !!}</td>
