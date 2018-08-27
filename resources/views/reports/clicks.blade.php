@@ -232,6 +232,7 @@
     <script>
         $('.check-all').click(function () {
             var x = $(this).val();
+            console.log(x);
             var checkBoxes = $('.multiple-select');
             checkBoxes.prop('checked', x);
         })
