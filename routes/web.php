@@ -97,3 +97,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('user', function (){
     return \App\User::with('roles')->get();
 });
+
+Route::get('query', function(){
+    return \App\ButtonClick::where('created_at', '<', '2018-08-24 16:55:00')->where('company_id', 3)->get();
+});
+
+Route::get('query2', function(){
+    $x = \App\ButtonClick::where('created_at', '<', '2018-08-24 16:55:00')->where('company_id', 3)->get();
+    $x->delete();
+});
