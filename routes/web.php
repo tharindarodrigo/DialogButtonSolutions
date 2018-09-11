@@ -57,14 +57,13 @@ Route::group(['middleware'=> 'auth'], function(){
 
 Route::resource('counter-categories', 'CounterCategoryController');
 Route::resource('counters', 'CounterController');
+Route::resource('counter-buttons', 'CounterButtonController');
 
 Route::get('notifications', function () {
     return $buttons = \App\Button::with(['buttonType', 'company', 'branch'])->get();
 });
 
 Route::any('button-click/{serial}', 'ButtonClickController@store');
-
-
 
 Route::get('but', function (){
    return \App\ButtonClick::all();
