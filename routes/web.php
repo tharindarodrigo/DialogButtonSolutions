@@ -52,13 +52,11 @@ Route::group(['middleware'=> 'auth'], function(){
         return \App\Branch::where('company_id', $id)->get();
     });
 
-
 });
 
 
 Route::resource('counter-categories', 'CounterCategoryController');
 Route::resource('counters', 'CounterController');
-
 
 Route::get('notifications', function () {
     return $buttons = \App\Button::with(['buttonType', 'company', 'branch'])->get();

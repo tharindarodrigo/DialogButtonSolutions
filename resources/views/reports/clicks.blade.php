@@ -63,23 +63,43 @@
 
                         <div class="row">
 
-                            <div class="col-md-3">
+                            {{--<div class="col-md-3">--}}
+                            {{--<div class="form-group">--}}
+                            {{--<label for="" class="col-sm-4 control-label">From</label>--}}
+                            {{--<div class="col-sm-8">--}}
+                            {{--{!! Form::text('from', null, ['class'=> 'form-control', 'data-format'=>'dd/MM/yyyy hh:mm:ss ']) !!}--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            <div class='col-md-3'>
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">From</label>
                                     <div class="col-sm-8">
-                                        {!! Form::input('datetime-local', 'from', null, ['class'=> 'form-control']) !!}
+                                        <div class='input-group date datetimepicker1'>
+                                            <input type='text' class="form-control" name="from"/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-md-3'>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-4 control-label">To</label>
+                                    <div class="col-sm-8">
+                                        <div class='input-group date datetimepicker1'>
+                                            <input type='text' class="form-control" name="to"/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="" class="col-sm-4 control-label">To</label>
-                                    <div class="col-sm-8">
-                                        {!! Form::input('datetime-local', 'to', null, ['class'=> 'form-control']) !!}
-                                    </div>
-                                </div>
-                            </div>
+
+
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Counts By</label>
@@ -110,7 +130,7 @@
                             <thead>
                             <tr>
                                 {{--<th>--}}
-                                    {{--{!! Form::checkbox('check_all', '', null,['class'=>'checkbox check-all']) !!}--}}
+                                {{--{!! Form::checkbox('check_all', '', null,['class'=>'checkbox check-all']) !!}--}}
                                 {{--</th>--}}
                                 <th>#</th>
                                 @if(!empty($buttonClicks->first()->button))
@@ -140,7 +160,7 @@
                             @foreach ($buttonClicks as $buttonClick)
                                 <tr>
                                     {{--<td>--}}
-                                        {{--{!! Form::checkbox("multiple_delete[{$buttonClick->id}]", "", null,['class'=>'checkbox multiple-select']) !!}--}}
+                                    {{--{!! Form::checkbox("multiple_delete[{$buttonClick->id}]", "", null,['class'=>'checkbox multiple-select']) !!}--}}
                                     {{--</td>--}}
                                     <td>{!! $loop->index + 1 !!}</td>
                                     @if(!empty($buttonClick->button))
@@ -188,7 +208,10 @@
 @stop
 
 @push('css')
-    {{--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>--}}
+    {{--<link rel="stylesheet" type="text/css" href="{!! asset('http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css') !!}"/>--}}
+    <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css"
+          rel="stylesheet">
+
     <style>
         div.col-sm-4 {
             vertical-align: middle;
@@ -199,6 +222,25 @@
 
 @push('js')
 
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+
+
+    <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker1').datetimepicker({
+                format: 'YYYY-MM-DD H:m:s'
+            });
+        });
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -233,13 +275,15 @@
         }
     </script>
 
+
+
     {{--<script>--}}
-        {{--$('.check-all').click(function () {--}}
-            {{--var x = $(this).val();--}}
-            {{--console.log(x);--}}
-            {{--var checkBoxes = $('.multiple-select');--}}
-            {{--checkBoxes.prop('checked', x);--}}
-        {{--})--}}
+    {{--$('.check-all').click(function () {--}}
+    {{--var x = $(this).val();--}}
+    {{--console.log(x);--}}
+    {{--var checkBoxes = $('.multiple-select');--}}
+    {{--checkBoxes.prop('checked', x);--}}
+    {{--})--}}
     {{--</script>--}}
 
 @endpush
