@@ -112,7 +112,7 @@ Route::get('query2', function(){
 
 Route::get('report', function(){
     return $buttonClicks = \Illuminate\Support\Facades\DB::table('button_clicks')
-        ->select('department', DB::raw('count(*) as clicks'))
+        ->select(DB::raw('count(*) as clicks'))
         ->groupBy('company_id', 'button_type_id')
         ->get()
         ;
