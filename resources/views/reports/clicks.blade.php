@@ -180,7 +180,7 @@
                                     @if(!empty($buttonClick->created_at))
                                         <td>{!! $buttonClick->created_at !!}</td>
                                     @endif
-                                    @if(!empty($request->count_by) || !empty($buttonClicks->clicks))
+                                    @if(!empty($request->count_by) || $buttonClicks->clicks > 0)
                                         <td>{!! $buttonClick->clicks !!}</td>
                                     @endif
                                     @if(!empty($buttonClicks->first()->button))
