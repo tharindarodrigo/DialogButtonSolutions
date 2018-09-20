@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Company</label>
                                     <div class="col-sm-8">
-                                        {!! Form::select('company_id', $companies, old('company_id'), ['class'=> 'form-control','id'=>'company']) !!}
+                                        {!! Form::select('company_id', $companies, $company_id, ['class'=> 'form-control','id'=>'company']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Serial</label>
                                     <div class="col-sm-8">
-                                        {!! Form::text('serial_number', old('serial_number'), ['class'=> 'form-control']) !!}
+                                        {!! Form::text('serial_number', $serial_number, ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
