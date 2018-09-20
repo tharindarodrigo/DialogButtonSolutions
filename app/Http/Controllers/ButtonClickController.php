@@ -78,7 +78,7 @@ class ButtonClickController extends Controller
 
         return view('reports.clicks')->with([
             'companies' => $companies,
-            'buttonClicks' => !empty($request->get('paginate')) ? $buttonClicks->paginate($request->get('paginate')) : $buttonClicks->paginate(100),
+            'buttonClicks' => $buttonClicks->get(),
             'request' => $request,
             'groups' => $groups,
             'group_id' => $request->count_by ?? null,
