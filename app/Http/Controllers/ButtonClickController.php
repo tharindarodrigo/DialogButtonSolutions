@@ -65,11 +65,10 @@ class ButtonClickController extends Controller
         }
         if (!empty($request->get('count_by'))) {
             $buttonClicks
-                ->groupBy($request->count_by)
+                ->groupBy($request->count_by, 'button_type_id')
                 ->select($request->count_by, DB::raw('count(*) as clicks'));
 //            return $count->get();
         }
-
 
         return view('reports.clicks')->with([
             'companies' => $companies,
