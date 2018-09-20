@@ -127,6 +127,8 @@
         <div class="row">
             <div class="panel">
                 <div class="panel-body">
+
+                    {{dd($buttonClicks)}}
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
