@@ -67,7 +67,13 @@ class ButtonClickController extends Controller
             $buttonClicks
                 ->groupBy($request->count_by, 'button_type_id')
                 ->select($request->count_by, DB::raw('count(*) as clicks'));
+
 //            return $count->get();
+        } else {
+            $buttonClicks
+                ->select('company_id', 'branch_id', 'button_type_id', DB::raw('count(*) as clicks'))
+                ->groupBy('company_id', 'branch_id', 'button_type_id')
+                ->get();
         }
 
         return view('reports.clicks')->with([
@@ -75,11 +81,11 @@ class ButtonClickController extends Controller
             'buttonClicks' => !empty($request->get('paginate')) ? $buttonClicks->paginate($request->get('paginate')) : $buttonClicks->paginate(100),
             'request' => $request,
             'groups' => $groups,
-            'group_id'=> $request->count_by ?? null,
-            'from'=> $request->from ?? null,
-            'to'=> $request->to ?? null,
-            'company_id'=> $request->company_id ?? null,
-            'branch_id'=> $request->branch_id ?? null,
+            'group_id' => $request->count_by ?? null,
+            'from' => $request->from ?? null,
+            'to' => $request->to ?? null,
+            'company_id' => $request->company_id ?? null,
+            'branch_id' => $request->branch_id ?? null,
             'serial_number' => $request->serial_number ?? null
         ]);
     }
@@ -169,8 +175,8 @@ class ButtonClickController extends Controller
             session()->flash('global.level', 'success');
             session()->flash('global.content', 'Successfully deleted record');
         } else {
-            session()->flash('global.level','warning');
-            session()->flash('global.content','You cannot delete this record');
+            session()->flash('global.level', 'warning');
+            session()->flash('global.content', 'You cannot delete this record');
         }
 
         return redirect()->back();
