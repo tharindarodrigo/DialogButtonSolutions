@@ -50,12 +50,12 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="" class="col-sm-4 control-label">Paginate</label>
-                                    <div class="col-sm-8">
-                                        {!! Form::text('paginate', old('paginate'), ['class'=> 'form-control', 'No. of records']) !!}
-                                    </div>
-                                </div>
+                                {{--<div class="form-group">--}}
+                                    {{--<label for="" class="col-sm-4 control-label">Paginate</label>--}}
+                                    {{--<div class="col-sm-8">--}}
+                                        {{--{!! Form::text('paginate', old('paginate'), ['class'=> 'form-control', 'No. of records']) !!}--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                             </div>
 
 
@@ -76,7 +76,8 @@
                                     <label for="" class="col-sm-4 control-label">From</label>
                                     <div class="col-sm-8">
                                         <div class='input-group date datetimepicker1'>
-                                            <input type='text' class="form-control" name="from"/>
+                                            {{--<input type='text' class="form-control" name="from"/>--}}
+                                            {!! Form::text('from', $from, ['class'=> 'form-control']) !!}
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -89,7 +90,8 @@
                                     <label for="" class="col-sm-4 control-label">To</label>
                                     <div class="col-sm-8">
                                         <div class='input-group date datetimepicker1'>
-                                            <input type='text' class="form-control" name="to"/>
+                                            {!! Form::text('to', $to, ['class'=> 'form-control']) !!}
+
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
