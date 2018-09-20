@@ -104,7 +104,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-4 control-label">Counts By</label>
                                     <div class="col-sm-8">
-                                        {!! Form::select('count_by', $groups, null, ['class'=> 'form-control','id'=>'company']) !!}
+                                        {!! Form::select('count_by', $groups, $group_id, ['class'=> 'form-control','id'=>'company']) !!}
                                     </div>
                                 </div>
                             </div>

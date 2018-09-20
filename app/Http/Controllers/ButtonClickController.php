@@ -46,7 +46,6 @@ class ButtonClickController extends Controller
             $buttonClicks->where('company_id', User::find(Auth::id())->company_id);
         } else if (Auth::user()->hasRole('super_admin') && !empty($request->get('company_id'))) {
             $buttonClicks->where('company_id', $request->company_id);
-
         }
 
         if (!empty($request->get('branch_id'))) {
@@ -76,7 +75,8 @@ class ButtonClickController extends Controller
             'companies' => $companies,
             'buttonClicks' => !empty($request->get('paginate')) ? $buttonClicks->paginate($request->get('paginate')) : $buttonClicks->paginate(100),
             'request' => $request,
-            'groups' => $groups
+            'groups' => $groups,
+            'group_id'=> $request->count_by ?? null
         ]);
     }
 
