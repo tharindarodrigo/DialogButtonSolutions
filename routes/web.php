@@ -111,7 +111,7 @@ Route::get('query2', function(){
 });
 
 Route::get('report', function(){
-    return $buttonClicks = \App\Button::groupBy('company_id', 'button_type_id')
+    return $buttonClicks = \App\Button::with(['company', 'buttonType' ])->groupBy('company_id', 'button_type_id')
         ->raw('count(*) as count')
 //        ->get()
         ;
