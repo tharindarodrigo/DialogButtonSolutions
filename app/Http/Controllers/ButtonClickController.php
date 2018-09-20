@@ -72,7 +72,7 @@ class ButtonClickController extends Controller
         } else {
             $buttonClicks
                 ->select('company_id', 'branch_id', 'button_type_id', DB::raw('count(*) as clicks'))
-                ->groupBy('company_id', 'branch_id', 'button_type_id')
+                ->groupBy('company_id', 'branch_id', 'button_type_id');
 //                ->get();
         }
 
