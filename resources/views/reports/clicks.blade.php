@@ -150,7 +150,7 @@
                                 @if(!empty($buttonClicks->first()->created_at))
                                     <th>Time</th>
                                 @endif
-                                @if(!empty($request->count_by))
+                                @if(!empty($request->count_by) || !empty($buttonClicks->first()->clicks))
                                     <th>Clicks</th>
                                 @endif
                                 @if(!empty($buttonClicks->first()->button))
@@ -180,7 +180,7 @@
                                     @if(!empty($buttonClick->created_at))
                                         <td>{!! $buttonClick->created_at !!}</td>
                                     @endif
-                                    @if(!empty($request->count_by))
+                                    @if(!empty($request->count_by) || !empty($buttonClicks->clicks))
                                         <td>{!! $buttonClick->clicks !!}</td>
                                     @endif
                                     @if(!empty($buttonClicks->first()->button))
