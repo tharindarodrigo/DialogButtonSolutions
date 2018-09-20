@@ -152,9 +152,9 @@
                                 @if(!empty($buttonClicks->first()->created_at))
                                     <th>Time</th>
                                 @endif
-                                @if(!empty($request->count_by) || !empty($buttonClicks->first()->clicks))
+                                {{--@if(!empty($request->count_by) || !empty($buttonClicks->first()->clicks))--}}
                                     <th>Clicks</th>
-                                @endif
+                                {{--@endif--}}
                                 @if(!empty($buttonClicks->first()->button))
                                     <th>Delete</th>
                                 @endif
@@ -182,9 +182,9 @@
                                     @if(!empty($buttonClick->created_at))
                                         <td>{!! $buttonClick->created_at !!}</td>
                                     @endif
-                                    @if(!empty($request->count_by) || $buttonClicks->clicks > 0)
+                                    {{--@if(!empty($request->count_by) || $buttonClicks->clicks > 0)--}}
                                         <td>{!! $buttonClick->clicks !!}</td>
-                                    @endif
+                                    {{--@endif--}}
                                     @if(!empty($buttonClicks->first()->button))
                                         <td>
                                             {{Form::open(['route'=> ['clicks.delete', $buttonClick->id], 'method'=>'delete'])}}
