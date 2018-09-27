@@ -114,8 +114,9 @@ Route::get('query2', function () {
 Route::get('excel', 'ButtonClickController@export');
 
 Route::get('report', function () {
-    return \App\ButtonClick::join('button_types', 'button_clicks.button_type_id', '=', 'button_type.id')
+    return \Illuminate\Support\Facades\DB::join('button_types', 'button_clicks.button_type_id', '=', 'button_type.id')
         ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
         ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
+        ->select('button_clicks.*', 'button_types.button_type', 'companies.name', 'branches.branch_name')
         ->get();
 });
