@@ -110,10 +110,13 @@ Route::get('query2', function(){
 //    $x->delete();
 });
 
-Route::get('report', function(){
-    return $buttonClicks = \App\ButtonClick::with(['company', 'branch', 'buttonType'])
-        ->select('company_id', 'branch_id','button_type_id', DB::raw('count(*) as clicks'))
-        ->groupBy('company_id', 'branch_id','button_type_id')
-        ->get()
-        ;
-});
+
+Route::get('excel', 'ButtonClickController@export');
+
+//Route::get('report', function(){
+//    return $buttonClicks = \App\ButtonClick::with(['company', 'branch', 'buttonType'])
+//        ->select('company_id', 'branch_id','button_type_id', DB::raw('count(*) as clicks'))
+//        ->groupBy('company_id', 'branch_id','button_type_id')
+//        ->get()
+//        ;
+//});

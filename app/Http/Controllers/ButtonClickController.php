@@ -68,12 +68,10 @@ class ButtonClickController extends Controller
                 ->groupBy($request->count_by, 'button_type_id')
                 ->select($request->count_by, DB::raw('count(*) as clicks'));
 
-//            return $count->get();
         } else {
             $buttonClicks
                 ->select('company_id', 'branch_id', 'button_type_id', DB::raw('count(*) as clicks'))
                 ->groupBy('company_id', 'branch_id', 'button_type_id');
-//                ->get();
         }
 
         return view('reports.clicks')->with([
@@ -185,5 +183,9 @@ class ButtonClickController extends Controller
     public function export()
     {
         return Excel::download(new ButtonClicksExport, 'clicks.xlsx');
+    }
+
+    public function allClicks(){
+        return ButtonClick::all();
     }
 }
