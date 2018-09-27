@@ -115,10 +115,10 @@ Route::get('excel', 'ButtonClickController@export');
 
 Route::get('report', function(){
     return \App\ButtonClick::whereHas('buttonType', function ($q1) {
-        $q1->select('button_type');
+        $q1->select('button_type')->get();
     })->whereHas('company', function ($q2) {
-        $q2->select('name');
+        $q2->select('name')->get();
     })->whereHas('branch', function ($q3) {
-        $q3->select('branch');
+        $q3->select('branch')->get();
     })->get();
 });
