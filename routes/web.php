@@ -113,7 +113,7 @@ Route::get('query2', function () {
 
 Route::get('excel', 'ButtonClickController@export');
 
-Route::get('report', function (\Illuminate\Support\Facades\Request $request) {
+Route::get('report', function (Illuminate\Http\Request $request) {
 
 
     $x = \Illuminate\Support\Facades\DB::table('button_clicks')
