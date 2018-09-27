@@ -19,18 +19,18 @@ Route::get('/counter', function () {
     return view('counters');
 });
 
-Route::get('/parking-info', function (){
+Route::get('/parking-info', function () {
     return response()->json([
-        'HO' => rand(0,20),
-        'Foster Lane' => rand(0,20),
-        'Mega' => rand(0,20),
-        'Parkland' => rand(0,20),
-        'DBN' => rand(0,20),
-        'Akbar' => rand(0,20),
+        'HO' => rand(0, 20),
+        'Foster Lane' => rand(0, 20),
+        'Mega' => rand(0, 20),
+        'Parkland' => rand(0, 20),
+        'DBN' => rand(0, 20),
+        'Akbar' => rand(0, 20),
     ]);
 });
 
-Route::group(['middleware'=> 'auth'], function(){
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('companies', 'CompanyController');
     Route::resource('branches', 'BranchController');
     Route::resource('button-types', 'ButtonTypeController');
@@ -38,7 +38,7 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::resource('roles', 'RoleController');
 
 
-    Route::group(['prefix'=>'reports'], function(){
+    Route::group(['prefix' => 'reports'], function () {
         Route::get('clicks', 'ButtonClickController@index');
         Route::delete('clicks/{id}', 'ButtonClickController@destroy')->name('clicks.delete');
     });
@@ -47,7 +47,7 @@ Route::group(['middleware'=> 'auth'], function(){
 
     Route::resource('users', 'UserController');
     Route::resource('users.permissions', 'UserPermissionController');
-    Route::view('grid','grid.index');
+    Route::view('grid', 'grid.index');
     Route::get('/company/{id}/branches', function ($id) {
         return \App\Branch::where('company_id', $id)->get();
     });
@@ -65,8 +65,8 @@ Route::get('notifications', function () {
 
 Route::any('button-click/{serial}', 'ButtonClickController@store');
 
-Route::get('but', function (){
-   return \App\ButtonClick::all();
+Route::get('but', function () {
+    return \App\ButtonClick::all();
 });
 
 Route::get('fire-button-trigger', function () {
@@ -91,21 +91,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('user', function (){
+Route::get('user', function () {
     return \App\User::with('roles')->get();
 });
 
-Route::get('query', function(){
+Route::get('query', function () {
     return \App\ButtonClick::with(['buttonType', 'company'])
         ->where('button_type_id', '=', '3')
         ->where('company_id', 3)
         ->get();
 });
 
-Route::get('query2', function(){
+Route::get('query2', function () {
     return \App\ButtonClick::where('company_id', 3)
         ->where('button_type_id', 3)
-        ->update(['button_type_id'=> 4]);
+        ->update(['button_type_id' => 4]);
 
 //    $x->delete();
 });
@@ -113,12 +113,9 @@ Route::get('query2', function(){
 
 Route::get('excel', 'ButtonClickController@export');
 
-Route::get('report', function(){
-    return \App\ButtonClick::whereHas('buttonType', function ($q1) {
-        $q1->select('button_type')->get();
-    })->whereHas('company', function ($q2) {
-        $q2->select('name')->get();
-    })->whereHas('branch', function ($q3) {
-        $q3->select('branch')->get();
-    })->get();
+Route::get('report', function () {
+    return \App\ButtonClick::join('button_types', 'button_clicks.button_type_id', '=', 'button_type.id')
+        ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
+        ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
+        ->get();
 });
