@@ -180,9 +180,9 @@ class ButtonClickController extends Controller
         return redirect()->back();
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new ButtonClicksExport, 'clicks.xlsx');
+        return Excel::download(new ButtonClicksExport($request), 'clicks.xlsx');
     }
 
     public function allClicks(){
