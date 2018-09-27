@@ -121,7 +121,7 @@ Route::get('report', function (Illuminate\Http\Request $request) {
         ->join('button_types', 'button_clicks.button_type_id', '=', 'button_types.id')
         ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
         ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
-        ->select('button_clicks.*', 'button_types.button_type', 'companies.name', 'branches.branch');
+        ->select('button_clicks.id' ,'button_types.created_at', 'button_types.button_type', 'companies.name as company', 'branches.branch');
     if ($request->get('from')) {
         $x->where('button_clicks.created_at', '>=', $request->get('from'));
     }
