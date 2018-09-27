@@ -183,7 +183,7 @@
                                         <td>{!! $buttonClick->created_at !!}</td>
                                     @endif
                                     {{--@if(!empty($request->count_by) || $buttonClicks->clicks > 0)--}}
-                                        <td>{!! $buttonClick->clicks !!}</td>
+                                        <td align="right">{!! $buttonClick->clicks !!}</td>
                                     {{--@endif--}}
                                     @if(!empty($buttonClicks->first()->button))
                                         <td align="right">
