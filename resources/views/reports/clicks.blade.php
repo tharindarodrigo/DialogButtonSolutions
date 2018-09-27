@@ -186,7 +186,7 @@
                                         <td>{!! $buttonClick->clicks !!}</td>
                                     {{--@endif--}}
                                     @if(!empty($buttonClicks->first()->button))
-                                        <td>
+                                        <td align="right">
                                             {{Form::open(['route'=> ['clicks.delete', $buttonClick->id], 'method'=>'delete'])}}
                                             <button class="btn btn-danger btn-flat btn-sm" type="submit"><i
                                                         class="fa fa-trash"></i></button>
