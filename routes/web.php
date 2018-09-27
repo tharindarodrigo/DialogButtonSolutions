@@ -113,10 +113,12 @@ Route::get('query2', function(){
 
 Route::get('excel', 'ButtonClickController@export');
 
-//Route::get('report', function(){
-//    return $buttonClicks = \App\ButtonClick::with(['company', 'branch', 'buttonType'])
-//        ->select('company_id', 'branch_id','button_type_id', DB::raw('count(*) as clicks'))
-//        ->groupBy('company_id', 'branch_id','button_type_id')
-//        ->get()
-//        ;
-//});
+Route::get('report', function(){
+    return ButtonClick::whereHas('buttonType', function ($q1) {
+        $q1->select('button_type');
+    })->whereHas('company', function ($q2) {
+        $q2->select('name');
+    })->whereHas('branch', function ($q3) {
+        $q3->select('branch');
+    })->get();
+});
