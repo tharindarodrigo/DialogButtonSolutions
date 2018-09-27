@@ -113,12 +113,21 @@ Route::get('query2', function () {
 
 Route::get('excel', 'ButtonClickController@export');
 
-Route::get('report', function () {
-    return \Illuminate\Support\Facades\DB::table('button_clicks')
+Route::get('report', function (\Illuminate\Support\Facades\Request $request) {
+
+
+    $x = \Illuminate\Support\Facades\DB::table('button_clicks')
         ->join('buttons', 'button_clicks.button_type_id', '=', 'buttons.id')
         ->join('button_types', 'button_clicks.button_type_id', '=', 'button_types.id')
         ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
         ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
-        ->select('button_clicks.*', 'button_types.button_type', 'companies.name', 'branches.branch')
-        ->get();
+        ->select('button_clicks.*', 'button_types.button_type', 'companies.name', 'branches.branch');
+    if (!empty($request->from)) {
+        $x->where('created_at', '>=', $request->from);
+    }
+
+    if (!empty($request->to)) {
+        $x->where('created_at', '<', $request->to);
+    }
+    return $x->get();
 });
