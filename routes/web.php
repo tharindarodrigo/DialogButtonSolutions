@@ -122,11 +122,11 @@ Route::get('report', function (\Illuminate\Support\Facades\Request $request) {
         ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
         ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
         ->select('button_clicks.*', 'button_types.button_type', 'companies.name', 'branches.branch');
-    if ($request->has('from')) {
+    if ($request->get('from')) {
         $x->where('button_clicks.created_at', '>=', $request->get('from'));
     }
 
-    if ($request->has('to')) {
+    if ($request->get('to')) {
         $x->where('button_clicks.created_at', '<', $request->get('to'));
     }
     return $x->get();
