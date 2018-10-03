@@ -106,6 +106,10 @@ class CounterController extends Controller
      */
     public function destroy(Counter $counter)
     {
+        $counter->delete();
 
+        session()->flash('global.class', 'success');
+        session()->flash('global.message', 'Successfully created counter');
+        return redirect()->back();
     }
 }

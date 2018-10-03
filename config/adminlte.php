@@ -170,38 +170,38 @@ return [
             'text' => 'Buttons',
             'url' => 'buttons',
             'icon' => 'mobile',
-            'role' => [
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'admin',
+//                'super_admin'
+//            ]
         ],
         'COUNTERS',
         [
             'text' => 'Counter Buttons',
             'url' => 'counter-buttons',
             'icon' => 'mobile',
-            'role' => [
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'admin',
+//                'super_admin'
+//            ]
         ],
         [
             'text' => 'Counters',
             'url' => 'counters',
             'icon' => 'mobile',
-            'role' => [
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'admin',
+//                'super_admin'
+//            ]
         ],
         [
             'text' => 'Counter Categories',
             'url' => 'counter-categories',
             'icon' => 'mobile',
-            'role' => [
-                'admin',
-                'super_admin'
-            ]
+//            'role' => [
+//                'admin',
+//                'super_admin'
+//            ]
         ],
         'ADMINISTRATION',
         [
@@ -219,7 +219,7 @@ return [
             'url' => 'roles',
             'role' => [
 //                'admin',
-                'super_admin'
+//                'super_admin'
             ]
         ]
     ],

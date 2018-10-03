@@ -110,7 +110,7 @@
                 $.each(data, function (i, t) {
                     component += '<li class="list-group-item d-flex justify-content-between align-items-center">'
                         +i
-                        +'<span class="badge" style="font-size: large">' + t + '/ 20</span>'
+                        +'<span class="badge" style="font-size: large">' + t + '</span>'
                         + '</li>';
 
                     console.log(i + ':' + t);

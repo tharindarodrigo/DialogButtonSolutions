@@ -20,14 +20,22 @@ Route::get('/counter', function () {
 });
 
 Route::get('/parking-info', function () {
-    return response()->json([
-        'HO' => rand(0, 20),
-        'Foster Lane' => rand(0, 20),
-        'Mega' => rand(0, 20),
-        'Parkland' => rand(0, 20),
-        'DBN' => rand(0, 20),
-        'Akbar' => rand(0, 20),
-    ]);
+
+    $counters  = \App\Counter::all();
+    $ar = [];
+    foreach ($counters as $counter){
+        $ar[$counter->title] = $counter->max - $counter->count;
+    }
+//    return
+    return response()->json($ar);
+//    [
+//        'HO' => rand(0, 20),
+//        'Foster Lane' => rand(0, 20),
+//        'Mega' => rand(0, 20),
+//        'Parkland' => rand(0, 20),
+//        'DBN' => rand(0, 20),
+//        'Akbar' => rand(0, 20),
+//    ];
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -77,7 +85,7 @@ Route::get('fire-button-trigger', function () {
 
 
 //Route::resource('button-types', 'ButtonTypeController');
-
+Route::any('count/{serial}', 'CounterButtonController@count');
 
 Route::get('/companies/buttons', function () {
     return view('companies.buttons.index');

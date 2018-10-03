@@ -15,8 +15,8 @@
                     <h3 class="box-title">Create Counter</h3>
                 </div>
                 <div class="box-body">
-                    {!! Form::open(['route'=>['counters.store']]) !!}
-                    @include('counters._partials.form')
+                    {!! Form::open(['route'=>['counter-buttons.store']]) !!}
+                    @include('counterButtons._partials.form')
                     {!! Form::close() !!}
                 </div>
             </div>

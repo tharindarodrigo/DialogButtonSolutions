@@ -14,12 +14,13 @@ class CreateCounterButtonsTable extends Migration
     public function up()
     {
         Schema::create('counter_buttons', function (Blueprint $table) {
-            $table->integer('button_id')->unsigned()->index();
+            $table->increments('id');
+            $table->string('serial');
             $table->integer('counter_id')->unsigned()->index();
-            $table->integer('increment_value')->unsigned()->index();
-
-            $table->unique(['button_id', 'counter_id']);
-
+            $table->integer('increment_value');
+            $table->foreign('counter_id')->references('id')->on('counters');
+//            $table->unique(['button_id', 'counter_id']);
+            $table->timestamps();
         });
     }
 

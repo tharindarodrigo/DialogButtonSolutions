@@ -12,7 +12,7 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Counter List</h3>
-                    <a href="{!! route('counters.create') !!}" class="btn btn-primary bg-blue-gradient pull-right"> <i
+                    <a href="{!! route('counter-buttons.create') !!}" class="btn btn-primary bg-blue-gradient pull-right"> <i
                                 class="fa fa-plus"></i> Create Counter</a>
                 </div>
                 <div class="box-body">
@@ -21,24 +21,23 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Counter</th>
-                                <th>Button SN</th>
-                                <th>Incr. By</th>
+                                <th>serial No.</th>
+                                <th>Counter title</th>
+                                <th>Incr. Value</th>
                                 <th>Controls</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($counter->buttonCounters as $counterButton)
+                            @foreach($counterButtons as $counterButton)
                                 <tr>
                                     <td>{!! $loop->index+1 !!}</td>
-                                    <td>{!! $counter->counterCategory-> !!}</td>
-                                    <td>{!! $counter->title !!}</td>
-                                    <td>{!! $counter->min !!}</td>
-                                    <td>{!! $counter->max !!}</td>
-                                    <td>{!! $counter->count !!}</td>
+                                    <td>{!! $counterButton->serial !!}</td>
+                                    <td>{!! $counterButton->counter->title !!}</td>
+                                    <td>{!! $counterButton->increment_value !!}</td>
+
                                     <td>
-                                        {!! Form::open(['route'=> ['counters.destroy', $counter->id], 'method'=>'delete']) !!}
-                                        <a href="{!! route('counters.edit', $counter->id) !!}"
+                                        {!! Form::open(['route'=> ['counter-buttons.destroy', $counterButton->id], 'method'=>'delete']) !!}
+                                        <a href="{!! route('counter-buttons.edit', $counterButton->id) !!}"
                                            class="btn btn-primary btn-flat btn-sm"><i class="fa fa-edit"></i>
                                         </a>
                                         <button class="btn btn-danger btn-flat btn-sm" type="submit"><i

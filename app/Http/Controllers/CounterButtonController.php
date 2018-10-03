@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Button;
+use App\Company;
 use App\Counter;
 use App\CounterButton;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\Count;
 
 class CounterButtonController extends Controller
 {
@@ -16,8 +18,10 @@ class CounterButtonController extends Controller
      */
     public function index()
     {
-        $counter = Counter::with('buttonCounters')->get();
-        return view('counterButtons.index', compact('counter'));
+        $counterButtons = CounterButton::all();
+
+//        $counter = Counter::with('button')->get();
+        return view('counterButtons.index', compact('counterButtons'));
     }
 
     /**
@@ -27,12 +31,10 @@ class CounterButtonController extends Controller
      */
     public function create()
     {
-        $counter = Counter::pluck('id', 'title');
-        $buttons = Button::whereHas('button_type', function ($q) {
-            $q->where('button_type', 'Counter');
-        })->pluck('id', 'serial_number');
+        $companies = Company::pluck('name', 'id');
+        $counters = Counter::pluck('title', 'id');
 
-        return view('counterButtons.create', compact('counter','buttons'));
+        return view('counterButtons.create', compact('companies', 'counters'));
     }
 
     /**
@@ -43,11 +45,16 @@ class CounterButtonController extends Controller
      */
     public function store(Request $request)
     {
-        $counter = Counter::find($request->counter_id);
-        $button = Button::find($request->button_id);
-        $counter->counterButtons()->sync($button);
+        $counterButton = new CounterButton();
+        $counterButton->counter_id = $request->counter_id;
+        $counterButton->serial = $request->serial;
+        $counterButton->increment_value = $request->increment_value;
 
-        return redirect()->back();
+        $counterButton->save();
+
+        session()->flash('global.class', 'success');
+        session()->flash('global.message', 'Successfully created counter button');
+        return redirect()->route('counter-buttons.index');
     }
 
     /**
@@ -69,7 +76,9 @@ class CounterButtonController extends Controller
      */
     public function edit(CounterButton $counterButton)
     {
-        //
+        $companies = Company::pluck('name', 'id');
+        $counters = Counter::pluck('title', 'id');
+        return view('counterButtons.edit', compact('counterButton', 'companies', 'counters'));
     }
 
     /**
@@ -81,7 +90,15 @@ class CounterButtonController extends Controller
      */
     public function update(Request $request, CounterButton $counterButton)
     {
-        //
+//        dd($request->all());
+//        $counterButton =  new CounterButton();
+        $counterButton->counter_id = $request->counter_id;
+        $counterButton->serial = $request->serial;
+        $counterButton->increment_value = $request->increment_value;
+
+        $counterButton->save();
+
+        return redirect()->route('counter-buttons.index');
     }
 
     /**
@@ -93,5 +110,18 @@ class CounterButtonController extends Controller
     public function destroy(Counter $counter)
     {
 //        $counter->detach();
+    }
+
+
+    public function count($serial)
+    {
+        $counterButton = CounterButton::where('serial', $serial)->first();
+        $counter = Counter::find($counterButton->counter_id);
+        if ($counter->count < $counter->max && $counter->count > $counter->min) {
+            $counter->count = $counter->count + $counterButton->increment_value;
+            $counter->save();
+        }
+
+
     }
 }

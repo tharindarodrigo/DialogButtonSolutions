@@ -26,9 +26,5 @@ class Button extends Model
         return $this->hasMany(ButtonClick::class);
     }
 
-    public function buttonCounters()
-    {
-        return $this->belongsToMany(Counter::class)->withPivot('increment_value');
-    }
 
 }

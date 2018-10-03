@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Counters</h1>
+    <h1>Counter Buttons</h1>
 @stop
 
 @section('content')
@@ -11,11 +11,11 @@
         <div class="row">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Edit Counter</h3>
+                    <h3 class="box-title">Create Counter</h3>
                 </div>
                 <div class="box-body">
-                    {!! Form::model($counter, ['route'=>['counters.update', $counter->id], 'method'=>'patch']) !!}
-                    @include('counters._partials.form')
+                    {!! Form::model($counterButton, ['route'=>['counter-buttons.update', $counterButton->id], 'method'=>'put']) !!}
+                    @include('counterButtons._partials.form')
                     {!! Form::close() !!}
                 </div>
             </div>
