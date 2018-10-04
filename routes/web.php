@@ -15,19 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/counter', function () {
+Route::get('/car-park', function () {
     return view('counters');
 });
 
 Route::get('/parking-info', function () {
 
-    $counters  = \App\Counter::all();
+    $counters = \App\Counter::whereHas('counterCategory', function ($q) {
+        $q->where('counter_category', 'Car Park')
+            ->where();
+    })->get();
     $ar = [];
-    foreach ($counters as $counter){
+    foreach ($counters as $counter) {
         $ar[$counter->title] = $counter->max - $counter->count;
     }
 //    return
     return response()->json($ar);
+
 //    [
 //        'HO' => rand(0, 20),
 //        'Foster Lane' => rand(0, 20),
@@ -36,6 +40,7 @@ Route::get('/parking-info', function () {
 //        'DBN' => rand(0, 20),
 //        'Akbar' => rand(0, 20),
 //    ];
+
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -44,7 +49,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('button-types', 'ButtonTypeController');
     Route::resource('buttons', 'ButtonController');
     Route::resource('roles', 'RoleController');
-
 
     Route::group(['prefix' => 'reports'], function () {
         Route::get('clicks', 'ButtonClickController@index');
@@ -129,7 +133,7 @@ Route::get('json', function (Illuminate\Http\Request $request) {
         ->join('button_types', 'button_clicks.button_type_id', '=', 'button_types.id')
         ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
         ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
-        ->select('button_clicks.id' ,'button_clicks.created_at', 'button_types.button_type', 'companies.name as company', 'branches.branch');
+        ->select('button_clicks.id', 'button_clicks.created_at', 'button_types.button_type', 'companies.name as company', 'branches.branch');
     if ($request->get('from')) {
         $x->where('button_clicks.created_at', '>=', $request->get('from'));
     }

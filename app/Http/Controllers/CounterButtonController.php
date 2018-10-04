@@ -117,7 +117,7 @@ class CounterButtonController extends Controller
     {
         $counterButton = CounterButton::where('serial', $serial)->first();
         $counter = Counter::find($counterButton->counter_id);
-        if ($counter->count < $counter->max && $counter->count > $counter->min) {
+        if (($counter->count+ $counterButton->increment_value) <= $counter->max && ($counter->count + $counterButton->increment_value) >= $counter->min) {
             $counter->count = $counter->count + $counterButton->increment_value;
             $counter->save();
         }
