@@ -23,7 +23,7 @@ Route::get('/parking-info', function () {
 
     $counters = \App\Counter::whereHas('counterCategory', function ($q) {
         $q->where('counter_category', 'Car Park')
-            ->where();
+            ->where('company_id', 1);
     })->get();
     $ar = [];
     foreach ($counters as $counter) {
@@ -32,16 +32,9 @@ Route::get('/parking-info', function () {
 //    return
     return response()->json($ar);
 
-//    [
-//        'HO' => rand(0, 20),
-//        'Foster Lane' => rand(0, 20),
-//        'Mega' => rand(0, 20),
-//        'Parkland' => rand(0, 20),
-//        'DBN' => rand(0, 20),
-//        'Akbar' => rand(0, 20),
-//    ];
-
 });
+
+Route::any('count/{serial}', 'CounterButtonController@count');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('companies', 'CompanyController');
@@ -89,7 +82,7 @@ Route::get('fire-button-trigger', function () {
 
 
 //Route::resource('button-types', 'ButtonTypeController');
-Route::any('count/{serial}', 'CounterButtonController@count');
+
 
 Route::get('/companies/buttons', function () {
     return view('companies.buttons.index');
