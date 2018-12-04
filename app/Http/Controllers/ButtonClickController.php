@@ -104,7 +104,7 @@ class ButtonClickController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store($serial)
+    public function store(Request $request, $serial)
     {
         $button = Button::where('serial_number', $serial)->first();
         $buttonClick = new ButtonClick();
@@ -112,6 +112,7 @@ class ButtonClickController extends Controller
         $buttonClick->button_type_id = $button->button_type_id;
         $buttonClick->company_id = $button->company_id;
         $buttonClick->branch_id = $button->branch_id;
+        $buttonClick->battery_level = $request->DP->BT ?? null;
 
 //        event(new ButtonTriggerEvent(collect($buttonClick)));
 
