@@ -119,7 +119,6 @@
                 $('#component').html(component);
             })
         },3000)
-
     })
 </script>
 </body>
