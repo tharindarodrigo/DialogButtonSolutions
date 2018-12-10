@@ -104,7 +104,7 @@
     $(document).ready(function () {
 
         setInterval(function () {
-            $.get('http://' + window.location.host + '/parking-info', function (data) {
+            $.get("{{url('/')}}" + window.location.host + '/parking-info', function (data) {
                 // alert(window.location.host);
                 let component = "";
                 $.each(data, function (i, t) {
