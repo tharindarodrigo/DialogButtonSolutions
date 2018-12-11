@@ -16,6 +16,14 @@
 
     <!-- Custom styles for this template -->
     <!--    <link href="starter-template.css" rel="stylesheet">-->
+    <style>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            /*width: 1%;*/
+        }
+    </style>
 </head>
 
 <body>
@@ -32,19 +40,20 @@
     <section>
         <div class="row">
             <div class="col" id="1">
-                <img src="{{ asset('img/on.gif') }}" alt="">
             </div>
             <div class="col" id="2">
-                <img src="{{ asset('img/on.gif') }}" alt="">
             </div>
             <div class="col" id="3">
-                <img src="{{ asset('img/on.gif') }}" alt="">
+                <img src="{{ asset('img/on.gif') }}" alt="" class="image center">
             </div>
         </div>
         <div class="row">
-            <div class="col" id="4"></div>
-            <div class="col" id="5"></div>
-            <div class="col" id="6"></div>
+            <div class="col" id="4">
+            </div>
+            <div class="col" id="5">
+            </div>
+            <div class="col" id="6">
+            </div>
         </div>
     </section>
 
@@ -81,19 +90,11 @@
 
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
-                // alert(window.location.host);
-                // let component = "";
-                // $.each(data, function (i, t) {
-                //     component += '<li class="list-group-item d-flex justify-content-between align-items-center">'
-                //         + i
-                //         + '<span class="badge" style="font-size: large">' + t + '</span>'
-                //         + '</li>';
-                //
-                //     console.log(i + ':' + t);
-                //
-                // });
-                // $('#component').html(component);
-            })
+                alert(data);
+
+
+
+            }, 'json')
         }, 3000)
     })
 </script>
