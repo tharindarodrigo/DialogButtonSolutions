@@ -90,7 +90,7 @@
 
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
-                alert(data);
+                console.log(data);
 
 
 
