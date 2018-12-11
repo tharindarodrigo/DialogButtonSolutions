@@ -43,7 +43,7 @@ Route::get('lamp-info', function(){
     $lampCounter = \App\Counter::whereHas('counterCategory', function ($q) {
         $q->where('counter_category', 'Oil Lamp')
             ->where('company_id', 1);
-    })->get();
+    })->first();
 
     return $lampCounter;
 });
