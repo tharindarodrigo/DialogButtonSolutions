@@ -31,45 +31,21 @@
     </h3>
     <section>
         <div class="row">
-            <div class="col">
-                {{--<form action="">--}}
-                {{--<div class="form-group">--}}
-                {{--<input type="text" class="form-control" placeholder="Search">--}}
-                {{--</div>--}}
-                {{--</form>--}}
-                <ul class="list-group" id="component">
-                    {{--<li class="list-group-item d-flex justify-content-between align-items-center">--}}
-                        {{--HO--}}
-                        {{--<span class="badge" style="font-size: large">14</span>--}}
-                    {{--</li>--}}
-                    {{--<li class="list-group-item d-flex justify-content-between align-items-center">--}}
-                        {{--Foster Lane--}}
-                        {{--<span class="badge" style="font-size: large">14</span>--}}
-                    {{--</li>--}}
-                    {{--<li class="list-group-item d-flex justify-content-between align-items-center">--}}
-                        {{--Mega--}}
-                        {{--<span class="badge" style="font-size: large">14</span>--}}
-
-                    {{--</li>--}}
-                    {{--<li class="list-group-item d-flex justify-content-between align-items-center">--}}
-                        {{--Parkland--}}
-                        {{--<span class="badge" style="font-size: large">14</span>--}}
-                    {{--</li>--}}
-                    {{--<li class="list-group-item d-flex justify-content-between align-items-center">--}}
-                        {{--DBN--}}
-                        {{--<span class="badge" style="font-size: large">14</span>--}}
-
-                    {{--</li>--}}
-                    {{--<li class="list-group-item d-flex justify-content-between align-items-center">--}}
-                        {{--Akbar--}}
-                        {{--<span class="badge" style="font-size: large">14</span>--}}
-
-                    {{--</li>--}}
-
-                </ul>
+            <div class="col" id="1">
+                <img src="{{ asset('img/on.gif') }}" alt="">
+            </div>
+            <div class="col" id="2">
+                <img src="{{ asset('img/on.gif') }}" alt="">
+            </div>
+            <div class="col" id="3">
+                <img src="{{ asset('img/on.gif') }}" alt="">
             </div>
         </div>
-
+        <div class="row">
+            <div class="col" id="4"></div>
+            <div class="col" id="5"></div>
+            <div class="col" id="6"></div>
+        </div>
     </section>
 
 </main><!-- /.container -->
@@ -106,19 +82,19 @@
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
                 // alert(window.location.host);
-                let component = "";
-                $.each(data, function (i, t) {
-                    component += '<li class="list-group-item d-flex justify-content-between align-items-center">'
-                        +i
-                        +'<span class="badge" style="font-size: large">' + t + '</span>'
-                        + '</li>';
-
-                    console.log(i + ':' + t);
-
-                });
-                $('#component').html(component);
+                // let component = "";
+                // $.each(data, function (i, t) {
+                //     component += '<li class="list-group-item d-flex justify-content-between align-items-center">'
+                //         + i
+                //         + '<span class="badge" style="font-size: large">' + t + '</span>'
+                //         + '</li>';
+                //
+                //     console.log(i + ':' + t);
+                //
+                // });
+                // $('#component').html(component);
             })
-        },3000)
+        }, 3000)
     })
 </script>
 </body>
