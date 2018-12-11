@@ -44,7 +44,6 @@
             <div class="col" id="2">
             </div>
             <div class="col" id="3">
-                <img src="{{ asset('img/on.gif') }}" alt="" class="image center">
             </div>
         </div>
         <div class="row">
@@ -90,9 +89,13 @@
 
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
-                console.log(data);
-
-
+                lamps = data.count;
+                lampElement = '<img src="{{ asset("img/on.gif") }}" alt="" class="image center">';
+                if(lamps > 0){
+                    for(var x=1; x<=lamps; x++){
+                        $("#".x).html(lampElement)
+                    }
+                }
 
             }, 'json')
         }, 3000)
