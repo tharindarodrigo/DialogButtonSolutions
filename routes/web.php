@@ -34,6 +34,20 @@ Route::get('/parking-info', function () {
 
 });
 
+Route::get('oil-lamp', function(){
+    return view('oil-lamp');
+});
+
+
+Route::get('lamp-info', function(){
+    $lampCounter = \App\Counter::whereHas('counterCategory', function ($q) {
+        $q->where('counter_category', 'Oil Lamp')
+            ->where('company_id', 1);
+    })->get();
+
+    return $lampCounter;
+});
+
 Route::any('count/{serial}', 'CounterButtonController@count');
 
 Route::group(['middleware' => 'auth'], function () {
