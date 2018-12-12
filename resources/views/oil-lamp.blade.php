@@ -82,7 +82,7 @@
 
 
         setInterval(function () {
-            var imgCount = $('.img-el').length();
+            var imgCount = $('.img-el').length;
             console.log('el '+ imgCount );
             $('#lamps').html('');
             $.get("{{url('/lamp-info')}}", function (data) {
