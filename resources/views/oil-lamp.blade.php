@@ -90,11 +90,11 @@
                 var lamps = data.count;
 
                 if (imgCount <= lamps) {
-                    // for (var x = 1; x <= lamps; x++) {
-                    el = $("#lamps");
-                    el.append(lampElement.slideDown("fast"));
 
-                    // }
+                    el = $("#lamps");
+                    el.append(lampElement);
+                    $('.img-el').slideDown("fast");
+
                 }
             }, 'json')
         }, 3000)
