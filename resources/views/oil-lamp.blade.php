@@ -87,16 +87,17 @@
 <script>
     $(document).ready(function () {
 
+        var lampElement = '<img src="{{ asset("img/on.gif") }}" alt="" class="image center">';
+
 
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
-                var lampElement = '<img src="https://button.apps.iot.ideamart.io/img/on.gif" alt="" class="image center">';
                 console.log(data.count);
                 var lamps = data.count;
 
                 if (lamps > 0) {
                     for (var x = 1; x <= lamps; x++) {
-                        $("#".x).html(lampElement)
+                        $("#"+x).html(lampElement)
                     }
                 }
 
