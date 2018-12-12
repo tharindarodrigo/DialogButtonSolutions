@@ -33,7 +33,7 @@
     <h3 align="center" class="display-4">
         <img style="margin-left: 10px;"
              src="{!! asset('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dialog_Axiata_logo.svg/1200px-Dialog_Axiata_logo.svg.png') !!}"
-             width="100">
+             width="200">
         <br>
         Oil Lamp
     </h3>
@@ -89,7 +89,7 @@
                 console.log(data.count);
                 var lamps = data.count;
 
-                if (imgCount <= (lamps - 1)) {
+                if (imgCount <= lamps) {
                     // for (var x = 1; x <= lamps; x++) {
                     el = $("#lamps");
                     el.append(lampElement).fadeIn(2000);
