@@ -92,7 +92,7 @@
                 if (imgCount <= lamps) {
                     // for (var x = 1; x <= lamps; x++) {
                     el = $("#lamps");
-                    el.append(lampElement).fadeIn(2000);
+                    el.append(lampElement).slideDown("fast");
 
                     // }
                 }
