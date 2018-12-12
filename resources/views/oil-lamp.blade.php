@@ -86,7 +86,7 @@
                 console.log(data.count);
                 var lamps = data.count;
 
-                if (lamps > 0 && lamps <= 4) {
+                if (lamps > 0) {
                     for (var x = 1; x <= lamps; x++) {
                     el = $("#lamps");
                     el.append(lampElement).fadeIn("fast");
