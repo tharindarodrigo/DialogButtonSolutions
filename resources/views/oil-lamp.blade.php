@@ -79,18 +79,19 @@
             '<img src="{{ asset("img/on.gif") }}" alt="" class="image center" style="display:none">' +
             '</div>';
 
+        $('#lamps').html('');
+
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
-                $('#lamps').html('');
                 console.log(data.count);
                 var lamps = data.count;
 
-                if (lamps > 0) {
-                    for (var x = 1; x <= lamps; x++) {
-                        el = $("#lamps");
-                        el.append(lampElement);
-                        el.find(".img-el:last").fadeIn("fast");
-                    }
+                if (lamps > 0 && lamps <= 4) {
+                    // for (var x = 1; x <= lamps; x++) {
+                    el = $("#lamps");
+                    el.append(lampElement);
+                    el.find(".img-el:last").fadeIn("fast");
+                    // }
                 }
             }, 'json')
         }, 3000)
