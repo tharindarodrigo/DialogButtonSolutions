@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <!--    <link rel="icon" href="../../../../favicon.ico">-->
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Dialog Button</title>
 
     <!-- Bootstrap core CSS -->
     <!--    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
@@ -35,7 +35,7 @@
              src="{!! asset('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dialog_Axiata_logo.svg/1200px-Dialog_Axiata_logo.svg.png') !!}"
              width="100">
         <br>
-        Car Park
+        Oil Lamp
     </h3>
     <section>
         <div class="row">
@@ -87,11 +87,10 @@
 <script>
     $(document).ready(function () {
 
-        var lampElement = '<img src="{{ asset("img/on.gif") }}" alt="" class="image center">';
-
 
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
+                var lampElement = '<img src="https://button.apps.iot.ideamart.io/img/on.gif" alt="" class="image center">';
                 console.log(data.count);
                 var lamps = data.count;
 
