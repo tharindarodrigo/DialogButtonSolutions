@@ -87,15 +87,16 @@
 <script>
     $(document).ready(function () {
 
+        var lampElement = '<img src="{{ asset("img/on.gif") }}" alt="" class="image center">';
+
+
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
                 console.log(data.count);
                 var lamps = data.count;
 
-
-                lampElement = '<img src="{{ asset("img/on.gif") }}" alt="" class="image center">';
-                if(lamps > 0){
-                    for(var x=1; x<=lamps; x++){
+                if (lamps > 0) {
+                    for (var x = 1; x <= lamps; x++) {
                         $("#".x).html(lampElement)
                     }
                 }
