@@ -75,8 +75,8 @@
 <script>
     $(document).ready(function () {
 
-        var lampElement = '<div class="col-md-4 img-el">' +
-            '<img src="{{ asset("img/on.gif") }}" alt="" class="image center" style="display:none">' +
+        var lampElement = '<div class="col-md-4 img-el" style="display:none">' +
+            '<img src="{{ asset("img/on.gif") }}" alt="" class="image center">' +
             '</div>';
 
         $('#lamps').html('');
