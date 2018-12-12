@@ -75,7 +75,7 @@
 <script>
     $(document).ready(function () {
 
-        var lampElement = '<div class="col-md-4 img-el" style="display:none;">' +
+        var lampElement = '<div class="col-md-4 img-el">' +
             '<img src="{{ asset("img/on.gif") }}" alt="" class="image center">' +
             '</div>';
 
@@ -92,12 +92,12 @@
                 if (imgCount <= lamps) {
                     // for (var x = 1; x <= lamps; x++) {
                     el = $("#lamps");
-                    el.append(lampElement).slideDown("fast");
+                    el.append(lampElement.slideDown("fast"));
 
                     // }
                 }
             }, 'json')
-        }, 2000)
+        }, 3000)
     })
 </script>
 </body>
