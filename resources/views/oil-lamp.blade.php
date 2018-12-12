@@ -91,12 +91,12 @@
 
                 if (imgCount <= lamps) {
 
-                    if (imgCount !== 0) {
+                    // if (imgCount !== 0) {
 
                         el = $("#lamps");
                         el.append(lampElement);
                         $('.img-el').slideDown("fast");
-                    }
+                    // }
 
                 }
             }, 'json')
