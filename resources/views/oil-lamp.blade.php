@@ -80,21 +80,21 @@
             '</div>';
 
 
+        $('#lamps').html('');
 
         setInterval(function () {
             var imgCount = $('.img-el').length;
-            console.log('el '+ imgCount );
-            $('#lamps').html('');
+            console.log('el ' + imgCount);
             $.get("{{url('/lamp-info')}}", function (data) {
                 console.log(data.count);
                 var lamps = data.count;
 
-                if (lamps > 0) {
-                    for (var x = 1; x <= lamps; x++) {
+                if (imgCount <= (lamps - 1)) {
+                    // for (var x = 1; x <= lamps; x++) {
                     el = $("#lamps");
-                    el.html(lampElement);
+                    el.append(lampElement).fadeIn(2000);
 
-                    }
+                    // }
                 }
             }, 'json')
         }, 3000)
