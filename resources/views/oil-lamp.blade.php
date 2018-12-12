@@ -98,7 +98,9 @@
 
                 if (lamps > 0) {
                     for (var x = 1; x <= lamps; x++) {
-                        $("#"+x).fadeIn(lampElement)
+                        el = $("#"+x)
+                        el.html(lampElement)
+                        el.fadeIn(1500)
                     }
                 }
 
