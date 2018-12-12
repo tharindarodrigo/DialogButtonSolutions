@@ -38,7 +38,7 @@
         Oil Lamp
     </h3>
     <section>
-        <div class="row">
+        <div class="row" id="lamps">
 
         </div>
 
@@ -87,7 +87,7 @@
                 var lamps = data.count;
 
                 if (lamps > 0) {
-                    el = $(".row")
+                    el = $("#lamps");
                     for (var x = 1; x <= lamps; x++) {
                         el.append(lampElement);
                         el.find(".img-el:last").fadeIn("fast");
