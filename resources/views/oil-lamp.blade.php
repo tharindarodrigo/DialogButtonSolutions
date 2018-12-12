@@ -100,10 +100,9 @@
                     for (var x = 1; x <= lamps; x++) {
                         el = $("#"+x)
                         el.html(lampElement)
-                        el.fadeIn(1500)
+                        el.find(".image").slideDown("fast");
                     }
                 }
-
             }, 'json')
         }, 3000)
     })
