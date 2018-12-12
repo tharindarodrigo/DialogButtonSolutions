@@ -79,7 +79,6 @@
             '<img src="{{ asset("img/on.gif") }}" alt="" class="image center" style="display:none">' +
             '</div>';
 
-
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
                 $('.col').html('');
@@ -87,8 +86,8 @@
                 var lamps = data.count;
 
                 if (lamps > 0) {
-                    el = $("#lamps");
                     for (var x = 1; x <= lamps; x++) {
+                        el = $("#lamps");
                         el.append(lampElement);
                         el.find(".img-el:last").fadeIn("fast");
                     }
