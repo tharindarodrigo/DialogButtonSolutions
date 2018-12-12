@@ -92,6 +92,7 @@
 
         setInterval(function () {
             $.get("{{url('/lamp-info')}}", function (data) {
+                $('.col').html('');
                 console.log(data.count);
                 var lamps = data.count;
 
