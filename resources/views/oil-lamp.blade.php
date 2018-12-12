@@ -35,7 +35,7 @@
              src="{!! asset('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dialog_Axiata_logo.svg/1200px-Dialog_Axiata_logo.svg.png') !!}"
              width="200">
         <br>
-        Oil Lamp
+        <h1>The Utility Technology Session</h1>
     </h3>
     <section>
         <div class="row" id="lamps">
@@ -91,9 +91,12 @@
 
                 if (imgCount <= lamps) {
 
-                    el = $("#lamps");
-                    el.append(lampElement);
-                    $('.img-el').slideDown("fast");
+                    if (imgCount != 0) {
+
+                        el = $("#lamps");
+                        el.append(lampElement);
+                        $('.img-el').slideDown("fast");
+                    }
 
                 }
             }, 'json')
