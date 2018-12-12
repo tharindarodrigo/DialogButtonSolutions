@@ -46,14 +46,7 @@
             <div class="col" id="3">
             </div>
         </div>
-        <div class="row">
-            <div class="col" id="4">
-            </div>
-            <div class="col" id="5">
-            </div>
-            <div class="col" id="6">
-            </div>
-        </div>
+
     </section>
 
 </main><!-- /.container -->
@@ -87,7 +80,9 @@
 <script>
     $(document).ready(function () {
 
-        var lampElement = '<img src="{{ asset("img/on.gif") }}" alt="" class="image center" style="display:none">';
+        var lampElement = '<div class="col" id="1">' +
+            '<img src="{{ asset("img/on.gif") }}" alt="" class="image center" style="display:none">' +
+            '</div>';
 
 
         setInterval(function () {
@@ -98,7 +93,7 @@
 
                 if (lamps > 0) {
                     for (var x = 1; x <= lamps; x++) {
-                        el = $("#"+x)
+                        el = $("#" + x)
                         el.html(lampElement)
                         el.find(".image").slideDown("fast");
                     }
