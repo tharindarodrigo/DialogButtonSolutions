@@ -89,8 +89,7 @@
                 if (lamps > 0 && lamps <= 4) {
                     // for (var x = 1; x <= lamps; x++) {
                     el = $("#lamps");
-                    el.append(lampElement);
-                    el.find(".img-el:last").fadeIn("fast");
+                    el.append(lampElement).fadeIn("fast");
                     // }
                 }
             }, 'json')
