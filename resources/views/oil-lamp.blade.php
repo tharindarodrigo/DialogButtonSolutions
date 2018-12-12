@@ -75,7 +75,7 @@
 <script>
     $(document).ready(function () {
 
-        var lampElement = '<div class="col-md-3" id="1">' +
+        var lampElement = '<div class="col-md-4 img-el">' +
             '<img src="{{ asset("img/on.gif") }}" alt="" class="image center" style="display:none">' +
             '</div>';
 
@@ -87,10 +87,10 @@
                 var lamps = data.count;
 
                 if (lamps > 0) {
+                    el = $(".row")
                     for (var x = 1; x <= lamps; x++) {
-                        el = $(".row")
-                        el.append(lampElement)
-                        el.find(".image").fadeIn("fast");
+                        el.append(lampElement);
+                        el.find(".img-el:last").fadeIn("fast");
                     }
                 }
             }, 'json')
