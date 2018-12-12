@@ -87,7 +87,7 @@
 <script>
     $(document).ready(function () {
 
-        var lampElement = '<img src="{{ asset("img/on.gif") }}" alt="" class="image center">';
+        var lampElement = '<img src="{{ asset("img/on.gif") }}" alt="" class="image center" style="display:none">';
 
 
         setInterval(function () {
