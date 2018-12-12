@@ -39,12 +39,7 @@
     </h3>
     <section>
         <div class="row">
-            <div class="col" id="1">
-            </div>
-            <div class="col" id="2">
-            </div>
-            <div class="col" id="3">
-            </div>
+
         </div>
 
     </section>
@@ -80,7 +75,7 @@
 <script>
     $(document).ready(function () {
 
-        var lampElement = '<div class="col" id="1">' +
+        var lampElement = '<div class="col-md-3" id="1">' +
             '<img src="{{ asset("img/on.gif") }}" alt="" class="image center" style="display:none">' +
             '</div>';
 
@@ -93,8 +88,8 @@
 
                 if (lamps > 0) {
                     for (var x = 1; x <= lamps; x++) {
-                        el = $("#" + x)
-                        el.html(lampElement)
+                        el = $(".row")
+                        el.append(lampElement)
                         el.find(".image").slideDown("fast");
                     }
                 }
