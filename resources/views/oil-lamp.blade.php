@@ -90,7 +90,7 @@
                     for (var x = 1; x <= lamps; x++) {
                         el = $(".row")
                         el.append(lampElement)
-                        el.find(".image").slideDown("fast");
+                        el.find(".image").fadeIn("fast");
                     }
                 }
             }, 'json')
