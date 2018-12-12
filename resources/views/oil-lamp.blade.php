@@ -79,18 +79,18 @@
             '<img src="{{ asset("img/on.gif") }}" alt="" class="image center">' +
             '</div>';
 
-        $('#lamps').html('');
 
         setInterval(function () {
+            $('#lamps').html('');
             $.get("{{url('/lamp-info')}}", function (data) {
                 console.log(data.count);
                 var lamps = data.count;
 
                 if (lamps > 0 && lamps <= 4) {
-                    // for (var x = 1; x <= lamps; x++) {
+                    for (var x = 1; x <= lamps; x++) {
                     el = $("#lamps");
                     el.append(lampElement).fadeIn("fast");
-                    // }
+                    }
                 }
             }, 'json')
         }, 3000)
