@@ -17,7 +17,7 @@ class CreateButtonsTable extends Migration
             $table->increments('id');
             $table->string('serial_number');
             $table->string('identifier');
-            $table->integer('battery_level');
+            $table->integer('battery_level')->nullable();
             $table->string('message')->nullable();
             $table->integer('company_id')->unsigned()->index();
             $table->foreign('company_id')->references('id')->on('companies');

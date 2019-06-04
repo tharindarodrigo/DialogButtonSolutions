@@ -23,6 +23,8 @@ class CreateButtonClicksTable extends Migration
             $table->foreign('company_id')->references('id')->on('companies');
             $table->integer('branch_id')->unsigned()->index();
             $table->foreign('branch_id')->references('id')->on('branches');
+            $table->integer('battery_level')->nullable();
+
 //            $table->date('date')->default(\Carbon\Carbon::now('Y-m-d'));
 //            $table->time('time')->default(\Carbon\Carbon::now('H:i:s'));
             $table->timestamps();
