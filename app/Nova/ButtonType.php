@@ -2,12 +2,12 @@
 
 namespace App\Nova;
 
-use Faker\Provider\Color;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Timothyasp\Color\Color;
 
 class ButtonType extends Resource
 {

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -42,7 +43,11 @@ class Company extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('name')->rules('required')
+            Text::make('Name')->rules('required'),
+            HasMany::make('Branches', 'branches'),
+            HasMany::make('Buttons', 'buttons'),
+            HasMany::make('Button Clicks', 'buttonClicks'),
+
         ];
     }
 
