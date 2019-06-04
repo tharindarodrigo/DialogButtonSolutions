@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 //            });
 //        factory(\App\Branch::class, 10)->create();
 //        $this->call(ButtonTypeSeeder::class);
-//        $this->call(UserSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserRoleSeeder::class);
     }

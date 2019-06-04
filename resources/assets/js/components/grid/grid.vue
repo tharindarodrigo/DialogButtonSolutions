@@ -45,7 +45,6 @@
                         if (this.buttons.indexOf(e.data.button.serial_number) < 0) {
                             this.buttons.push(e.data.button.serial_number)
                         }
-
                     });
             },
 
