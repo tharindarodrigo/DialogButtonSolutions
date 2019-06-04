@@ -22,7 +22,7 @@ class Company extends Resource
      *
      * @var string
      */
-    public static $title = 'company';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
