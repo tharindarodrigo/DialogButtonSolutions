@@ -46,7 +46,7 @@ class ClickCount extends Lens
             Text::make('Button Type')->sortable(),
             Text::make('Name')->sortable(),
             Text::make('Branch')->sortable(),
-            Text::make('Created At')->hideFromIndex(),
+//            Text::make('Created At')->hideFromIndex(),
             Text::make('Count')->sortable(),
         ];
     }
