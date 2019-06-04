@@ -16,21 +16,26 @@ class ClickCount extends Lens
     /**
      * Get the query builder / paginator for the lens.
      *
-     * @param  \Laravel\Nova\Http\Requests\LensRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Laravel\Nova\Http\Requests\LensRequest $request
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return mixed
      */
     public static function query(LensRequest $request, $query)
     {
         return $request->withOrdering($request->withFilters(
-            $query
+            $query->select(self::columns())
+                ->join('button_types', 'button_clicks.button_type_id', '=', 'button_types.id')
+                ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
+                ->join('branches', 'button_clicks.company_id', '=', 'branches.id')
+                ->groupBy('companies.name', 'branches.branch', 'button_types.button_type')
+
         ));
     }
 
     /**
      * Get the fields available to the lens.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -46,7 +51,7 @@ class ClickCount extends Lens
     /**
      * Get the filters available for the lens.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -60,7 +65,7 @@ class ClickCount extends Lens
     /**
      * Get the actions available on the lens.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)
