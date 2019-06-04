@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\From;
+use App\Nova\Filters\To;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
@@ -76,7 +78,11 @@ class ButtonClick extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new From(),
+            new To()
+
+        ];
     }
 
     /**
