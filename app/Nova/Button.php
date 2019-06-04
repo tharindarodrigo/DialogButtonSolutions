@@ -23,7 +23,7 @@ class Button extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'button';
 
     /**
      * The columns that should be searched.
@@ -31,7 +31,7 @@ class Button extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'serial', 'identifier'
     ];
 
     /**
@@ -70,7 +70,7 @@ class Button extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function cards(Request $request)
+    public function carWds(Request $request)
     {
         return [];
     }

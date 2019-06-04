@@ -31,7 +31,7 @@ class ButtonType extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'button_type'
+        'id', 'button_type', 'message'
     ];
 
     /**
