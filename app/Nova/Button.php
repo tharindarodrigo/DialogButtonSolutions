@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Button extends Resource
 {
@@ -48,6 +49,17 @@ class Button extends Resource
             Text::make('Message')->nullable(),
             BelongsTo::make('Company'),
             BelongsTo::make('Branch'),
+
+
+            NovaBelongsToDepend::make('Company')
+                ->options(\App\Company::all()),
+            NovaBelongsToDepend::make('Branch')
+                ->optionsResolve(function ($company) {
+                    // Reduce the amount of unnecessary data sent
+                    return $company->branches()->get(['id','branch']);
+                })
+                ->dependsOn('Company'),
+
             BelongsTo::make('Button Type', 'buttonType'),
 
         ];

@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -43,7 +44,11 @@ class ButtonClick extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('Button'),
-            BelongsTo::make('Button Type'),
+            BelongsTo::make('Button Type', 'buttonType'),
+            BelongsTo::make('Company', 'company'),
+            BelongsTo::make('Branch', 'branch'),
+            DateTime::make('Created At')->onlyOnDetail()
+
         ];
     }
 
