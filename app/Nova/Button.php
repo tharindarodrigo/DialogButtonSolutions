@@ -23,7 +23,7 @@ class Button extends Resource
      *
      * @var string
      */
-    public static $title = 'button';
+    public static $title = 'serial_number';
 
     /**
      * The columns that should be searched.
@@ -31,7 +31,7 @@ class Button extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'serial', 'identifier'
+        'id', 'serial_number', 'identifier'
     ];
 
     /**
