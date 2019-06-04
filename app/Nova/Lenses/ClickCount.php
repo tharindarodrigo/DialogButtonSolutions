@@ -89,6 +89,7 @@ class ClickCount extends Lens
             'button_types.button_type',
             'companies.name',
             'branches.branch',
+            'button_clicks.created_at',
             DB::raw('count(*) as count')
         ];
     }
