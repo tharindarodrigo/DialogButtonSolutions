@@ -1,11 +1,11 @@
 <template>
     <loading-view :loading="loading">
-        <heading class="mb-3">{{__('New')}} {{ singularName }}</heading>
+        <heading class="mb-3">{{ __('New :resource', { resource: singularName }) }}</heading>
 
         <card class="overflow-hidden">
             <form v-if="fields" @submit.prevent="createResource" autocomplete="off">
                 <!-- Validation Errors -->
-                <validation-errors :errors="validationErrors"/>
+                <validation-errors :errors="validationErrors" />
 
                 <!-- Fields -->
                 <div v-for="field in fields">
@@ -21,9 +21,16 @@
                 </div>
 
                 <!-- Create Button -->
-                <div class="bg-30 flex px-8 py-4">
+                <div class="bg-30 flex items-center px-8 py-4">
+                    <a
+                        @click="$router.back()"
+                        class="btn btn-link dim cursor-pointer text-80 ml-auto mr-6"
+                    >
+                        {{ __('Cancel') }}
+                    </a>
+
                     <progress-button
-                        class="ml-auto mr-3"
+                        class="mr-3"
                         dusk="create-and-add-another-button"
                         @click.native="createAndAddAnother"
                         :disabled="isWorking"
@@ -38,7 +45,7 @@
                         :disabled="isWorking"
                         :processing="submittedViaCreateResource"
                     >
-                        {{ __('Create') }} {{ singularName }}
+                        {{ __('Create :resource', { resource: singularName }) }}
                     </progress-button>
                 </div>
             </form>
@@ -78,6 +85,8 @@ export default {
     }),
 
     async created() {
+        if (Nova.missingResource(this.resourceName)) return this.$router.push({ name: '404' })
+
         // If this create is via a relation index, then let's grab the field
         // and use the label for that as the one we use for the title and buttons
         if (this.isRelation) {
@@ -98,7 +107,16 @@ export default {
             this.fields = []
 
             const { data: fields } = await Nova.request().get(
-                `/nova-api/${this.resourceName}/creation-fields`
+                `/nova-api/${this.resourceName}/creation-fields`,
+                {
+                    params: {
+                        editing: true,
+                        editMode: 'create',
+                        viaResource: this.viaResource,
+                        viaResourceId: this.viaResourceId,
+                        viaRelationship: this.viaRelationship,
+                    },
+                }
             )
 
             this.fields = fields
@@ -112,7 +130,9 @@ export default {
             this.submittedViaCreateResource = true
 
             try {
-                const response = await this.createRequest()
+                const {
+                    data: { redirect },
+                } = await this.createRequest()
 
                 this.submittedViaCreateResource = false
 
@@ -123,13 +143,7 @@ export default {
                     { type: 'success' }
                 )
 
-                this.$router.push({
-                    name: 'detail',
-                    params: {
-                        resourceName: this.resourceName,
-                        resourceId: response.data.id,
-                    },
-                })
+                this.$router.push({ path: redirect })
             } catch (error) {
                 this.submittedViaCreateResource = false
 

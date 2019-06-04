@@ -197,6 +197,8 @@ export default {
      * Bind the keydown even listener when the component is created
      */
     created() {
+        if (Nova.missingResource(this.resourceName)) return this.$router.push({ name: '404' })
+
         document.addEventListener('keydown', this.handleKeydown)
     },
 
@@ -220,6 +222,7 @@ export default {
          */
         handleKeydown(e) {
             if (
+                this.resource.authorizedToUpdate &&
                 !e.ctrlKey &&
                 !e.altKey &&
                 !e.metaKey &&
@@ -288,7 +291,11 @@ export default {
             this.actions = []
 
             return Nova.request()
-                .get('/nova-api/' + this.resourceName + '/actions')
+                .get('/nova-api/' + this.resourceName + '/actions', {
+                    params: {
+                        resourceId: this.resourceId,
+                    },
+                })
                 .then(response => {
                     this.actions = _.filter(response.data.actions, action => {
                         return !action.onlyOnIndex
@@ -493,6 +500,15 @@ export default {
          */
         cardsEndpoint() {
             return `/nova-api/${this.resourceName}/cards`
+        },
+
+        /**
+         * Get the extra card params to pass to the endpoint.
+         */
+        extraCardParams() {
+            return {
+                resourceId: this.resourceId,
+            }
         },
     },
 }

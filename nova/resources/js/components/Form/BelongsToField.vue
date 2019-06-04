@@ -2,7 +2,7 @@
     <default-field :field="field" :errors="errors">
         <template slot="field">
             <search-input
-                v-if="isSearchable && !isLocked"
+                v-if="isSearchable && !isLocked && !isReadonly"
                 :data-testid="`${field.resourceName}-search-input`"
                 @input="performSearch"
                 @clear="clearSelection"
@@ -10,6 +10,7 @@
                 :error="hasError"
                 :value="selectedResource"
                 :data="availableResources"
+                :clearable="field.nullable"
                 trackBy="value"
                 searchBy="display"
                 class="mb-3"
@@ -31,30 +32,28 @@
                 </div>
             </search-input>
 
-            <select
-                v-if="!isSearchable || isLocked"
+            <select-control
+                v-if="!isSearchable || isLocked || isReadonly"
                 class="form-control form-select mb-3 w-full"
                 :class="{ 'border-danger': hasError }"
                 :data-testid="`${field.resourceName}-select`"
                 :dusk="field.attribute"
                 @change="selectResourceFromSelectControl"
-                :disabled="isLocked"
+                :disabled="isLocked || isReadonly"
+                :options="availableResources"
+                :selected="selectedResourceId"
+                label="display"
             >
                 <option value="" selected :disabled="!field.nullable">&mdash;</option>
-
-                <option
-                    v-for="resource in availableResources"
-                    :key="resource.value"
-                    :value="resource.value"
-                    :selected="selectedResourceId == resource.value"
-                >
-                    {{ resource.display }}
-                </option>
-            </select>
+            </select-control>
 
             <!-- Trashed State -->
             <div v-if="softDeletes && !isLocked">
-                <checkbox-with-label :checked="withTrashed" @change="toggleWithTrashed">
+                <checkbox-with-label
+                    :dusk="`${field.resourceName}-with-trashed-checkbox`"
+                    :checked="withTrashed"
+                    @change="toggleWithTrashed"
+                >
                     {{ __('With Trashed') }}
                 </checkbox-with-label>
             </div>
@@ -66,7 +65,6 @@
 import _ from 'lodash'
 import storage from '@/storage/BelongsToFieldStorage'
 import { TogglesTrashed, PerformsSearches, HandlesValidationErrors } from 'laravel-nova'
-import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
     mixins: [TogglesTrashed, PerformsSearches, HandlesValidationErrors],
@@ -227,7 +225,11 @@ export default {
          * Determine if we are creating a new resource via a parent relation
          */
         creatingViaRelatedResource() {
-            return this.viaResource == this.field.resourceName && this.viaResourceId
+            return (
+                this.viaResource == this.field.resourceName &&
+                this.field.reverse &&
+                this.viaResourceId
+            )
         },
 
         /**
@@ -259,7 +261,11 @@ export default {
         },
 
         isLocked() {
-            return this.viaResource == this.field.resourceName
+            return this.viaResource == this.field.resourceName && this.field.reverse
+        },
+
+        isReadonly() {
+            return this.field.readonly || _.get(this.field, 'extraAttributes.readonly')
         },
     },
 }

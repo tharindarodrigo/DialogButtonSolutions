@@ -10,24 +10,28 @@
                 :placeholder="placeholder"
                 :enable-time="false"
                 :enable-seconds="false"
+                :first-day-of-week="firstDayOfWeek"
                 :class="errorClasses"
                 @change="handleChange"
+                :disabled="isReadonly"
             />
         </template>
     </default-field>
 </template>
 
 <script>
-import DateTimePicker from '../DateTimePicker'
 import { Errors, FormField, HandlesValidationErrors, InteractsWithDates } from 'laravel-nova'
 
 export default {
     mixins: [HandlesValidationErrors, FormField, InteractsWithDates],
-    components: { DateTimePicker },
 
     computed: {
+        firstDayOfWeek() {
+            return this.field.firstDayOfWeek || 0
+        },
+
         placeholder() {
-            return moment().format('YYYY-MM-DD')
+            return this.field.placeholder || moment().format('YYYY-MM-DD')
         },
     },
 }

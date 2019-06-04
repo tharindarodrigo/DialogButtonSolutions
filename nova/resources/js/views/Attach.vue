@@ -1,6 +1,8 @@
 <template>
     <loading-view :loading="loading">
-        <heading class="mb-3">{{ __('Attach') }} {{ relatedResourceLabel }}</heading>
+        <heading class="mb-3">{{
+            __('Attach :resource', { resource: relatedResourceLabel })
+        }}</heading>
 
         <card class="overflow-hidden">
             <form v-if="field" @submit.prevent="attachResource" autocomplete="off">
@@ -32,10 +34,7 @@
 
                             <div
                                 slot="option"
-                                slot-scope="{
-                                    option,
-                                    selected,
-                                }"
+                                slot-scope="{ option, selected }"
                                 class="flex items-center"
                             >
                                 <div v-if="option.avatar" class="mr-3">
@@ -46,27 +45,21 @@
                             </div>
                         </search-input>
 
-                        <select
+                        <select-control
                             v-else
                             dusk="attachable-select"
                             class="form-control form-select mb-3 w-full"
                             :class="{ 'border-danger': validationErrors.has(field.attribute) }"
                             :data-testid="`${field.resourceName}-select`"
                             @change="selectResourceFromSelectControl"
+                            :options="availableResources"
+                            :label="'display'"
+                            :selected="selectedResourceId"
                         >
-                            <option value="" disabled selected
-                                >{{ __('Choose') }} {{ relatedResourceLabel }}</option
-                            >
-
-                            <option
-                                v-for="resource in availableResources"
-                                :key="resource.value"
-                                :value="resource.value"
-                                :selected="selectedResourceId == resource.value"
-                            >
-                                {{ resource.display }}
-                            </option>
-                        </select>
+                            <option value="" disabled selected>{{
+                                __('Choose :resource', { resource: relatedResourceLabel })
+                            }}</option>
+                        </select-control>
 
                         <!-- Trashed State -->
                         <div v-if="softDeletes">
@@ -96,8 +89,15 @@
 
                 <!-- Attach Button -->
                 <div class="bg-30 flex px-8 py-4">
+                    <a
+                        @click="$router.back()"
+                        class="btn btn-default btn-link dim cursor-pointer text-80 ml-auto mr-6"
+                    >
+                        {{ __('Cancel') }}
+                    </a>
+
                     <progress-button
-                        class="ml-auto mr-3"
+                        class="mr-3"
                         dusk="attach-and-attach-another-button"
                         @click.native="attachAndAttachAnother"
                         :disabled="isWorking"
@@ -112,7 +112,7 @@
                         :disabled="isWorking"
                         :processing="submittedViaAttachResource"
                     >
-                        {{ __('Attach') }} {{ relatedResourceLabel }}
+                        {{ __('Attach :resource', { resource: relatedResourceLabel }) }}
                     </progress-button>
                 </div>
             </form>
@@ -164,6 +164,10 @@ export default {
         selectedResourceId: null,
     }),
 
+    created() {
+        if (Nova.missingResource(this.resourceName)) return this.$router.push({ name: '404' })
+    },
+
     /**
      * Mount the component.
      */
@@ -212,7 +216,13 @@ export default {
                     '/nova-api/' +
                         this.resourceName +
                         '/creation-pivot-fields/' +
-                        this.relatedResourceName
+                        this.relatedResourceName,
+                    {
+                        params: {
+                            editing: true,
+                            editMode: 'attach',
+                        },
+                    }
                 )
                 .then(({ data }) => {
                     this.fields = data

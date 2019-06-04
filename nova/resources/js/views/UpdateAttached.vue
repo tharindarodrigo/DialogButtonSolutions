@@ -1,31 +1,29 @@
 <template>
     <loading-view :loading="loading">
-        <heading class="mb-3">{{__('Update')}} {{ relatedResourceLabel }}</heading>
+        <heading class="mb-3">{{
+            __('Update :resource', { resource: relatedResourceLabel })
+        }}</heading>
 
         <card class="overflow-hidden">
             <form v-if="field" @submit.prevent="updateAttachedResource" autocomplete="off">
                 <!-- Related Resource -->
                 <default-field :field="field" :errors="validationErrors">
                     <template slot="field">
-                       <select
+                        <select-control
                             class="form-control form-select mb-3 w-full"
                             dusk="attachable-select"
                             :class="{ 'border-danger': validationErrors.has(field.attribute) }"
                             :data-testid="`${field.resourceName}-select`"
                             @change="selectResourceFromSelectControl"
                             disabled
+                            :options="availableResources"
+                            :label="'display'"
+                            :selected="selectedResourceId"
                         >
-                            <option value="" disabled selected>{{__('Choose')}} {{ field.name }}</option>
-
-                            <option
-                                v-for="resource in availableResources"
-                                :key="resource.value"
-                                :value="resource.value"
-                                :selected="selectedResourceId == resource.value"
-                            >
-                                {{ resource.display}}
-                            </option>
-                        </select>
+                            <option value="" disabled selected>{{
+                                __('Choose :field', { field: field.name })
+                            }}</option>
+                        </select-control>
                     </template>
                 </default-field>
 
@@ -47,8 +45,15 @@
 
                 <!-- Attach Button -->
                 <div class="bg-30 flex px-8 py-4">
+                    <a
+                        @click="$router.back()"
+                        class="btn btn-default btn-link dim cursor-pointer text-80 ml-auto mr-6"
+                    >
+                        {{ __('Cancel') }}
+                    </a>
+
                     <progress-button
-                        class="ml-auto mr-3"
+                        class="mr-3"
                         dusk="update-and-continue-editing-button"
                         @click.native="updateAndContinueEditing"
                         :disabled="isWorking"
@@ -63,7 +68,7 @@
                         :disabled="isWorking"
                         :processing="submittedViaUpdateAttachedResource"
                     >
-                        {{ __('Update') }} {{ relatedResourceLabel }}
+                        {{ __('Update :resource', { resource: relatedResourceLabel }) }}
                     </progress-button>
                 </div>
             </form>
@@ -119,6 +124,10 @@ export default {
         selectedResourceId: null,
         lastRetrievedAt: null,
     }),
+
+    created() {
+        if (Nova.missingResource(this.resourceName)) return this.$router.push({ name: '404' })
+    },
 
     /**
      * Mount the component.
@@ -177,7 +186,13 @@ export default {
                     `/nova-api/${this.resourceName}/${this.resourceId}/update-pivot-fields/${
                         this.relatedResourceName
                     }/${this.relatedResourceId}`,
-                    { params: { viaRelationship: this.viaRelationship } }
+                    {
+                        params: {
+                            editing: true,
+                            editMode: 'update-attached',
+                            viaRelationship: this.viaRelationship,
+                        },
+                    }
                 )
                 .catch(error => {
                     if (error.response.status == 404) {
@@ -415,7 +430,9 @@ export default {
          * Determine if the form is being processed
          */
         isWorking() {
-            return this.submittedViaUpdateAttachedResource || this.submittedViaUpdateAndContinueEditing
+            return (
+                this.submittedViaUpdateAttachedResource || this.submittedViaUpdateAndContinueEditing
+            )
         },
     },
 }
