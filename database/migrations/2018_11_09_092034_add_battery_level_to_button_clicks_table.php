@@ -14,7 +14,7 @@ class AddBatteryLevelToButtonClicksTable extends Migration
     public function up()
     {
         Schema::table('button_clicks', function (Blueprint $table) {
-            $table->double('battery_level')->nullable();
+            $table->integer('battery_level')->nullable();
         });
     }
 
