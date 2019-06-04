@@ -45,7 +45,8 @@ class ButtonType extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Button Type'),
-            Color::make('Notification Color')
+            Color::make('Notification Color'),
+            Text::make('Message')
 
         ];
     }

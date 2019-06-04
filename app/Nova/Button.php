@@ -50,7 +50,6 @@ class Button extends Resource
 //            BelongsTo::make('Company'),
 //            BelongsTo::make('Branch'),
 
-
             NovaBelongsToDepend::make('Company')
                 ->options(\App\Company::all()),
             NovaBelongsToDepend::make('Branch')
