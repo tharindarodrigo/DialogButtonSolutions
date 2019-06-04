@@ -26,7 +26,7 @@ class ClickCount extends Lens
             $query->select(self::columns())
                 ->join('button_types', 'button_clicks.button_type_id', '=', 'button_types.id')
                 ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
-                ->join('branches', 'button_clicks.company_id', '=', 'branches.id')
+                ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
                 ->groupBy('companies.name', 'branches.branch', 'button_types.button_type')
 
         ));
