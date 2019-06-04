@@ -47,7 +47,9 @@ class ButtonClick extends Resource
             BelongsTo::make('Button Type', 'buttonType'),
             BelongsTo::make('Company', 'company'),
             BelongsTo::make('Branch', 'branch'),
-            DateTime::make('Created At')->onlyOnDetail()
+            DateTime::make('Created At')
+                ->showOnDetail()
+                ->showOnIndex()
 
         ];
     }
