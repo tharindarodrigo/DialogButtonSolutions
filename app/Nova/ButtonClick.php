@@ -6,6 +6,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
@@ -48,6 +49,7 @@ class ButtonClick extends Resource
             BelongsTo::make('Button Type', 'buttonType'),
             BelongsTo::make('Company', 'company'),
             BelongsTo::make('Branch', 'branch'),
+            Text::make('Battery Level'),
             DateTime::make('Created At')
                 ->hideWhenCreating()
                 ->hideWhenUpdating()
