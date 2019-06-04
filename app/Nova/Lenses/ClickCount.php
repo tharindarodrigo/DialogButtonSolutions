@@ -2,6 +2,8 @@
 
 namespace App\Nova\Lenses;
 
+use App\Nova\Filters\ButtonClicksFrom;
+use App\Nova\Filters\ButtonClickTo;
 use App\Nova\Filters\From;
 use App\Nova\Filters\To;
 use Illuminate\Support\Facades\DB;
@@ -58,8 +60,8 @@ class ClickCount extends Lens
     public function filters(Request $request)
     {
         return [
-            new From(),
-            new To()
+            new ButtonClicksFrom(),
+            new ButtonClickTo()
         ];
     }
 
