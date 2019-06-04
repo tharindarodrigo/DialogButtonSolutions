@@ -44,7 +44,7 @@ class ClickCount extends Lens
             Text::make('Button Type')->sortable(),
             Text::make('Company')->sortable(),
             Text::make('Branch')->sortable(),
-//            Text::make('Crea')->sortable(),
+            Text::make('Created At')->hideFromIndex(),
             Text::make('Count')->sortable(),
         ];
     }
@@ -90,7 +90,7 @@ class ClickCount extends Lens
             'button_types.button_type',
             'companies.name',
             'branches.branch',
-            'button_clicks.created_at',
+//            'button_clicks.created_at',
             DB::raw('count(*) as count')
         ];
     }
