@@ -54,10 +54,10 @@ class ButtonClick extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Button'),
-            BelongsTo::make('Button Type', 'buttonType'),
-            BelongsTo::make('Company', 'company'),
-            BelongsTo::make('Branch', 'branch'),
+            BelongsTo::make('Button')->sortable(),
+            BelongsTo::make('Button Type', 'buttonType')->sortable(),
+            BelongsTo::make('Company', 'company')->sortable(),
+            BelongsTo::make('Branch', 'branch')->sortable(),
             Text::make('Battery Level'),
             DateTime::make('Created At')
                 ->hideWhenCreating()
