@@ -47,8 +47,8 @@ class Button extends Resource
             Text::make('Serial Number'),
             Text::make('Identifier')->rules('required'),
             Text::make('Message')->nullable(),
-            BelongsTo::make('Company'),
-            BelongsTo::make('Branch'),
+//            BelongsTo::make('Company'),
+//            BelongsTo::make('Branch'),
 
 
             NovaBelongsToDepend::make('Company')
