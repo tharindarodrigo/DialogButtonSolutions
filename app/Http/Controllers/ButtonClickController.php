@@ -112,7 +112,7 @@ class ButtonClickController extends Controller
         $buttonClick->button_type_id = $button->button_type_id;
         $buttonClick->company_id = $button->company_id;
         $buttonClick->branch_id = $button->branch_id;
-        $buttonClick->battery_level = $request->BatteryLevel ?? null;
+        $buttonClick->battery_level = $request->eventParameters->BatteryLevel ?? null;
 
 //        event(new ButtonTriggerEvent(collect($buttonClick)));
 
