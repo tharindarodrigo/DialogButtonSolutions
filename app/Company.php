@@ -20,4 +20,14 @@ class Company extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function buttons()
+    {
+        return $this->hasMany(Button::class);
+    }
+
+    public function buttonClicks()
+    {
+        return $this->hasMany(ButtonClick::class);
+    }
 }
