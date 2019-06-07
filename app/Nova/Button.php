@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -60,6 +61,7 @@ class Button extends Resource
                 ->dependsOn('Company'),
 
             BelongsTo::make('Button Type', 'buttonType'),
+            HasMany::make('Button Clicks', 'buttonClicks')
 
         ];
     }
