@@ -10,4 +10,9 @@ class Branch extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function buttonClicks()
+    {
+        return $this->hasMany(ButtonClick::class);
+    }
 }

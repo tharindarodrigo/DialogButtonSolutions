@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -44,9 +45,11 @@ class Branch extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('Company', 'company'),
-            Text::make('branch'),
-            Text::make('phone')->nullable(),
-            Text::make('address')->nullable()
+            Text::make('Branch'),
+            Text::make('Phone')->nullable(),
+            Text::make('Address')->nullable(),
+
+            HasMany::make('Button Clicks', 'buttonClicks')
         ];
     }
 
