@@ -16,6 +16,7 @@ class Branch extends Resource
      *
      * @var string
      */
+
     public static $model = 'App\Branch';
 
     /**
