@@ -56,7 +56,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            new \Llaski\NovaScheduledJobs\NovaScheduledJobsCard,
         ];
     }
 
@@ -69,6 +69,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
+            new \Llaski\NovaScheduledJobs\NovaScheduledJobsTool,
         ];
     }
 
