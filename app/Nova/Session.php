@@ -23,7 +23,7 @@ class Session extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'session';
 
     /**
      * The columns that should be searched.
