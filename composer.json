@@ -10,6 +10,7 @@
         "fideloper/proxy": "~4.0",
         "gregoriohc/laravel-nova-theme-responsive": "^0.6.2",
         "jeroennoten/laravel-adminlte": "^1.23",
+        "laraning/nova-time-field": "^0.1.2",
         "laravel/framework": "5.8.*",
         "laravel/nova": "*",
         "laravel/telescope": "^2.0",

@@ -2,8 +2,12 @@
 
 namespace App\Nova;
 
+use Laraning\NovaTimeField\TimeField;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Timezone;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Session extends Resource
@@ -41,6 +45,10 @@ class Session extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('Session'),
+            BelongsTo::make('Company')->rules('required'),
+            TimeField::make('start')->rules('required'),
+            TimeField::make('End')->rules('required'),
         ];
     }
 

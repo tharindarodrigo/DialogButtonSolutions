@@ -2,9 +2,12 @@
 
 namespace App\Nova;
 
+use Laraning\NovaTimeField\TimeField;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Schedule extends Resource
 {
@@ -28,7 +31,7 @@ class Schedule extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id'
     ];
 
     /**
@@ -41,6 +44,11 @@ class Schedule extends Resource
     {
         return [
             ID::make()->sortable(),
+            BelongsTo::make('Company'),
+            NovaBelongsToDepend::make('Branch')->dependsOn('company'),
+            NovaBelongsToDepend::make('Session')->dependsOn('company'),
+            TimeField::make('Period'),
+            TimeField::make('Tolerance'),
         ];
     }
 

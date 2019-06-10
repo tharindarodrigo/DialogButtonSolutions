@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56037d1a96d2915f25e65afc1be63761",
+    "content-hash": "8b8dd2e02c01df784e3c3288e0f262b3",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -671,6 +671,47 @@
                 "laravel"
             ],
             "time": "2019-03-10T09:17:09+00:00"
+        },
+        {
+            "name": "laraning/nova-time-field",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laraning/nova-time-field.git",
+                "reference": "1bf7f6dd0ab90d6ccb6de8904702d0bb9d95308a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laraning/nova-time-field/zipball/1bf7f6dd0ab90d6ccb6de8904702d0bb9d95308a",
+                "reference": "1bf7f6dd0ab90d6ccb6de8904702d0bb9d95308a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laraning\\NovaTimeField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laraning\\NovaTimeField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-05-26T20:26:55+00:00"
         },
         {
             "name": "laravel/framework",
