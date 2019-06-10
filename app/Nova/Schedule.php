@@ -44,7 +44,6 @@ class Schedule extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Company'),
             NovaBelongsToDepend::make('Company')
                 ->options(\App\Company::all()),
             NovaBelongsToDepend::make('Branch')
