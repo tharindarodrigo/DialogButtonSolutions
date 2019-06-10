@@ -45,8 +45,20 @@ class Schedule extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('Company'),
-            NovaBelongsToDepend::make('Branch')->dependsOn('company'),
-            NovaBelongsToDepend::make('Session')->dependsOn('company'),
+            NovaBelongsToDepend::make('Company')
+                ->options(\App\Company::all()),
+            NovaBelongsToDepend::make('Branch')
+                ->optionsResolve(function ($company) {
+                    // Reduce the amount of unnecessary data sent
+                    return $company->branches()->get(['id','branch']);
+                })
+                ->dependsOn('Company'),
+            NovaBelongsToDepend::make('Session')
+                ->optionsResolve(function ($company) {
+                    // Reduce the amount of unnecessary data sent
+                    return $company->sessions()->get(['id','session']);
+                })
+                ->dependsOn('Company'),
             TimeField::make('Period'),
             TimeField::make('Tolerance'),
         ];

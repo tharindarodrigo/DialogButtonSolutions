@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -29,5 +29,15 @@ class Company extends Model
     public function buttonClicks()
     {
         return $this->hasMany(ButtonClick::class);
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
     }
 }
