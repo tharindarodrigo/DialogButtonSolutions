@@ -10,4 +10,9 @@ class Session extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

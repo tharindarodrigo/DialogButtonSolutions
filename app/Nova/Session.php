@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -46,8 +47,12 @@ class Session extends Resource
             ID::make()->sortable(),
             Text::make('Session'),
             BelongsTo::make('Company')->rules('required'),
-            TimeField::make('start')->rules('required'),
-            TimeField::make('End')->rules('required'),
+            TimeField::make('Start')
+                ->rules('required'),
+            TimeField::make('End')
+                ->rules('required'), //Should provide maximum value
+
+            HasMany::make('Schedules')
         ];
     }
 

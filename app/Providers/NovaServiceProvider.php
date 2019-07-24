@@ -70,6 +70,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
             new \Llaski\NovaScheduledJobs\NovaScheduledJobsTool,
+            new \Spatie\TailTool\TailTool(),
         ];
     }
 

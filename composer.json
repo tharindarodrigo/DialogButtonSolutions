@@ -22,6 +22,7 @@
         "orlyapps/nova-belongsto-depend": "^2.0",
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-permission": "^2.9",
+        "spatie/nova-tail-tool": "^2.0",
         "timothyasp/nova-color-field": "^1.0",
         "titasgailius/search-relations": "^1.0",
         "vyuldashev/nova-permission": "^1.7"
@@ -31,8 +32,7 @@
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "nunomaduro/collision": "~2.0",
-        "phpunit/phpunit": "~7.0",
-        "symfony/thanks": "^1.0"
+        "phpunit/phpunit": "~7.0"
     },
     "autoload": {
         "classmap": [

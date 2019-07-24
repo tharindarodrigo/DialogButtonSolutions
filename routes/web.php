@@ -11,6 +11,11 @@
 |
 */
 
+use App\Branch;
+use App\Schedule;
+use App\Session;
+use Carbon\Carbon;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -34,12 +39,47 @@ Route::get('/parking-info', function () {
 
 });
 
-Route::get('oil-lamp', function(){
+Route::get('test', function () {
+//    echo $date = \Carbon\Carbon::now();
+//    echo '<br>';
+//    echo $today = \Carbon\Carbon::today();
+//    echo '<br>';
+//    echo $x = \Carbon\Carbon::createFromTimeString('12:00');
+//    echo $x->timestamp
+//    echo $today->addMinutes(200);
+
+    $now = Carbon::now();
+
+    $time = "0{$now->hour}:{$now->minute}";
+    $x = \Carbon\Carbon::createFromTimeString($time);
+    $sessions = Session::with('schedules')
+        ->where('start', '<', $x)
+        ->where('end', '>', $x)
+        ->get();
+
+
+    foreach ($sessions as $session) {
+        foreach ($session->schedules as $schedule) {
+
+            $earliestTime = $schedule->period - $schedule->tolerance;
+            $latestTime = $schedule->period + $schedule->tolerance; //createDateTime
+            $buttonClicks = $schedule->branch->buttonClicks()
+                ->where('created_at', '>', '')
+                ->where('created_at', '<', '')
+                ->get()
+            ;
+
+        };
+    };
+
+});
+
+Route::get('oil-lamp', function () {
     return view('oil-lamp');
 });
 
 
-Route::get('lamp-info', function(){
+Route::get('lamp-info', function () {
     $lampCounter = \App\Counter::whereHas('counterCategory', function ($q) {
         $q->where('counter_category', 'Oil Lamp')
             ->where('company_id', 1);

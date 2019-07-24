@@ -15,4 +15,9 @@ class Branch extends Model
     {
         return $this->hasMany(ButtonClick::class);
     }
+
+    public function buttons()
+    {
+        $this->hasMany(Button::class);
+    }
 }
