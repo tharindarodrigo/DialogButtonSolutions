@@ -41,9 +41,9 @@ Route::get('/parking-info', function () {
 
 Route::get('test', function () {
 //    echo $date = \Carbon\Carbon::now();
-//    echo '<br>';
+//    //echo '<br>';
 //    echo $today = \Carbon\Carbon::today();
-//    echo '<br>';
+//    //echo '<br>';
 //    echo $x = \Carbon\Carbon::createFromTimeString('12:00');
 //    echo $x->timestamp
 //    echo $today->addMinutes(200);
@@ -54,20 +54,49 @@ Route::get('test', function () {
     $x = \Carbon\Carbon::createFromTimeString($time);
     $sessions = Session::with('schedules')
         ->where('start', '<', $x)
-        ->where('end', '>', $x)
+        ->where('end', '>=', $x)
         ->get();
 
 
     foreach ($sessions as $session) {
         foreach ($session->schedules as $schedule) {
 
-            $earliestTime = $schedule->period - $schedule->tolerance;
-            $latestTime = $schedule->period + $schedule->tolerance; //createDateTime
+//            $earliestTime = $schedule->period;
+            echo $period = Carbon::createFromTimeString($schedule->period); //createDateTime
+            //echo '<br>';
+            echo $periodMinutes = $period->minute;
+            //echo '<br>';
+            echo $tolerance = Carbon::createFromTimeString($schedule->tolerance); //createDateTime
+            //echo '<br>';
+            echo $toleranceMinutes = $tolerance->minute;
+            echo '<br>';
+
+            
+            $button = \App\Button::where('branch_id', $schedule->branch->id)->get();
+
+
+            $now = Carbon::now();
+            echo $now->minute % $periodMinutes - $toleranceMinutes;
+            if ((($now->minute % $periodMinutes) - $toleranceMinutes) > 0) {
+
+                $buttonClicks = \App\ButtonClick::where('created_at', '>=', 'xxxx')
+                    ->where('created_at', '<=', 'yyy')
+                    ->where('button_id', '')
+                    ->get();
+//                echo 'send notification';
+            }
+
+//            echo $earliestTime;
+//            //echo '<br>';
+//            echo $latestTime;
+//            //echo '<br>';
+
+            echo '<hr>';
+
             $buttonClicks = $schedule->branch->buttonClicks()
                 ->where('created_at', '>', '')
                 ->where('created_at', '<', '')
-                ->get()
-            ;
+                ->get();
 
         };
     };
