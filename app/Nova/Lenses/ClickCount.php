@@ -29,7 +29,8 @@ class ClickCount extends Lens
                 ->join('button_types', 'button_clicks.button_type_id', '=', 'button_types.id')
                 ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
                 ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
-                ->groupBy('companies.name', 'branches.branch', 'button_types.button_type')
+                ->join('buttons', 'button_clicks.button_id', '=', 'buttons.id')
+                ->groupBy('companies.name', 'branches.branch', 'button_types.button_type', 'buttons.identifier')
 
         ));
     }
@@ -46,6 +47,8 @@ class ClickCount extends Lens
             Text::make('Button Type')->sortable(),
             Text::make('Name')->sortable(),
             Text::make('Branch')->sortable(),
+            Text::make('Identifier')->sortable(),
+
 //            Text::make('Created At')->hideFromIndex(),
             Text::make('Count')->sortable(),
         ];
@@ -92,6 +95,7 @@ class ClickCount extends Lens
             'button_types.button_type',
             'companies.name',
             'branches.branch',
+            'buttons.identifier',
 //            'button_clicks.created_at',
             DB::raw('count(*) as count')
         ];

@@ -52,6 +52,7 @@ class Session extends Resource
             TimeField::make('End')
                 ->rules('required'), //Should provide maximum value
 
+
             HasMany::make('Schedules')
         ];
     }
