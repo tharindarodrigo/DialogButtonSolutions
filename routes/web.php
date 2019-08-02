@@ -50,7 +50,7 @@ Route::get('test', function () {
 
     $now = Carbon::now();
 
-    $time = "0{$now->hour}:{$now->minute}";
+    $time = "{$now->hour}:{$now->minute}";
     $x = \Carbon\Carbon::createFromTimeString($time);
     $sessions = Session::with('schedules')
         ->where('start', '<', $x)
