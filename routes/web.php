@@ -27,7 +27,7 @@ Route::get('/car-park', function () {
 Route::get('/parking-info', function () {
 
     $counters = \App\Counter::whereHas('counterCategory', function ($q) {
-        $q->where('counter_category', 'Car Park')
+        $q
             ->where('company_id', 1);
     })->get();
     $ar = [];
