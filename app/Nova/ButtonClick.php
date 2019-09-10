@@ -120,4 +120,9 @@ class ButtonClick extends Resource
             new DownloadExcel(),
         ];
     }
+
+    public static function label()
+    {
+        return 'Clicks';
+    }
 }
