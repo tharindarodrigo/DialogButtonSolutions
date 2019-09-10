@@ -15,6 +15,8 @@ use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 class ButtonClick extends Resource
 {
+    public static $group = 'Buttons & Configurations';
+
 
     public static $searchRelations = [
         'button' => ['serial_number'],

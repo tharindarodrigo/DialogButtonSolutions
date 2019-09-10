@@ -12,6 +12,8 @@ use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Button extends Resource
 {
+    public static $group = 'Buttons & Configurations';
+
     /**
      * The model the resource corresponds to.
      *

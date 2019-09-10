@@ -11,6 +11,8 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Branch extends Resource
 {
+    public static $group = 'Location';
+
     /**
      * The model the resource corresponds to.
      *
