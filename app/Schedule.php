@@ -20,4 +20,9 @@ class Schedule extends Model
     {
         return $this->belongsTo(Session::class);
     }
+
+
+    public static function run(){
+
+    }
 }

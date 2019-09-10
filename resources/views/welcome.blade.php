@@ -81,7 +81,7 @@
                 <div class="title m-b-md">
                     <img src="{!! asset('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dialog_Axiata_logo.svg/1200px-Dialog_Axiata_logo.svg.png') !!}" width="300" >
                     <br>
-                    Button Console
+                    Guard Tour Console
                 </div>
 
                 {{--<div class="links">--}}

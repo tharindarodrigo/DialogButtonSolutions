@@ -139,7 +139,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/company/{id}/branches', function ($id) {
         return \App\Branch::where('company_id', $id)->get();
     });
-
 });
 
 
