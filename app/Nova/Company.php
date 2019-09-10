@@ -10,6 +10,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Company extends Resource
 {
+    public static $group = 'Buttons & Configurations';
     /**
      * The model the resource corresponds to.
      *

@@ -11,6 +11,7 @@ use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Schedule extends Resource
 {
+    public static $group = 'Scheduler';
     /**
      * The model the resource corresponds to.
      *
