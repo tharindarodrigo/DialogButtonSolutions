@@ -56,7 +56,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new \Llaski\NovaScheduledJobs\NovaScheduledJobsCard,
+//            new \Llaski\NovaScheduledJobs\NovaScheduledJobsCard,
         ];
     }
 
