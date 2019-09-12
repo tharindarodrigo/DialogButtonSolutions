@@ -24,8 +24,9 @@ class LowBatteries extends Lens
                 ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
                 ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
                 ->join('buttons', 'button_clicks.button_id', '=', 'buttons.id')
-                ->distinct()
                 ->where('battery_level', '<=', env('BATTERY_LEVEL', 2))
+                ->orderBy('battery_level')
+                ->distinct()
         ));
     }
 
