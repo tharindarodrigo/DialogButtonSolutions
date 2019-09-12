@@ -41,7 +41,7 @@ class LowBatteries extends Lens
         return [
             ID::make('ID', 'id')->sortable(),
             Text::make('Serial Number')->sortable(),
-            Text::make('Company')->sortable(),
+            Text::make('Company', 'name')->sortable(),
             Text::make('Branch')->sortable(),
             Text::make('Battery Level')->sortable(),
             Text::make('Identifier')->sortable(),
