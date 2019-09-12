@@ -20,7 +20,7 @@ class LowBatteries extends Lens
     public static function query(LensRequest $request, $query)
     {
         return $request->withOrdering($request->withFilters(
-            $query->select(['buttons.serial', 'companies.name', 'branches.branch', 'button_clicks.battery_level', 'button_clicks.identifier'])
+            $query->select(['buttons.serial_number', 'companies.name', 'branches.branch', 'button_clicks.battery_level', 'button_clicks.identifier'])
                 ->join('companies', 'button_clicks.company_id', '=', 'companies.id')
                 ->join('branches', 'button_clicks.branch_id', '=', 'branches.id')
                 ->join('buttons', 'button_clicks.button_id', '=', 'buttons.id')
@@ -40,7 +40,7 @@ class LowBatteries extends Lens
     {
         return [
             ID::make('ID', 'id')->sortable(),
-            Text::make('Serial')->sortable(),
+            Text::make('Serial Number')->sortable(),
             Text::make('Company')->sortable(),
             Text::make('Branch')->sortable(),
             Text::make('Battery Level')->sortable(),
