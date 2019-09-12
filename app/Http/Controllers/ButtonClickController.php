@@ -7,11 +7,13 @@ use App\ButtonClick;
 use App\Company;
 use App\Events\ButtonTriggerEvent;
 use App\Exports\ButtonClicksExport;
+use App\Notifications\LowBattery;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Notification;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ButtonClickController extends Controller
@@ -106,13 +108,14 @@ class ButtonClickController extends Controller
      */
     public function store(Request $request, $serial)
     {
+        $batteryLevel = $request->eventParameters['BatteryLevel'];
         $button = Button::where('serial_number', $serial)->first();
         $buttonClick = new ButtonClick();
         $buttonClick->button_id = $button->id;
         $buttonClick->button_type_id = $button->button_type_id;
         $buttonClick->company_id = $button->company_id;
         $buttonClick->branch_id = $button->branch_id;
-        $buttonClick->battery_level = $request->eventParameters['BatteryLevel'];
+        $buttonClick->battery_level = $batteryLevel;
 
 //        event(new ButtonTriggerEvent(collect($buttonClick)));
 
@@ -120,6 +123,10 @@ class ButtonClickController extends Controller
 
             $x = ButtonClick::with(['buttonType', 'company', 'branch', 'button'])->find($buttonClick->id);
             event(new ButtonTriggerEvent($x));
+            if($batteryLevel <= env('BATTERY_LEVEL', 2)){
+                Notification::send(User::role('admin')->get(), new LowBattery($x));
+            }
+
         }
     }
 
